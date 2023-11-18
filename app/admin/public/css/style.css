@@ -1,0 +1,557 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+body .container {
+  width: 980px;
+  height: auto;
+  display: grid;
+  grid-template-rows: 150px 50px auto;
+  grid-template-columns: 980px;
+  grid-template-areas: "brand" "nav" "main";
+}
+body .container .brand {
+  grid-area: brand;
+  background: linear-gradient(to right, rgb(15, 169, 51), rgb(19, 71, 154), rgb(206, 95, 16));
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 50px;
+}
+body .container .brand h1 {
+  font-size: 80px;
+}
+body .container nav {
+  background-color: rgb(47, 64, 137);
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body .container nav ul {
+  width: 550px;
+  display: flex;
+  justify-content: space-around;
+}
+body .container nav ul li {
+  list-style: none;
+}
+body .container nav ul li a {
+  text-decoration: none;
+}
+body .container nav ul li a:hover {
+  color: deeppink;
+}
+body .container #categories {
+  width: 980px;
+  height: auto;
+  background-color: brown;
+  position: relative;
+}
+body .container #categories form {
+  width: 600px;
+  height: 90px;
+  background-color: brown;
+  position: relative;
+  padding: 20px;
+}
+body .container #categories form input[type=text] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 300px;
+  height: 25px;
+}
+body .container #categories form input[name=list] {
+  color: black !important;
+  position: absolute;
+  right: 180px;
+  width: 70px;
+  height: 20px;
+}
+body .container #categories form input[name=data-change] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 70px;
+  height: 20px;
+}
+body .container #categories form input[name=data-send] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 70px;
+  height: 20px;
+}
+body .container #ctgryList {
+  width: 980px;
+  height: auto;
+}
+body .container #ctgryList .rows {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 0.4fr;
+  grid-template-areas: "x y z";
+  height: 36px;
+  padding: 5px;
+  border-right: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  border-bottom: 0.5px solid gray;
+}
+body .container #ctgryList .rows .categoryID {
+  grid-area: x;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 15px;
+  color: black !important;
+}
+body .container #ctgryList .rows .categoryName {
+  grid-area: y;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 15px;
+  border-left: 0.5px solid gray;
+  color: black !important;
+}
+body .container #ctgryList .rows .change {
+  grid-area: z;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 15px;
+  border-left: 0.5px solid gray;
+  color: black !important;
+  position: relative;
+}
+body .container #ctgryList .rows .change form input[name=data-change] {
+  color: black !important;
+  width: 60px;
+  height: 20px;
+  cursor: pointer;
+}
+body .container #ctgryList .rows .change form input[name=data-delete] {
+  color: black !important;
+  width: 60px;
+  height: 20px;
+  cursor: pointer;
+}
+body .container #ctgryList input[name=data-add] {
+  background-color: brown;
+  color: #ffffff !important;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+body .container #ctgryList input[name=data-add]:hover {
+  background-color: #4caf50;
+}
+body .container #products {
+  grid-area: main;
+  width: 980px;
+  height: auto;
+  background-color: brown;
+}
+body .container #products form {
+  width: 600px;
+  height: 280px;
+  background-color: brown;
+  position: relative;
+  padding: 20px;
+}
+body .container #products form input[type=text],
+body .container #products form input[type=number],
+body .container #products form input[type=file] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 300px;
+  height: 25px;
+}
+body .container #products form input[name=prod-data-send] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 70px;
+  height: 20px;
+}
+body .container #products form input[name=prod-data-change] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 70px;
+  height: 20px;
+}
+body .container #products form select[name=productCategory] {
+  color: black !important;
+  position: absolute;
+  right: 275px;
+}
+body .container #products form input[name=prod-list] {
+  color: black !important;
+  position: absolute;
+  right: 185px;
+  width: 70px;
+  height: 20px;
+}
+body .container #productList {
+  width: 980px;
+  height: auto;
+}
+body .container #productList .prodTittle {
+  width: 980px;
+  height: 50px;
+  display: grid;
+  grid-template-columns: 85px 135px 90px 300px 90px 70px 110px 100px;
+  grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
+}
+body .container #productList .prodTittle .x {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 0.5px solid gray;
+  border-right: 0.5px solid gray;
+  color: white !important;
+}
+body .container #productList .prodRows {
+  width: 980px;
+  height: 70px;
+  display: grid;
+  grid-template-columns: 85px 135px 90px 300px 90px 70px 110px 100px;
+  grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
+  position: relative;
+}
+body .container #productList .prodRows .y {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 0.5px solid gray;
+  border-right: 0.5px solid gray;
+  color: black !important;
+  border-bottom: 0.5px solid gray;
+  padding: 7px;
+  word-wrap: break-word;
+  overflow-x: visible;
+}
+body .container #productList .prodRows .prodID {
+  grid-area: prodID;
+}
+body .container #productList .prodRows .prodName {
+  grid-area: prodName;
+}
+body .container #productList .prodRows .prodPrice {
+  grid-area: prodPrice;
+}
+body .container #productList .prodRows .prodDescription {
+  grid-area: prodDescription;
+}
+body .container #productList .prodRows .prodImg {
+  grid-area: prodImg;
+}
+body .container #productList .prodRows .prodImg img {
+  width: 60px;
+  height: 60px;
+}
+body .container #productList .prodRows .prodView {
+  grid-area: prodView;
+}
+body .container #productList .prodRows .category_id {
+  grid-area: category_id;
+}
+body .container #productList .prodRows .button {
+  grid-area: button;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+body .container #productList .prodRows .button form input[name=prod-change-btn] {
+  color: black !important;
+  width: 60px;
+  height: 20px;
+  cursor: pointer;
+}
+body .container #productList .prodRows .button form input[name=prod-delete-btn] {
+  color: black !important;
+  width: 60px;
+  height: 20px;
+  cursor: pointer;
+}
+body .container #productList a input[name=prod-add-btn] {
+  background-color: brown;
+  color: #ffffff !important;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+body .container #productList a input[name=prod-add-btn]:hover {
+  background-color: #4caf50;
+}
+body .container #users {
+  width: 980px;
+  height: auto;
+}
+body .container #users .colums {
+  border-left: 0.5px solid gray;
+  border-bottom: 0.5px solid gray;
+  border-right: 0.5px solid gray;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  height: 40px;
+}
+body .container #users .colums .username {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #users .colums .password {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #users .colums .power {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #users .colums .change {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows {
+  border-bottom: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 40px;
+}
+body .container #users .rows .username {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows .password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows .power {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows .change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows .change form input {
+  color: black;
+  margin-left: 5px;
+}
+body .container #userChange {
+  width: 980px;
+  height: auto;
+  background-color: brown;
+  position: relative;
+}
+body .container #userChange form {
+  width: 600px;
+  height: 110px;
+  background-color: brown;
+  position: relative;
+  padding: 20px;
+}
+body .container #userChange form input[type=text] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 300px;
+  height: 25px;
+}
+body .container #userChange form input[name=list] {
+  color: black !important;
+  position: absolute;
+  right: 180px;
+  width: 70px;
+  height: 20px;
+}
+body .container #userChange form input[name=powerChange] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 70px;
+  height: 20px;
+}
+body .container #userChange form input[name=data-send] {
+  color: black !important;
+  position: absolute;
+  right: 100px;
+  width: 70px;
+  height: 20px;
+}
+body .container #comments {
+  width: 980px;
+  height: auto;
+}
+body .container #comments .colums {
+  border-left: 0.5px solid gray;
+  border-bottom: 0.5px solid gray;
+  border-right: 0.5px solid gray;
+  display: grid;
+  grid-template-columns: 150px 349px 230px 150px 100px;
+  grid-template-rows: auto;
+  height: 40px;
+}
+body .container #comments .colums .username {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #comments .colums .content {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #comments .colums .date {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #comments .colums .prodID {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #comments .colums .change {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #comments .rows {
+  border-bottom: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  display: grid;
+  grid-template-columns: 150px 349px 230px 150px 100px;
+  height: 40px;
+}
+body .container #comments .rows .username {
+  border-left: 0.5px solid gray;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+  text-overflow: ellipsis;
+}
+body .container #comments .rows .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #comments .rows .content span {
+  width: 330px;
+  white-space: nowrap;
+  color: black;
+}
+body .container #comments .rows .date {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+  text-overflow: ellipsis;
+}
+body .container #comments .rows .prodID {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+  text-overflow: ellipsis;
+}
+body .container #comments .rows .change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #comments .rows .change form input {
+  color: black;
+  margin-left: 5px;
+}
+body .container #static {
+  width: 980px;
+  height: auto;
+}
+body .container #static .tittle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+  background-color: rgb(160, 14, 131);
+}
+body .container #static .tittle li {
+  list-style: none;
+}
+body .container #static .rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+body .container #static .rows li {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  list-style: none;
+  border-bottom: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  padding-left: 10px;
+  color: black;
+}/*# sourceMappingURL=style.css.map */
