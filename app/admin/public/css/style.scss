@@ -11,15 +11,13 @@ body {
     position: relative;
 
     .container {
-        width: 980px;
+        width: 100%;
         height: auto;
         display: grid;
-        grid-template-rows: 150px 50px auto;
-        grid-template-columns: 980px;
+        grid-template-columns: 250px auto;
         grid-template-areas:
-            "brand"
-            "nav"
-            "main";
+            "brand brand"
+            "nav main";
 
         .brand {
             grid-area: brand;
@@ -38,13 +36,18 @@ body {
             background-color: rgb(47, 64, 137);
             grid-area: nav;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            height: 1000px;
+            padding: 20px;
 
             ul {
-                width: 550px;
+                width: 180px;
+                height: 400px;
+                background-color: #4caf50;
                 display: flex;
+                flex-direction: column;
                 justify-content: space-around;
+                // justify-content: space-around;
 
                 li {
                     list-style: none;
@@ -108,7 +111,7 @@ body {
         }
 
         #ctgryList {
-            width: 980px;
+            width: 1175px;
             height: auto;
 
             .rows {
@@ -243,14 +246,14 @@ body {
         }
 
         #productList {
-            width: 980px;
+            width: 1175px;
             height: auto;
 
             .prodTittle {
                 width: 980px;
                 height: 50px;
                 display: grid;
-                grid-template-columns: 85px 135px 90px 300px 90px 70px 110px 100px;
+                grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
                 grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
 
                 .x {
@@ -267,7 +270,7 @@ body {
                 width: 980px;
                 height: 70px;
                 display: grid;
-                grid-template-columns: 85px 135px 90px 300px 90px 70px 110px 100px;
+                grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
                 grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
                 position: relative;
 
@@ -652,5 +655,7 @@ body {
                 }
             }
         }
+
+
     }
 }

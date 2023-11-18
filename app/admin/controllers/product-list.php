@@ -6,8 +6,8 @@
         <div class="prodDescription x">Mô tả</div>
         <div class="prodImg x">Ảnh</div>
         <div class="prodView x">Views</div>
-        <div class="category_id x">Danh mục</div>
-        <div class="prodInStock x">Thao tác</div>
+        <div style="background-color: brown;border-bottom: 1px solid gray;" class="category_id x">Danh mục</div>
+        <div style="background-color: brown;border-bottom: 1px solid gray;" class="prodInStock x">Thao tác</div>
     </div>
     <?php
     $sql = "SELECT * FROM `products` ORDER BY `dateAdd` DESC";

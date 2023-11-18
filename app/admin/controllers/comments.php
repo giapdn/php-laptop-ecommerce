@@ -31,8 +31,13 @@
             </div>';
             }
         }
+        else {
+            echo "Không có sản phẩm";
+        }
     } catch (\Throwable $th) {
-        //throw $th;
+        echo $th->getMessage();
+    } finally {
+        $conn->close();
     }
     ?>
 </div>
