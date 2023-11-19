@@ -11,6 +11,7 @@ body {
   position: relative;
 }
 body .container {
+  position: relative;
   width: 100%;
   height: auto;
   display: grid;
@@ -24,6 +25,9 @@ body .container .brand {
   justify-content: flex-start;
   align-items: center;
   padding: 15px;
+  position: sticky;
+  top: 0px;
+  z-index: 5;
 }
 body .container .brand h1 {
   font-size: 80px;
@@ -39,7 +43,6 @@ body .container nav {
 body .container nav ul {
   width: 180px;
   height: 350px;
-  background-color: #4caf50;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -98,7 +101,7 @@ body .container #categories form input[name=data-send] {
   height: 20px;
 }
 body .container #ctgryList {
-  width: 1175px;
+  width: 100%;
   height: auto;
 }
 body .container #ctgryList .rows {
