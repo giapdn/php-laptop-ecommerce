@@ -15,22 +15,23 @@ body .container {
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: 230px auto;
+  grid-template-columns: 220px auto;
   grid-template-areas: "brand brand" "nav main";
 }
 body .container .brand {
+  height: 70px;
+  width: 100%;
   grid-area: brand;
   background: linear-gradient(to right, rgb(15, 169, 51), rgb(19, 71, 154), rgb(206, 95, 16));
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 15px;
   position: sticky;
   top: 0px;
   z-index: 5;
 }
 body .container .brand h1 {
-  font-size: 80px;
+  font-size: 50px;
 }
 body .container nav {
   background-color: rgb(47, 64, 137);
@@ -38,11 +39,11 @@ body .container nav {
   display: flex;
   justify-content: space-between;
   height: 1000px;
-  padding: 20px;
+  padding: 17px;
 }
 body .container nav ul {
   width: 180px;
-  height: 350px;
+  height: 290px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -50,14 +51,22 @@ body .container nav ul {
 }
 body .container nav ul li {
   list-style: none;
-  width: 110px;
-  height: 35px;
+  width: 170px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
 }
 body .container nav ul li a {
   text-decoration: none;
 }
-body .container nav ul li a:hover {
-  color: deeppink;
+body .container nav ul li:hover {
+  background-color: #7f2173;
+  cursor: pointer;
+}
+body .container nav ul li:hover a {
+  border-left: 1px solid white;
 }
 body .container #categories {
   width: 980px;
@@ -142,16 +151,33 @@ body .container #ctgryList .rows .change {
   position: relative;
 }
 body .container #ctgryList .rows .change form input[name=data-change] {
-  color: black !important;
   width: 60px;
   height: 20px;
+  background-color: #3498db;
+  border: 1px solid #2980b9;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+body .container #ctgryList .rows .change form input[name=data-change]:hover {
+  background-color: #7d29b9;
 }
 body .container #ctgryList .rows .change form input[name=data-delete] {
-  color: black !important;
   width: 60px;
   height: 20px;
+  background-color: red;
+  border: 1px solid red;
+  color: yellow;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+body .container #ctgryList .rows .change form input[name=data-delete]:hover {
+  background-color: orange;
+  color: red;
 }
 body .container #ctgryList input[name=data-add] {
   background-color: brown;
@@ -216,14 +242,14 @@ body .container #products form input[name=prod-list] {
   height: 20px;
 }
 body .container #productList {
-  width: 1175px;
+  width: 100%;
   height: auto;
 }
 body .container #productList .prodTittle {
-  width: 980px;
+  width: 100%;
   height: 50px;
   display: grid;
-  grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
+  grid-template-columns: 1fr 2fr 1fr 4fr 1fr 1fr 2fr 1fr;
   grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
 }
 body .container #productList .prodTittle .x {
@@ -235,10 +261,10 @@ body .container #productList .prodTittle .x {
   color: white !important;
 }
 body .container #productList .prodRows {
-  width: 980px;
+  width: 100%;
   height: 70px;
   display: grid;
-  grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
+  grid-template-columns: 1fr 2fr 1fr 4fr 1fr 1fr 2fr 1fr;
   grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
   position: relative;
 }
@@ -286,16 +312,33 @@ body .container #productList .prodRows .button {
   justify-content: space-around;
 }
 body .container #productList .prodRows .button form input[name=prod-change-btn] {
-  color: black !important;
   width: 60px;
   height: 20px;
+  background-color: #3498db;
+  border: 1px solid #2980b9;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+body .container #productList .prodRows .button form input[name=prod-change-btn]:hover {
+  background-color: #7d29b9;
 }
 body .container #productList .prodRows .button form input[name=prod-delete-btn] {
-  color: black !important;
   width: 60px;
   height: 20px;
+  background-color: red;
+  border: 1px solid red;
+  color: yellow;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+body .container #productList .prodRows .button form input[name=prod-delete-btn]:hover {
+  background-color: orange;
+  color: red;
 }
 body .container #productList a input[name=prod-add-btn] {
   background-color: brown;
@@ -312,7 +355,7 @@ body .container #productList a input[name=prod-add-btn]:hover {
   background-color: #4caf50;
 }
 body .container #users {
-  width: 980px;
+  width: 100%;
   height: auto;
 }
 body .container #users .colums {
@@ -434,7 +477,7 @@ body .container #userChange form input[name=data-send] {
   height: 20px;
 }
 body .container #comments {
-  width: 980px;
+  width: 100%;
   height: auto;
 }
 body .container #comments .colums {
@@ -443,6 +486,7 @@ body .container #comments .colums {
   border-right: 0.5px solid gray;
   display: grid;
   grid-template-columns: 150px 349px 230px 150px 100px;
+  grid-template-columns: 1.5fr 3.5fr 2.3fr 1.5fr 1fr;
   grid-template-rows: auto;
   height: 40px;
 }
@@ -486,7 +530,7 @@ body .container #comments .rows {
   border-bottom: 0.5px solid gray;
   border-left: 0.5px solid gray;
   display: grid;
-  grid-template-columns: 150px 349px 230px 150px 100px;
+  grid-template-columns: 1.5fr 3.5fr 2.3fr 1.5fr 1fr;
   height: 40px;
 }
 body .container #comments .rows .username {
@@ -533,11 +577,21 @@ body .container #comments .rows .change {
   border-right: 0.5px solid gray;
 }
 body .container #comments .rows .change form input {
-  color: black;
-  margin-left: 5px;
+  width: 60px;
+  height: 20px;
+  background-color: red;
+  border: 1px solid #2980b9;
+  color: yellow;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+body .container #comments .rows .change form input:hover {
+  background-color: #7d29b9;
 }
 body .container #static {
-  width: 980px;
+  width: 100%;
   height: auto;
 }
 body .container #static .tittle {

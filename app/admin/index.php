@@ -4,7 +4,7 @@ if (isset($_GET["act"])) {
     $action = $_GET["act"];
     switch ($action) {
         case 'home':
-            echo "<script>window.location.href = '../index.php';</script>";
+            echo "<script>window.location.href = '/duan1/index.php';</script>";
             break;
         case 'categories':
             include "controllers/category-list.php";

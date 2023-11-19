@@ -15,24 +15,25 @@ body {
         width: 100%;
         height: auto;
         display: grid;
-        grid-template-columns: 230px auto;
+        grid-template-columns: 220px auto;
         grid-template-areas:
             "brand brand"
             "nav main";
 
         .brand {
+            height: 70px;
+            width: 100%;
             grid-area: brand;
             background: linear-gradient(to right, rgb(15, 169, 51), rgb(19, 71, 154), rgb(206, 95, 16));
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 15px;
             position: sticky;
             top: 0px;
             z-index: 5;
 
             h1 {
-                font-size: 80px;
+                font-size: 50px;
             }
         }
 
@@ -42,11 +43,11 @@ body {
             display: flex;
             justify-content: space-between;
             height: 1000px;
-            padding: 20px;
+            padding: 17px;
 
             ul {
                 width: 180px;
-                height: 350px;
+                height: 290px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
@@ -54,18 +55,27 @@ body {
 
                 li {
                     list-style: none;
-                    width: 110px;
-                    height: 35px;
+                    width: 170px;
+                    height: 40px;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 7px;
 
                     a {
                         text-decoration: none;
                     }
-
-                    a:hover {
-                        color: deeppink;
-                    }
                 }
 
+                li:hover {
+                    background-color: #7f2173;
+                    cursor: pointer;
+                }
+
+                li:hover a {
+                    border-left: 1px solid white;
+                }
             }
         }
 
@@ -161,19 +171,38 @@ body {
 
                     form {
                         input[name="data-change"] {
-                            color: black !important;
                             width: 60px;
                             height: 20px;
+                            background-color: #3498db;
+                            border: 1px solid #2980b9;
+                            color: #ffffff;
+                            font-size: 14px;
+                            font-weight: bold;
                             cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        input[name="data-change"]:hover {
+                            background-color: #7d29b9;
                         }
                     }
 
                     form {
                         input[name="data-delete"] {
-                            color: black !important;
                             width: 60px;
                             height: 20px;
+                            background-color: red;
+                            border: 1px solid red;
+                            color: yellow;
+                            font-size: 14px;
+                            font-weight: bold;
                             cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        input[name="data-delete"]:hover {
+                            background-color: orange;
+                            color: red;
                         }
                     }
                 }
@@ -252,14 +281,15 @@ body {
         }
 
         #productList {
-            width: 1175px;
+            width: 100%;
             height: auto;
 
             .prodTittle {
-                width: 980px;
+                width: 100%;
                 height: 50px;
                 display: grid;
-                grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
+                // grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
+                grid-template-columns: 1fr 2fr 1fr 4fr 1fr 1fr 2fr 1fr;
                 grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
 
                 .x {
@@ -273,10 +303,11 @@ body {
             }
 
             .prodRows {
-                width: 980px;
+                width: 100%;
                 height: 70px;
                 display: grid;
-                grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
+                // grid-template-columns: 105px 180px 130px 350px 90px 70px 150px 100px;
+                grid-template-columns: 1fr 2fr 1fr 4fr 1fr 1fr 2fr 1fr;
                 grid-template-areas: "prodID prodName prodPrice prodDescription prodImg prodView category_id button";
                 position: relative;
 
@@ -332,20 +363,53 @@ body {
                     justify-content: space-around;
 
                     form {
+                        // input[name="prod-change-btn"] {
+                        //     color: black !important;
+                        //     width: 60px;
+                        //     height: 20px;
+                        //     cursor: pointer;
+                        // }
+
                         input[name="prod-change-btn"] {
-                            color: black !important;
                             width: 60px;
                             height: 20px;
+                            background-color: #3498db;
+                            border: 1px solid #2980b9;
+                            color: #ffffff;
+                            font-size: 14px;
+                            font-weight: bold;
                             cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        input[name="prod-change-btn"]:hover {
+                            background-color: #7d29b9;
                         }
                     }
 
                     form {
+                        // input[name="prod-delete-btn"] {
+                        //     color: black !important;
+                        //     width: 60px;
+                        //     height: 20px;
+                        //     cursor: pointer;
+                        // }
+
                         input[name="prod-delete-btn"] {
-                            color: black !important;
                             width: 60px;
                             height: 20px;
+                            background-color: red;
+                            border: 1px solid red;
+                            color: yellow;
+                            font-size: 14px;
+                            font-weight: bold;
                             cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        input[name="prod-delete-btn"]:hover {
+                            background-color: orange;
+                            color: red;
                         }
                     }
                 }
@@ -371,7 +435,7 @@ body {
         }
 
         #users {
-            width: 980px;
+            width: 100%;
             height: auto;
 
             .colums {
@@ -511,7 +575,7 @@ body {
         }
 
         #comments {
-            width: 980px;
+            width: 100%;
             height: auto;
 
             .colums {
@@ -520,6 +584,7 @@ body {
                 border-right: 0.5px solid gray;
                 display: grid;
                 grid-template-columns: 150px 349px 230px 150px 100px;
+                grid-template-columns: 1.5fr 3.5fr 2.3fr 1.5fr 1fr;
                 grid-template-rows: auto;
                 height: 40px;
 
@@ -568,7 +633,8 @@ body {
                 border-bottom: 0.5px solid gray;
                 border-left: 0.5px solid gray;
                 display: grid;
-                grid-template-columns: 150px 349px 230px 150px 100px;
+                // grid-template-columns: 150px 349px 230px 150px 100px;
+                grid-template-columns: 1.5fr 3.5fr 2.3fr 1.5fr 1fr;
                 height: 40px;
 
                 .username {
@@ -620,9 +686,25 @@ body {
                     border-right: 0.5px solid gray;
 
                     form {
+                        // input {
+                        //     color: black;
+                        //     margin-left: 5px;
+                        // }
+
                         input {
-                            color: black;
-                            margin-left: 5px;
+                            width: 60px;
+                            height: 20px;
+                            background-color: red;
+                            border: 1px solid #2980b9;
+                            color: yellow;
+                            font-size: 14px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        input:hover {
+                            background-color: #7d29b9;
                         }
                     }
                 }
@@ -630,7 +712,7 @@ body {
         }
 
         #static {
-            width: 980px;
+            width: 100%;
             height: auto;
 
             .tittle {
@@ -661,7 +743,5 @@ body {
                 }
             }
         }
-
-
     }
 }
