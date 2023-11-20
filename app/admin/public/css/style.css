@@ -34,7 +34,7 @@ body .container .brand h1 {
   font-size: 50px;
 }
 body .container nav {
-  background-color: rgb(47, 64, 137);
+  background-color: rgb(224, 221, 221);
   grid-area: nav;
   display: flex;
   justify-content: space-between;
@@ -48,26 +48,46 @@ body .container nav ul {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
+  
 }
 body .container nav ul li {
+ 
   list-style: none;
   width: 170px;
   height: 40px;
   display: flex;
-  justify-content: center;
+  
   align-items: center;
   border-radius: 7px;
+
+
 }
 body .container nav ul li a {
   text-decoration: none;
+  padding-left: 10px;
+  color: #000;
 }
+
+body .container nav ul li i {
+  text-decoration: none;
+  padding-left: 10px;
+  color: #000;
+}
+
 body .container nav ul li:hover {
   background-color: #7f2173;
   cursor: pointer;
 }
 body .container nav ul li:hover a {
-  border-left: 1px solid white;
+  color: #ffffff;
 }
+
+body .container nav ul li:hover i {
+  color: #ffffff;
+}
+
+
 body .container #categories {
   width: 980px;
   height: auto;
