@@ -1,21 +1,18 @@
 <?php
+include "pdo.php";
 if (isset($_POST["data-send"])) {
-    $categoryID = $_POST["categoryID"];
     $categoryName = $_POST["categoryName"];
-    $sql = "INSERT INTO `categories`(`category_id`, `category_name`) VALUES ('$categoryID','$categoryName')";
+    $sql = "INSERT INTO `danhmuc`(`tendanhmuc`) VALUES ('$categoryName')";
     try {
-        include "./database.php";
-        if ($categoryID == "" && $categoryName == "") {
+        if ($categoryName == "") {
             echo "<script>alert('Dữ liệu không được để trống !')</script>";
             echo "<script>window.location.href='../index.php?act=categoryAdd';</script>";
         } else {
-            $conn->query($sql);
+            pdo_execute($sql);
             echo "<script>alert('Nạp dữ liệu thành công !')</script>";
             echo "<script>window.location.href='../index.php?act=categoryAdd';</script>";
         }
     } catch (\mysqli_sql_exception $th) {
         echo "OOP !: " . $th->getMessage();
-    } finally {
-        $conn->close();
     }
 }
