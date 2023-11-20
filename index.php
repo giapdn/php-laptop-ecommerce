@@ -1,6 +1,5 @@
 <?php
-include "header.php";
-include "body.php";
+include "app/home/views/header.php";
 if (isset($_GET["act"])) {
     switch ($variable) {
         case 'value':
@@ -13,8 +12,8 @@ if (isset($_GET["act"])) {
     }
 }
 else {
-    include "body.php";
+    include "app/home/controllers/body.php";
 }
-include "footer.php";
+include "app/home/views/footer.php";
 ?>
 
