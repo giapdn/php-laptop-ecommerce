@@ -18,17 +18,18 @@
     $sql = "SELECT * FROM danhmuc";
     $data = pdo_query($sql);
     foreach ($data as $rows) {
-        $path = "index.php?act=categoryChange&category_id=" . $rows["id_danhmuc"];
+        extract($rows);
+        $path = "index.php?act=categoryChange&category_id=" . $id_danhmuc;
         echo '
                 <div class="rows">
-                    <div class="categoryID">' . $rows["id_danhmuc"] . '</div>
-                    <div class="categoryName">' . $rows["tendanhmuc"] . ' </div>
+                    <div class="categoryID">' . $id_danhmuc . '</div>
+                    <div class="categoryName">' . $tendanhmuc . ' </div>
                     <div class="change">
                         <form action="' . $path . '" method="post">                      
                             <input type="submit" name="data-change" value="Sửa">
                         </form>
                         <form action="../admin/models/categoryDel_process.php" method="post">
-                            <input type="hidden" name="categoryID" value="' . $rows["id_danhmuc"] . '">
+                            <input type="hidden" name="categoryID" value="' . $id_danhmuc . '">
                             <input type="submit" name="data-delete" value="Xoá">
                         </form>
                     </div>
@@ -36,6 +37,4 @@
             ';
     }
     ?>
-
-
 </div>
