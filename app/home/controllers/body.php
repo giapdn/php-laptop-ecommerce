@@ -1,12 +1,12 @@
- <section class="breadcrumb-section set-bg" data-setbg="img/hero/banner.jpg">
+ <section class="breadcrumb-section set-bg" data-setbg="app/home/img/hero/istockphoto-1180178312-170667a.jpg">
      <div class="container">
          <div class="row">
              <div class="hero__item set-bg">
                  <div class="hero__text">
-                     <span>FRUIT FRESH</span>
-                     <h2>Vegetable <br />100% Organic</h2>
-                     <p>Free Pickup and Delivery Available</p>
-                     <a href="#" class="primary-btn">SHOP NOW</a>
+                     <span>SẢN PHẨM CÔNG NGHỆ</span>
+                     <h2>Laptop <br />100% Chính hãng</h2>
+                     <p>Miễn phí giao hàng toàn quốc</p>
+                     <a href="#" class="primary-btn">MUA NGAY</a>
                  </div>
              </div>
          </div>
