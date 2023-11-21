@@ -7,13 +7,6 @@
     </div>
     <?php
 
-
-
-   
-
-
-
-
     $sql = "SELECT `username`, `password`, `power` FROM `users`";
     try {
         include "models/pdo.php";

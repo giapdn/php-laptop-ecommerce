@@ -209,7 +209,7 @@ body {
             }
 
             input[name="data-add"] {
-                background-color: brown;
+                background-color: blueviolet;
                 color: #ffffff !important;
                 border: none;
                 padding: 10px 15px;
@@ -229,12 +229,12 @@ body {
             grid-area: main;
             width: 980px;
             height: auto;
-            background-color: brown;
+            background-color: rgb(165, 147, 42);
 
             form {
                 width: 600px;
                 height: 280px;
-                background-color: brown;
+                background-color: rgb(165, 126, 42);
                 position: relative;
                 padding: 20px;
 
@@ -363,13 +363,6 @@ body {
                     justify-content: space-around;
 
                     form {
-                        // input[name="prod-change-btn"] {
-                        //     color: black !important;
-                        //     width: 60px;
-                        //     height: 20px;
-                        //     cursor: pointer;
-                        // }
-
                         input[name="prod-change-btn"] {
                             width: 60px;
                             height: 20px;
@@ -388,12 +381,6 @@ body {
                     }
 
                     form {
-                        // input[name="prod-delete-btn"] {
-                        //     color: black !important;
-                        //     width: 60px;
-                        //     height: 20px;
-                        //     cursor: pointer;
-                        // }
 
                         input[name="prod-delete-btn"] {
                             width: 60px;
@@ -416,20 +403,22 @@ body {
             }
 
             a {
+                margin-bottom: 10px;
+
                 input[name="prod-add-btn"] {
-                    background-color: brown;
+                    background-color: blueviolet;
                     color: #ffffff !important;
                     border: none;
                     padding: 10px 15px;
                     font-size: 16px;
-                    border-radius: 5px;
+                    border-radius: 7px;
                     cursor: pointer;
                     transition: background-color 0.3s;
                     margin-top: 10px;
                 }
 
                 input[name="prod-add-btn"]:hover {
-                    background-color: #4caf50;
+                    background-color: rgb(207, 71, 22);
                 }
             }
         }
