@@ -8,9 +8,11 @@
                             <a href="./index.html"><img src="img/logo.png" alt=""></a>
                         </div>
                         <ul>
+                        <img src="app/home/img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt="">
                             <li>Address: 60-49 Road 11378 New York</li>
                             <li>Phone: +65 11.188.888</li>
                             <li>Email: hello@colorlib.com</li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -37,8 +39,8 @@
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <h6>Theo Dõi Chúng Tôi Ngay</h6>
+                        <p>Nhận thông tin cập nhật qua E-mail về cửa hàng mới nhất của chúng tôi và các ưu đãi đặc biệt.</p>
                         <form action="#">
                             <input type="text" placeholder="Enter your mail">
                             <button type="submit" class="site-btn">Subscribe</button>

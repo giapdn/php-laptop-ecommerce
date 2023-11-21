@@ -32,17 +32,7 @@ if (isset($_GET["act"])) {
             include "controllers/comments.php";
             break;
 
-        case 'commentDel':
-            if (isset($_GET["id_binhLuan"])) {
-                $id = $_GET["id_binhLuan"];
-                $sql = "DELETE FROM `binhluan` WHERE `id_binhLuan` = '$id'";
-                include "models/pdo.php";
-                if ($conn->query($sql)) {
-                    echo '<script>alert("Xoá thành công");</script>';
-                    echo '<script>window.location.href="index.php?act=comments"</script>';
-                }
-            }
-            break;
+   
 
         case 'userDel':
             if (isset($_GET["name"])) {
