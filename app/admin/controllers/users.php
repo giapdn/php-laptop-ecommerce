@@ -6,9 +6,17 @@
         <div class="change">Thao tác</div>
     </div>
     <?php
+
+
+
+   
+
+
+
+
     $sql = "SELECT `username`, `password`, `power` FROM `users`";
     try {
-        include "models/database.php";
+        include "models/pdo.php";
         $result = $conn->query($sql);
         if ($result->num_rows != 0) {
             while ($rows = $result->fetch_assoc()) {

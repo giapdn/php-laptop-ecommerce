@@ -1,12 +1,13 @@
 <?php
+include "pdo.php";
 if (isset($_POST["categoryID"])) {
     $categoryID = $_POST["categoryID"];
     $categoryName = $_POST["categoryName"];
-    $sql = "UPDATE `categories` SET `category_name`= '$categoryName' WHERE `category_id`= '$categoryID'";
+    $sql = "UPDATE `danhmuc` SET `tendanhmuc`= '$categoryName' WHERE `id_danhmuc`= '$categoryID'";
+   
     try {
-        if ($categoryName != "") {
-            include "./database.php";
-            $conn->query($sql);
+        if(isset($_POST['data-change']) && ($_POST['data-change'])){
+            $a = pdo_query($sql);
             echo "<script>alert('Cập nhật xong !')</script>";
             echo "<script>window.location.href='../index.php?act=categories';</script>";
         } else {
@@ -16,7 +17,7 @@ if (isset($_POST["categoryID"])) {
     } catch (\mysqli_sql_exception $th) {
         echo "<script>alert(" . $th->getMessage() . ")</script>";
     } finally {
-        $conn->close();
+        $a->close();
     }
 } else {
     echo "Không có giá trị categoryID được gửi.";

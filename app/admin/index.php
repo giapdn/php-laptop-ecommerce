@@ -1,5 +1,5 @@
 <?php
-include "app/admin/models/pdo.php";
+include "admin/models/pdo.php";
 include "views/header.php";
 if (isset($_GET["act"])) {
     $action = $_GET["act"];
@@ -31,6 +31,19 @@ if (isset($_GET["act"])) {
         case 'comments':
             include "controllers/comments.php";
             break;
+
+        case 'commentDel':
+            if (isset($_GET["id_binhLuan"])) {
+                $id = $_GET["id_binhLuan"];
+                $sql = "DELETE FROM `binhluan` WHERE `id_binhLuan` = '$id'";
+                include "models/pdo.php";
+                if ($conn->query($sql)) {
+                    echo '<script>alert("Xoá thành công");</script>';
+                    echo '<script>window.location.href="index.php?act=comments"</script>';
+                }
+            }
+            break;
+
         case 'userDel':
             if (isset($_GET["name"])) {
                 $name = $_GET["name"];

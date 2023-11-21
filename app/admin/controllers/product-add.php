@@ -1,5 +1,8 @@
 <div id="products">
-    <form action="../admin/models/prodAdd_process.php" method="post" enctype="multipart/form-data">
+<input type="submit" name="prod-list" value="Danh sách" onclick="goToProdList()">
+        <input type="submit" name="prod-data-send" value="Thêm">
+
+    <form action="../models/prodAdd_process.php" method="post" enctype="multipart/form-data">
         <label for="">Mã sản phẩm: </label>
         <input type="text" name="productCode">
         <br> <br>
@@ -32,14 +35,18 @@
     }
 </script>
 
+
+
+
+
 <?php
 function getCategory()
 {
-    $sql = "SELECT `category_id`, `category_name` FROM `categories`";
-    include "models/database.php";
+    $sql = "SELECT `id_danhmuc`, `tendanhmuc` FROM `danhmuc`";
+    include "models/pdo.php";
     $data = $conn->query($sql);
     while ($rows = $data->fetch_assoc()) {
-        echo '<option value="' . $rows["category_id"] . '">' . $rows["category_name"] . '</option> ';
+        echo '<option value="' . $rows["id_danhmuc"] . '">' . $rows["tendanhmuc"] . '</option> ';
     }
     $conn->close();
 }

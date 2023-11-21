@@ -1,7 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: sans-serif;
 }
 
@@ -217,12 +217,12 @@ body .container #products {
   grid-area: main;
   width: 980px;
   height: auto;
-  background-color: brown;
+  background-color: rgb(255, 255, 255);
 }
 body .container #products form {
   width: 600px;
   height: 280px;
-  background-color: brown;
+  background-color: rgb(255, 255, 255);
   position: relative;
   padding: 20px;
 }

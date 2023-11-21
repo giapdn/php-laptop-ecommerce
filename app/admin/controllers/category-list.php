@@ -25,7 +25,7 @@
                     <div class="categoryID">' . $id_danhmuc . '</div>
                     <div class="categoryName">' . $tendanhmuc . ' </div>
                     <div class="change">
-                        <form action="' . $path . '" method="post">                      
+                        <form action="' . $path . '" method="post">  
                             <input type="submit" name="data-change" value="Sửa">
                         </form>
                         <form action="../admin/models/categoryDel_process.php" method="post">

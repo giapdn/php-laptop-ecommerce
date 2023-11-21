@@ -1,44 +1,63 @@
 <div id="comments">
     <div class="colums">
         <div class="username">Tên người dùng</div>
-        <div class="content">Nội dung</div>
+        <div class="content">Nội dung bình luận</div>
         <div class="date">Thời gian</div>
-        <div class="prodID">Mã sản phẩm</div>
+        <div class="prodID">ID sản phẩm</div>
         <div class="change">Thao tác</div>
     </div>
     <?php
-    $sql = "SELECT `id`, `content`, `prodID`, `username`, `time` FROM `comments` WHERE 1";
-    try {
-        include "models/database.php";
-        $data = $conn->query($sql);
-        if ($data->num_rows != 0) {
-            while ($rows = $data->fetch_assoc()) {
-                echo '<div class="rows">
-                <div class="username">' . $rows["username"] . '</div>
+    include "models/pdo.php";
+    $sql = "SELECT `id_binhLuan`, `noidung_binhLuan`, `ngay_binhLuan`, `userName`, `id_sanPham` FROM `binhluan` WHERE 1";
+   
+    
+        $data = pdo_query($sql);
+        
+            // while ($rows = $data->fetch_assoc()) {
+            //     echo '<div class="rows">
+            //     <div class="username">' . $rows["userName "] . '</div>
+            //     <div class="content">
+            //         <span>' . $rows["noidung_binhLuan"] . '</span>
+            //     </div>
+            //     <div class="date">' . $rows["ngay_binhLuan"] . '</div>
+            //     <div class="prodID">' . $rows["id_sanPham "] . '</div>
+            //     <div class="change">
+            //         <form style="display: none;" action="index.php?act=commentChange&id=' . $rows["id_binhLuan"] . '" method="post">
+            //             <input type="submit" value="Sửa">
+            //         </form>
+            //         <form action="index.php?act=commentDel&id=' . $rows["id_binhLuan"] . '" method="post">
+            //             <input type="submit" value="Xoá ">
+            //         </form>
+            //     </div>
+            // </div>';
+            // }
+
+          
+           
+           
+            foreach ($data as $rows) {
+                extract($rows);
+                $path = "index.php?act=commentChange&id=" . $id_binhLuan;
+                echo '
+                <div class="rows">
+                <div class="username">' . $rows["userName"] . '</div>
                 <div class="content">
-                    <span>' . $rows["content"] . '</span>
+                    <span>' . $rows["noidung_binhLuan"] . '</span>
                 </div>
-                <div class="date">' . $rows["time"] . '</div>
-                <div class="prodID">' . $rows["prodID"] . '</div>
+                <div class="date">' . $rows["ngay_binhLuan"] . '</div>
+                <div class="prodID">' . $rows["id_sanPham"] . '</div>
                 <div class="change">
-                    <form style="display: none;" action="index.php?act=commentChange&id=' . $rows["id"] . '" method="post">
+                    <form style="display: none;" action="index.php?act=commentChange&id=' . $rows["id_binhLuan"] . '" method="post">
                         <input type="submit" value="Sửa">
                     </form>
-                    <form action="index.php?act=commentDel&id=' . $rows["id"] . '" method="post">
+                    <form action="index.php?act=commentDel&id=' . $rows["id_binhLuan"] . '" method="post">
                         <input type="submit" value="Xoá ">
                     </form>
                 </div>
             </div>';
             }
-        }
-        else {
-            echo "Không có sản phẩm";
-        }
-    } catch (\Throwable $th) {
-        echo $th->getMessage();
-    } finally {
-        $conn->close();
-    }
+       
+  
     ?>
 </div>
 
