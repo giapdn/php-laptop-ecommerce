@@ -1,5 +1,5 @@
 <?php
-include "admin/models/pdo.php";
+
 include "views/header.php";
 if (isset($_GET["act"])) {
     $action = $_GET["act"];

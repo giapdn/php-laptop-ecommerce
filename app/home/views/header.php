@@ -179,27 +179,18 @@
                             <span>Danh mục</span>
                         </div>
                         <ul>
-                            <li><a href="#">  
-                                <?php
-                                foreach($dsdm as $dm){ //hien dm khi kich vao
-                                    extract($dm);
-                                    $linkdm="index.php?act=sanpham&id=".$id_danhmuc;
-                                    echo '<li>
-                                            <a href="'.$linkdm.'">'.$tendanhmuc.'</a>
-                                        </li>';
-                                }
+                            
+                        <?php
+                            include "app/admin/models/pdo.php";
+                            $sql = "SELECT * FROM `danhmuc`";
+                            $data = pdo_query($sql);
+                            foreach ($data as $rows) {
+                                extract($rows);
+                                echo '<li><a href="#">' . $tendanhmuc . '</a></li>';
+                            }
                             ?>
-                            </a></li>
-                            <!-- <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li> -->
+                        
+                           
                         </ul>
                     </div>
                 </div>

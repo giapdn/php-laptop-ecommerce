@@ -37,7 +37,7 @@
            
             foreach ($data as $rows) {
                 extract($rows);
-                $path = "index.php?act=commentChange&id=" . $id_binhLuan;
+                // $path = "index.php?act=commentChange&id=" . $id_binhLuan;
                 echo '
                 <div class="rows">
                 <div class="username">' . $rows["userName"] . '</div>
@@ -47,9 +47,7 @@
                 <div class="date">' . $rows["ngay_binhLuan"] . '</div>
                 <div class="prodID">' . $rows["id_sanPham"] . '</div>
                 <div class="change">
-                    <form style="display: none;" action="index.php?act=commentChange&id=' . $rows["id_binhLuan"] . '" method="post">
-                        <input type="submit" value="Sửa">
-                    </form>
+                    
                     <form action="index.php?act=commentDel&id=' . $rows["id_binhLuan"] . '" method="post">
                         <input type="submit" value="Xoá ">
                     </form>

@@ -10,15 +10,11 @@ if (isset($_POST["prod-data-send"])) {
     $target_file = $target_dir . basename($_FILES["productImage"]["name"]);
     $sql = "INSERT INTO `products`(`prodID`, `prodName`, `prodPrice`, `prodDescription`, `prodImg`, `category_id`, `dateAdd`)
             VALUES ('$productCode','$productName','$productPrice','$productDescription','$productImage','$productCategory', NOW())";
-    try {;
+   
         move_uploaded_file($_FILES["productImage"]["tmp_name"], $target_dir);
         include "database.php";
         $conn->query($sql);
         echo "<script>alert('Nạp dữ liệu thành công !')</script>";
         echo "<script>window.location.href='../index.php?act=products';</script>";
-    } catch (\mysqli_sql_exception $th) {
-        echo "oop!: " . $th->getMessage();
-    } finally {
-        $conn->close();
-    }
+ 
 }
