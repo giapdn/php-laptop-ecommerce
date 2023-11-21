@@ -1,7 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
-  color: rgb(0, 0, 0);
+  color: white;
   font-family: sans-serif;
 }
 
@@ -34,7 +34,7 @@ body .container .brand h1 {
   font-size: 50px;
 }
 body .container nav {
-  background-color: rgb(224, 221, 221);
+  background-color: rgb(47, 64, 137);
   grid-area: nav;
   display: flex;
   justify-content: space-between;
@@ -48,46 +48,26 @@ body .container nav ul {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
-  
 }
 body .container nav ul li {
- 
   list-style: none;
   width: 170px;
   height: 40px;
   display: flex;
-  
+  justify-content: center;
   align-items: center;
   border-radius: 7px;
-
-
 }
 body .container nav ul li a {
   text-decoration: none;
-  padding-left: 10px;
-  color: #000;
 }
-
-body .container nav ul li i {
-  text-decoration: none;
-  padding-left: 10px;
-  color: #000;
-}
-
 body .container nav ul li:hover {
   background-color: #7f2173;
   cursor: pointer;
 }
 body .container nav ul li:hover a {
-  color: #ffffff;
+  border-left: 1px solid white;
 }
-
-body .container nav ul li:hover i {
-  color: #ffffff;
-}
-
-
 body .container #categories {
   width: 980px;
   height: auto;
@@ -200,7 +180,7 @@ body .container #ctgryList .rows .change form input[name=data-delete]:hover {
   color: red;
 }
 body .container #ctgryList input[name=data-add] {
-  background-color: brown;
+  background-color: blueviolet;
   color: #ffffff !important;
   border: none;
   padding: 10px 15px;
@@ -217,12 +197,12 @@ body .container #products {
   grid-area: main;
   width: 980px;
   height: auto;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(165, 147, 42);
 }
 body .container #products form {
   width: 600px;
   height: 280px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(165, 126, 42);
   position: relative;
   padding: 20px;
 }
@@ -360,19 +340,22 @@ body .container #productList .prodRows .button form input[name=prod-delete-btn]:
   background-color: orange;
   color: red;
 }
+body .container #productList a {
+  margin-bottom: 10px;
+}
 body .container #productList a input[name=prod-add-btn] {
-  background-color: brown;
+  background-color: blueviolet;
   color: #ffffff !important;
   border: none;
   padding: 10px 15px;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: 10px;
 }
 body .container #productList a input[name=prod-add-btn]:hover {
-  background-color: #4caf50;
+  background-color: rgb(207, 71, 22);
 }
 body .container #users {
   width: 100%;
