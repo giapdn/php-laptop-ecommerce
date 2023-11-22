@@ -1,21 +1,21 @@
 <div id="products" style="background-color: purple;">
-    <form action="" method="post" enctype="multipart/form-data" style="background-color: purple;">
-        <label for="">Mã sản phẩm: </label>
-        <input type="text" readonly name="productCode" value="<?php echo getID(); ?>">
+    <form action="index.php?act=prodChangeProcess&id=<?php echo getID()?>" method="post" enctype="multipart/form-data" style="background-color: purple;">
+        <label>Mã sản phẩm: </label>
+        <input type="text" readonly name="prodID" value="<?php echo getID(); ?>">
         <br> <br>
-        <label for="">Tên sản phẩm: </label>
-        <input type="text" name="productName" value="<?php echo getProdName()?>">
+        <label>Tên sản phẩm: </label>
+        <input type="text" name="prodName" value="<?php echo getProdName() ?>">
         <br> <br>
-        <label for="">Giá: </label>
-        <input type="number" name="productPrice" value="<?php echo getProdPrice()?>">
+        <label>Giá: </label>
+        <input type="number" name="prodPrice" value="<?php echo getProdPrice() ?>">
         <br> <br>
-        <label for="">Mô tả: </label>
-        <input type="text" name="productDescription" value="<?php echo getProdDesc()?>">
+        <label>Mô tả: </label>
+        <input type="text" name="prodDesc" value="<?php echo getProdDesc() ?>">
         <br> <br>
-        <label for="">Ảnh: </label>
-        <input type="file" name="productImage">
+        <label>Ảnh: </label>
+        <input type="file" name="prodImg">
         <br> <br>
-        <label for="">Danh mục:</label>
+        <label>Danh mục:</label>
         <select name="productCategory">
             <?php getDanhMuc(); ?>
         </select>
@@ -55,7 +55,11 @@ function getProdDesc()
     $id = getID();
     $sql = "SELECT * FROM `sanpham` WHERE `id_sanPham` = '$id'";
     $data = pdo_query_one($sql);
-    return $data["moTaSanPham"];
+    if ($data["moTaSanPham"] == "") {
+        return "Chưa có mô tả";
+    } else {
+        return $data["moTaSanPham"];
+    }
 }
 function getDanhMuc()
 {

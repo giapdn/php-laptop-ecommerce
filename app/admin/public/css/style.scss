@@ -38,7 +38,7 @@ body {
         }
 
         nav {
-            background-color: rgb(47, 64, 137);
+            background-color: rgb(187, 192, 221);
             grid-area: nav;
             display: flex;
             justify-content: space-between;
@@ -47,7 +47,7 @@ body {
 
             ul {
                 width: 180px;
-                height: 290px;
+                height: 310px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
@@ -55,11 +55,11 @@ body {
 
                 li {
                     list-style: none;
-                    width: 170px;
+                    width: 130px;
                     height: 40px;
-
                     display: flex;
                     justify-content: center;
+                    justify-content: space-around;
                     align-items: center;
                     border-radius: 7px;
 
@@ -75,6 +75,7 @@ body {
 
                 li:hover a {
                     border-left: 1px solid white;
+                    color: white;
                 }
             }
         }
@@ -381,7 +382,6 @@ body {
                     }
 
                     form {
-
                         input[name="prod-delete-btn"] {
                             width: 60px;
                             height: 20px;
@@ -432,11 +432,38 @@ body {
                 border-bottom: 0.5px solid gray;
                 border-right: 0.5px solid gray;
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 0.7fr;
                 grid-template-rows: auto;
                 height: 40px;
 
-                .username {
+                .userName {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .name {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .sdt {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .email {
                     border-left: 0.5px solid gray;
                     background-color: #7f2173;
                     display: flex;
@@ -453,7 +480,7 @@ body {
                     border-right: 0.5px solid gray;
                 }
 
-                .power {
+                .quyenHan {
                     background-color: #7f2173;
                     display: flex;
                     align-items: center;
@@ -473,10 +500,34 @@ body {
                 border-bottom: 0.5px solid gray;
                 border-left: 0.5px solid gray;
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 0.7fr;
                 height: 40px;
 
-                .username {
+                .userName {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .sdt {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .name {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .email {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -492,7 +543,7 @@ body {
                     border-right: 0.5px solid gray;
                 }
 
-                .power {
+                .quyenHan {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -729,6 +780,150 @@ body {
                     border-left: 0.5px solid gray;
                     padding-left: 10px;
                     color: black;
+                }
+            }
+        }
+
+        #donhang {
+            width: 100%;
+            height: auto;
+
+            .colums {
+                border-left: 0.5px solid gray;
+                border-bottom: 0.5px solid gray;
+                border-right: 0.5px solid gray;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: auto;
+                height: 40px;
+
+                .id_donHang {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .userName {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .ngayDatHang {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .soLuong {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .tongGiaDonHang {
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .trangThai {
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+                .change {
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+            }
+
+            .rows {
+                border-bottom: 0.5px solid gray;
+                border-left: 0.5px solid gray;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                height: 40px;
+
+                .id_donHang {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .userName {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .ngayDatHang {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .soLuong {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .tongGiaDonHang {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .trangThai {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+                .change {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+
+                    form {
+                        input {
+                            color: black;
+                            margin-left: 5px;
+                        }
+                    }
                 }
             }
         }

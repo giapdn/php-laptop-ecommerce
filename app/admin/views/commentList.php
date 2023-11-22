@@ -7,8 +7,7 @@
         <div class="change">Thao tác</div>
     </div>
     <?php
-    include "models/pdo.php";
-    $sql = "SELECT `id_binhLuan`, `noidung_binhLuan`, `ngay_binhLuan`, `userName`, `id_sanPham` FROM `binhluan` WHERE 1";
+    $sql = "SELECT * FROM `binhluan` WHERE 1";
     $data = pdo_query($sql);
     foreach ($data as $rows) {
         echo '
@@ -22,7 +21,7 @@
             <div class="change">
                 
                 <form action="index.php?act=commentDel&id=' . $rows["id_binhLuan"] . '" method="post">
-                    <input type="submit" value="Xoá ">
+                    <input name="xoabl" type="submit"  value="Xoá ">
                 </form>
             </div>
         </div>';

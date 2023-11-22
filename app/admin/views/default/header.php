@@ -25,6 +25,7 @@
                 <li><i class="fas fa-boxes"></i> <a href="index.php?act=prodList">Sản phẩm</a></li>
                 <li><i class="fas fa-users"></i> <a href="index.php?act=userList">Khách hàng</a></li>
                 <li><i class="far fa-comment"></i> <a href="index.php?act=commentList">Bình luận</a></li>
+                <li><i class="fas fa-chart-bar"></i> <a href="index.php?act=cart">Đơn hàng</a></li>
                 <li><i class="fas fa-chart-bar"></i> <a href="index.php?act=report">Thống kê</a></li>
             </ul>
         </nav>

@@ -12,7 +12,7 @@
     </div>
     <?php
     $sql = "SELECT * FROM `sanpham` ORDER BY `dateAdd` DESC";
-    include "../models/pdo.php";
+
     $data = pdo_query($sql);
     foreach ($data as $rows) {
         echo '

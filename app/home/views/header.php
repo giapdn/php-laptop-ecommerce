@@ -33,7 +33,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="img/LGS_LAPTOP-removebg-preview" alt=""></a>
+            <a href="#"><img src="app/home/img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -130,7 +130,7 @@
             <div class="row">
                 <div class="col-lg-3" width="242px" height="211px">
                     <div class="header__logo" >
-                        <a href="./index.html"><img src="img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt="" ></a>
+                        <a href="./index.html"><img src="app/home/img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt="" ></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -198,17 +198,15 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                                
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
+                                <a href="index.php?act=lienhe"> <i class="fa fa-phone"></i></a>
+                               
                             </div>
                             <div class="hero__search__phone__text">
                                 <h5>+65 11.188.888</h5>
