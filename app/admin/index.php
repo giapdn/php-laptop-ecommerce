@@ -66,7 +66,7 @@ if (isset($_GET["act"])) {
                 echo "<script>window.location.href='index.php?act=productList';</script>";
             } catch (\PDOException $th) {
                 echo $th->getMessage();
-            }          
+            }
             break;
         case 'prodDel':
             if (isset($_POST["prod-delete-btn"])) {
@@ -102,44 +102,33 @@ if (isset($_GET["act"])) {
             include "views/commentList.php";
             break;
 
-        case 'commentDel':
-            if (isset($_GET["id_binhLuan"])) {
-                $id = $_GET["id_binhLuan"];
-                $sql = "DELETE FROM `binhluan` WHERE `id_binhLuan` = '$id'";
-                include "models/pdo.php";
-                if ($conn->query($sql)) {
-                    echo '<script>alert("Xoá thành công");</script>';
-                    echo '<script>window.location.href="../admin/index.php?act=comments"</script>';
-                }
-            }
-            break;
 
         case 'userDel':
-            if (isset($_GET["name"])) {
+            if (isset($_POST["xoauser"])) {
                 $name = $_GET["name"];
-                $sql = "DELETE FROM `users` WHERE `username` = '$name'";
-                include "models/database.php";
-                if ($conn->query($sql)) {
-                    echo '<script>alert("Xoá thành công");</script>';
-                    echo '<script>window.location.href="../admin/index.php?act=customers"</script>';
-                }
+                $sql = "DELETE FROM `users` WHERE `userName` = '$name'";
+
+                pdo_query($sql);
+                echo '<script>alert("Xoá thành công");</script>';
+                echo '<script>window.location.href="index.php?act=userList"</script>';
             }
-            break;
         case 'userChange':
             include "controllers/userChange.php";
             break;
         case 'commentDel':
-            if (isset($_GET["id"])) {
+            if (isset($_POST["xoabl"])) {
+
                 $id = $_GET["id"];
-                $sql = "DELETE FROM `comments` WHERE `id` = '$id'";
-                include "models/database.php";
-                if ($conn->query($sql)) {
-                    echo '<script>alert("Xoá thành công");</script>';
-                    echo '<script>window.location.href="../admin/index.php?act=comments"</script>';
-                }
+                $sql = "DELETE FROM `binhluan` WHERE `id_binhLuan`= '$id'";
+                pdo_query($sql);
+                echo '<script>alert("Xoá thành công");</script>';
+                echo '<script>window.location.href="index.php?act=commentList"</script>';
             }
             break;
         case 'report':
+            include "views/static.php";
+            break;
+        case 'cart':
             include "views/static.php";
             break;
         default:

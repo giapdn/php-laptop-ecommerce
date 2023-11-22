@@ -34,7 +34,7 @@ body .container .brand h1 {
   font-size: 50px;
 }
 body .container nav {
-  background-color: rgb(47, 64, 137);
+  background-color: rgb(187, 192, 221);
   grid-area: nav;
   display: flex;
   justify-content: space-between;
@@ -43,7 +43,7 @@ body .container nav {
 }
 body .container nav ul {
   width: 180px;
-  height: 290px;
+  height: 310px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -51,10 +51,11 @@ body .container nav ul {
 }
 body .container nav ul li {
   list-style: none;
-  width: 170px;
+  width: 130px;
   height: 40px;
   display: flex;
   justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border-radius: 7px;
 }
@@ -67,6 +68,7 @@ body .container nav ul li:hover {
 }
 body .container nav ul li:hover a {
   border-left: 1px solid white;
+  color: white;
 }
 body .container #categories {
   width: 980px;
@@ -366,11 +368,35 @@ body .container #users .colums {
   border-bottom: 0.5px solid gray;
   border-right: 0.5px solid gray;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 0.7fr;
   grid-template-rows: auto;
   height: 40px;
 }
-body .container #users .colums .username {
+body .container #users .colums .userName {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #users .colums .name {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #users .colums .sdt {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #users .colums .email {
   border-left: 0.5px solid gray;
   background-color: #7f2173;
   display: flex;
@@ -385,7 +411,7 @@ body .container #users .colums .password {
   justify-content: center;
   border-right: 0.5px solid gray;
 }
-body .container #users .colums .power {
+body .container #users .colums .quyenHan {
   background-color: #7f2173;
   display: flex;
   align-items: center;
@@ -403,10 +429,31 @@ body .container #users .rows {
   border-bottom: 0.5px solid gray;
   border-left: 0.5px solid gray;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 0.7fr;
   height: 40px;
 }
-body .container #users .rows .username {
+body .container #users .rows .userName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows .sdt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows .name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #users .rows .email {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -420,7 +467,7 @@ body .container #users .rows .password {
   color: black;
   border-right: 0.5px solid gray;
 }
-body .container #users .rows .power {
+body .container #users .rows .quyenHan {
   display: flex;
   align-items: center;
   justify-content: center;
