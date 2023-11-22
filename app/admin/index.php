@@ -1,6 +1,6 @@
 <?php
-include "./models/pdo.php";
-include "views/struct/header.php";
+include "models/pdo.php";
+include "views/default/header.php";
 if (isset($_GET["act"])) {
     $action = $_GET["act"];
     switch ($action) {
@@ -43,31 +43,30 @@ if (isset($_GET["act"])) {
             include "controllers/category-change.php";
             break;
         case 'productAddForm':
-            include "controllers/product-add.php";
+            include "controllers/prodAdd.php";
             break;
         case 'prodList':
             include "views/product-list.php";
             break;
         case 'addSp':
             echo 1;
-            $productCode = $_POST["productCode"];
-            $productName = $_POST["productName"];
-            $productPrice = $_POST["productPrice"];
-            $productDescription = $_POST["productDescription"];
-            $productImage = $_FILES["productImage"]["name"];
-            $productCategory = $_POST["productCategory"];
+            // $prodID = $_POST["prodID"];
+            $prodName = $_POST["prodName"];
+            $prodPrice = $_POST["prodPrice"];
+            $prodDesc = $_POST["prodDesc"];
+            $prodImg = $_FILES["prodImg"]["name"];
+            $prodCategory = $_POST["productCategory"];
             $target_dir = "uploads/";
-            $target_file = $target_dir . basename($_FILES["productImage"]["name"]);
-            $sql = "INSERT INTO `sanpham`(`id_sanPham`, `tenSanPham`, `giaSanPham`, `moTaSanPham`, `img_path`, `id_danhmuc`, `dateAdd`)
-                    VALUES ('$productCode','$productName','$productPrice','$productDescription','$productImage','$productCategory', NOW())";
-            if (move_uploaded_file($_FILES["productImage"]["tmp_name"], $target_file)) {
+            $target_file = $target_dir . basename($_FILES["prodImg"]["name"]);
+            $sql = "INSERT INTO `sanpham`(`tenSanPham`, `giaSanPham`, `moTaSanPham`, `img_path`, `id_danhmuc`, `dateAdd`)
+            VALUES ('$prodName','$prodPrice','$prodDesc','$prodImg','$prodCategory', NOW())";
+            try {
                 pdo_execute($sql);
                 echo "<script>alert('Nạp dữ liệu thành công !')</script>";
-                echo "<script>window.location.href='../index.php?act=productList';</script>";
-            } else {
-                echo "<script>alert('Nạp dữ liệu thất bại !')</script>";
-                echo "<script>window.location.href='../admin/index.php?act=productList';</script>";
-            }
+                echo "<script>window.location.href='index.php?act=productList';</script>";
+            } catch (\PDOException $th) {
+                echo $th->getMessage();
+            }          
             break;
         case 'prodDel':
             if (isset($_POST["prod-delete-btn"])) {
@@ -83,13 +82,24 @@ if (isset($_GET["act"])) {
             }
             break;
         case 'prodChange':
-            include "controllers/product-change.php";
+            include "controllers/prodChange.php";
             break;
-        case 'customers':
-            include "controllers/users.php";
+        case 'prodChangeProcess':
+            $productCode = $_POST["productCode"];
+            $productName = $_POST["productName"];
+            $productPrice = $_POST["productPrice"];
+            $productDescription = $_POST["productDescription"];
+            $productImage = $_FILES["productImage"]["name"];
+            $productCategory = $_POST["productCategory"];
+            $sql = "UPDATE `products` SET `prodName`='$productName',`prodPrice`='$productPrice',`prodDescription`='$productDescription',
+                `prodImg`='$productImage',`category_id`='$productCategory' WHERE `prodID`='$productCode'";
+
             break;
-        case 'comments':
-            include "controllers/comments.php";
+        case 'userList':
+            include "views/userList.php";
+            break;
+        case 'commentList':
+            include "views/commentList.php";
             break;
 
         case 'commentDel':
@@ -139,4 +149,4 @@ if (isset($_GET["act"])) {
 } else {
     include "views/static.php";
 }
-include "views/struct/footer.php";
+include "views/default/footer.php";

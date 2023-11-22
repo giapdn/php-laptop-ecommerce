@@ -1,23 +1,23 @@
 <div id="products">
     <form action="index.php?act=addSp" method="post" enctype="multipart/form-data">
-        <label for="">Mã sản phẩm: </label>
-        <input type="text" name="productCode">
+        <label>Mã sản phẩm: </label>
+        <input type="text" name="prodID" readonly>
         <br> <br>
-        <label for="">Tên sản phẩm: </label>
-        <input type="text" name="productName">
+        <label>Tên sản phẩm: </label>
+        <input type="text" name="prodName">
         <br> <br>
-        <label for="">Giá: </label>
-        <input type="number" name="productPrice">
+        <label>Giá: </label>
+        <input type="text" name="prodPrice">
         <br> <br>
-        <label for="">Mô tả: </label>
-        <input type="text" name="productDescription">
+        <label>Mô tả: </label>
+        <input type="text" name="prodDesc">
         <br> <br>
-        <label for="">Ảnh: </label>
-        <input type="file" name="productImage">
+        <label>Ảnh: </label>
+        <input type="file" name="prodImg">
         <br> <br>
-        <label for="">Danh mục:</label>
+        <label>Danh mục:</label>
         <select name="productCategory">
-            <?php getCategory(); ?>
+            <?php getCategory()?>
         </select>
         <br> <br>
         <input type="submit" name="prod-list" value="Danh sách" onclick="goToProdList()">
