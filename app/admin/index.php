@@ -49,23 +49,29 @@ if (isset($_GET["act"])) {
             include "views/product-list.php";
             break;
         case 'addSp':
-            echo 1;
-            // $prodID = $_POST["prodID"];
             $prodName = $_POST["prodName"];
             $prodPrice = $_POST["prodPrice"];
             $prodDesc = $_POST["prodDesc"];
             $prodImg = $_FILES["prodImg"]["name"];
             $prodCategory = $_POST["productCategory"];
             $target_dir = "uploads/";
+            $flag = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $target_file = $target_dir . basename($_FILES["prodImg"]["name"]);
             $sql = "INSERT INTO `sanpham`(`tenSanPham`, `giaSanPham`, `moTaSanPham`, `img_path`, `id_danhmuc`, `dateAdd`)
             VALUES ('$prodName','$prodPrice','$prodDesc','$prodImg','$prodCategory', NOW())";
-            try {
-                pdo_execute($sql);
-                echo "<script>alert('Nạp dữ liệu thành công !')</script>";
-                echo "<script>window.location.href='index.php?act=productList';</script>";
-            } catch (\PDOException $th) {
-                echo $th->getMessage();
+            if (isset($_POST["prod-data-send"])) {
+                $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
+                if ($check !== false) {
+                    if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
+                        die("OOP !");
+                    }
+                    pdo_execute($sql);
+                    echo "<script>alert('Nạp dữ liệu thành công !')</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=prodList';</script>";
+                } else {
+                    echo "File is not an image.";
+                }
             }
             break;
         case 'prodDel':
@@ -85,15 +91,35 @@ if (isset($_GET["act"])) {
             include "controllers/prodChange.php";
             break;
         case 'prodChangeProcess':
-            $productCode = $_POST["productCode"];
-            $productName = $_POST["productName"];
-            $productPrice = $_POST["productPrice"];
-            $productDescription = $_POST["productDescription"];
-            $productImage = $_FILES["productImage"]["name"];
+            $prodID = $_GET["id"];
+            $prodName = $_POST["prodName"];
+            $prodPrice = $_POST["prodPrice"];
+            $prodDesc = $_POST["prodDesc"];
+            $prodImg = $_FILES["prodImg"]["name"];
             $productCategory = $_POST["productCategory"];
-            $sql = "UPDATE `products` SET `prodName`='$productName',`prodPrice`='$productPrice',`prodDescription`='$productDescription',
-                `prodImg`='$productImage',`category_id`='$productCategory' WHERE `prodID`='$productCode'";
-
+            $sql = "UPDATE `sanpham` SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc',
+                `img_path`='$prodImg',`id_danhmuc`='$productCategory' WHERE `id_sanPham`='$prodID'";
+            $target_dir = "uploads/";
+            $flag = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            $target_file = $target_dir . basename($_FILES["prodImg"]["name"]);
+            if (isset($_POST["prod-data-change"])) {
+                $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
+                if ($check !== false) {
+                    if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
+                        die("OOP !");
+                    }
+                    pdo_execute($sql);
+                    echo "<script>alert('Sửa thành công !')</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=prodList';</script>";
+                } else {
+                    $query = "UPDATE `sanpham` SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc',
+                    `id_danhmuc`='$productCategory' WHERE `id_sanPham`='$prodID'";
+                    pdo_execute($query);
+                    echo "<script>alert('Sửa thành công !')</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=prodList';</script>";
+                }
+            }
             break;
         case 'userList':
             include "views/userList.php";
