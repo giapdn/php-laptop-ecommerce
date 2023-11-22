@@ -667,4 +667,130 @@ body .container #static .rows li {
   border-left: 0.5px solid gray;
   padding-left: 10px;
   color: black;
+}
+body .container #donhang {
+  width: 100%;
+  height: auto;
+}
+body .container #donhang .colums {
+  border-left: 0.5px solid gray;
+  border-bottom: 0.5px solid gray;
+  border-right: 0.5px solid gray;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  height: 40px;
+}
+body .container #donhang .colums .id_donHang {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .colums .userName {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .colums .ngayDatHang {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .colums .soLuong {
+  border-left: 0.5px solid gray;
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .colums .tongGiaDonHang {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .colums .trangThai {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .colums .change {
+  background-color: #7f2173;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows {
+  border-bottom: 0.5px solid gray;
+  border-left: 0.5px solid gray;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 40px;
+}
+body .container #donhang .rows .id_donHang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows .userName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows .ngayDatHang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows .soLuong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows .tongGiaDonHang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows .trangThai {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows .change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-right: 0.5px solid gray;
+}
+body .container #donhang .rows .change form input {
+  color: black;
+  margin-left: 5px;
 }/*# sourceMappingURL=style.css.map */

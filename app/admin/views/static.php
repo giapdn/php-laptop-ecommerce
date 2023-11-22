@@ -20,7 +20,7 @@
     ";
     $index = 0;
     try {
-        include "../admin/models/database.php";
+ 
         $data = $conn->query($sql);
         if ($data->num_rows != 0) {
             while ($rows = $data->fetch_assoc()) {

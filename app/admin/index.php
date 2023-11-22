@@ -63,7 +63,7 @@ if (isset($_GET["act"])) {
             try {
                 pdo_execute($sql);
                 echo "<script>alert('Nạp dữ liệu thành công !')</script>";
-                echo "<script>window.location.href='index.php?act=productList';</script>";
+                echo "<script>window.location.href='index.php?act=prodList';</script>";
             } catch (\PDOException $th) {
                 echo $th->getMessage();
             }
@@ -128,9 +128,43 @@ if (isset($_GET["act"])) {
         case 'report':
             include "views/static.php";
             break;
+
         case 'cart':
-            include "views/static.php";
+            include "views/donhangList.php";
+        break;
+
+        case 'timdonhang':
+            // $userName = $_POST['userName'];
+            // $timdonhang = "";
+            // $sql = "SELECT * FROM `donhang` WHERE 1";
+            // if($userName>0) $sql.=" AND userName=".$userName;
+            // if($timdonhang!="") $sql.=" AND id_donHang like '%".$timdonhang."%'";
+            // $sql.=" order by id_donHang desc";
+            // pdo_query($sql);
+            // if(isset($_POST['timdonhang']) && ($_POST['timdonhang'] !="")){
+            //     $timdonhang = $_POST['timdonhang'];
+            // }else{
+            //     $timdonhang = "";
+            // }
+            // include "views/donhangList.php";
+
+            
             break;
+
+        case 'donhangsua':
+           
+            break;
+
+        case 'donhangxoa':
+            if(isset($_POST["xoaudonhang"])){
+                $id_donHang = $_GET["id_donHang"];
+                $sql = "DELETE FROM `donhang` WHERE `id_donHang`= '$id_donHang' ";
+                pdo_query($sql);
+                echo '<script>alert("Xoá thành công");</script>';
+                echo '<script>window.location.href="index.php?act=cart"</script>';
+            }
+            break;
+
         default:
             include "views/static.php";
             break;
