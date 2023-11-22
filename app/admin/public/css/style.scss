@@ -783,5 +783,149 @@ body {
                 }
             }
         }
+
+        #donhang {
+            width: 100%;
+            height: auto;
+
+            .colums {
+                border-left: 0.5px solid gray;
+                border-bottom: 0.5px solid gray;
+                border-right: 0.5px solid gray;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: auto;
+                height: 40px;
+
+                .id_donHang {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .userName {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .ngayDatHang {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .soLuong {
+                    border-left: 0.5px solid gray;
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .tongGiaDonHang {
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+
+                .trangThai {
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+                .change {
+                    background-color: #7f2173;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: 0.5px solid gray;
+                }
+            }
+
+            .rows {
+                border-bottom: 0.5px solid gray;
+                border-left: 0.5px solid gray;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                height: 40px;
+
+                .id_donHang {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .userName {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .ngayDatHang {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .soLuong {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .tongGiaDonHang {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+
+                .trangThai {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+                }
+                .change {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+                    border-right: 0.5px solid gray;
+
+                    form {
+                        input {
+                            color: black;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

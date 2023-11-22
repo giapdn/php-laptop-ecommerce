@@ -14,7 +14,7 @@
     </div>
 
     <?php
-    include "../models/pdo.php";
+
     $sql = "SELECT * FROM danhmuc";
     $data = pdo_query($sql);
     foreach ($data as $rows) {
