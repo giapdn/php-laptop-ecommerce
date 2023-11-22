@@ -119,7 +119,7 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="./taikhoan/login.php"><i class="fa fa-user"></i> Login</a>
+                                <a href="index.php?act=logIn"><i class="fa fa-user"></i>Đăng nhập</a>
                             </div>
                         </div>
                     </div>
@@ -129,15 +129,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3" width="242px" height="211px">
-                    <div class="header__logo" >
-                        <a href="./index.html"><img src="app/home/img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt="" ></a>
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="app/home/img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="index.php">Home</a></li>
-                            <li><a href="index.php?act=trangsanpham">Shop</a></li>
+                            <li class="active"><a href="index.php">Trang chủ</a></li>
+                            <li><a href="index.php?act=trangsanpham">Cửa hàng</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
@@ -146,8 +146,8 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="index.php?act=tintuc">Blog</a></li>
-                            <li><a href="index.php?act=lienhe">Contact</a></li>
+                            <li><a href="index.php?act=tintuc">Tư vấn</a></li>
+                            <li><a href="index.php?act=lienhe">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -179,8 +179,7 @@
                             <span>Danh mục</span>
                         </div>
                         <ul>
-                            
-                        <?php
+                            <?php
                             include "app/admin/models/pdo.php";
                             $sql = "SELECT * FROM `danhmuc`";
                             $data = pdo_query($sql);
@@ -189,24 +188,21 @@
                                 echo '<li><a href="#">' . $tendanhmuc . '</a></li>';
                             }
                             ?>
-                        
-                           
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
+                            <form action="">
+                                <input type="text" name="hotSearchData" placeholder="What do yo u need?">
+                                <button type="submit" name="hotSearch" class="site-btn">Tìm kiếm</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <a href="index.php?act=lienhe"> <i class="fa fa-phone"></i></a>
-                               
+
                             </div>
                             <div class="hero__search__phone__text">
                                 <h5>+65 11.188.888</h5>

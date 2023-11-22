@@ -265,8 +265,6 @@
     
 </style>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -279,7 +277,7 @@
 <h2>Sign in/up Form</h2>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="../models/xulydangky.php" method="post">
             <h1>ĐĂNG KÝ</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-square"></i></a>
@@ -287,12 +285,13 @@
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input name="username" type="text" placeholder="Tên tài khoản" />
+            <input name="password" type="password" placeholder="Nhập mật khẩu" />
+            <input name="rePassword" type="password" placeholder="Nhập lại mật khẩu" />
             <button>ĐĂNG KÝ</button>
         </form>
     </div>
+
     <div class="form-container sign-in-container">
         <form action="#">
             <h1>ĐĂNG NHẬP</h1>
@@ -304,14 +303,11 @@
             <span>or use your account</span>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <a href="./quenmk.php">Quên mật khẩu?</a>
+            <a href="quenmk.php">Quên mật khẩu?</a>
             <button>Đăng nhập</button>
-            <a href="../../../../../index.php"><i class="fas fa-door-open"></i>   Quay lại trang chủ</a>
+            <a href="index.php"><i class="fas fa-door-open"></i>   Quay lại trang chủ</a>
         </form>
     </div>
-
-
-
 
     <div class="overlay-container">
         <div class="overlay">
