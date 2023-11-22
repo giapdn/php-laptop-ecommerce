@@ -11,7 +11,6 @@
     $sql = "SELECT `id_binhLuan`, `noidung_binhLuan`, `ngay_binhLuan`, `userName`, `id_sanPham` FROM `binhluan` WHERE 1";
     $data = pdo_query($sql);
     foreach ($data as $rows) {
-        // $path = "index.php?act=commentChange&id=" . $id_binhLuan;
         echo '
             <div class="rows">
             <div class="username">' . $rows["userName"] . '</div>
