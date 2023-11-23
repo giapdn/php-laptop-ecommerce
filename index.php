@@ -17,13 +17,24 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'lienhe':
             include "app/home/controllers/lienhe.php";
             break;
+        case 'hotSearch':
+            include "app/home/views/trangsanpham.php";
+            break;
         case 'addToCart':
+            $id = $_GET["id_sanPham"];
+            $x = $_SESSION["username"];
+            $sql = "INSERT INTO `giohang`(`userName`, `id_sanPham`, `soLuong`) VALUES ('$x','$id','1'";
+            pdo_execute($sql);
             echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
             echo "<script>window.location.href='../duan1/index.php?act=trangsanpham'</script>";
+
 
             break;
         case 'tintuc':
             include "app/home/controllers/tintuc.php";
+            break;
+        case 'chitietsanpham':
+            include "app/home/modules/chitietsanpham/chitietSP.php";
             break;
         case 'giohang':
             if (isset($_SESSION["username"])) {

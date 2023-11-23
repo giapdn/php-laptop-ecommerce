@@ -63,6 +63,7 @@
 			$data = pdo_query($sql);
 			foreach ($data as $rows) {
 				extract($rows);
+				$img = "index.php?act=chitietsanpham&idsp=" . $id_sanPham;
 				echo ' 
 					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 						<div class="featured__item">
@@ -74,7 +75,7 @@
 								</ul>
 							</div>
 							<div class="featured__item__text">
-								<h6><a href="#">' . $tenSanPham . '</a></h6>
+								<h6><a href="' . $img . '">' . $tenSanPham . '</a></h6>
 								<h5>' . $giaSanPham . '</h5>
 							</div>
 						</div>

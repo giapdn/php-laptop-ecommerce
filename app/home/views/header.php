@@ -213,7 +213,7 @@ session_start()
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="">
+                            <form action="index.php?act=hotSearch" method="post">
                                 <input type="text" name="hotSearchData" placeholder="What do yo u need?">
                                 <button type="submit" name="hotSearch" class="site-btn">Tìm kiếm</button>
                             </form>

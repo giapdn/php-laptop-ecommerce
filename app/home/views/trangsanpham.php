@@ -246,7 +246,8 @@
                         ';
                         }
                     } else {
-                        $sql = "SELECT * FROM `sanpham` LIMIT 6";
+                        $hotSearch = $_POST["hotSearchData"];
+                        $sql = "SELECT * FROM `sanpham` WHERE `tenSanPham` Like '%$hotSearch%' LIMIT 6";
                         $data = pdo_query($sql);
                         foreach ($data as $rows) {
                             extract($rows);

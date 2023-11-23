@@ -100,8 +100,18 @@ session_start();
                 <div class="shoping__checkout">
                     <h5>Thanh toán</h5>
                     <ul>
-                        <!-- <li>Subtotal <span>$454.98</span></li> -->
-                        <li>Tổng <span>$454.98</span></li>
+                        <?php
+                        // if (isset($_SESSION["username"])) {
+                        //     $id = $_SESSION["username"];
+                        // }
+                        // $sql = "SELECT SUM(sanpham.giaSanPham) AS sumCart
+                        // FROM giohang
+                        // JOIN sanpham ON giohang.id_sanpham = sanpham.id_sanpham
+                        // WHERE `giohang.userName` = '$id';";
+                        // $data = pdo_query($sql);
+                        // echo '<li>Tổng <span>'.$data["sumCart"].'</span></li>';
+                        ?>
+                        <li>Tổng <span></span></li>
                     </ul>
                     <a href="#" class="primary-btn">Thanh toán</a>
                 </div>
