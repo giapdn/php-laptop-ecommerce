@@ -293,7 +293,7 @@
     </div>
 
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form action="../models/xulydangnhap.php" method="post">
             <h1>ĐĂNG NHẬP</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -301,11 +301,12 @@
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input name="username" type="text" placeholder="User" />
+            <input name="password" type="password" placeholder="Password" />
             <a href="quenmk.php">Quên mật khẩu?</a>
-            <button>Đăng nhập</button>
-            <a href="index.php"><i class="fas fa-door-open"></i>   Quay lại trang chủ</a>
+            <button type="submit">Đăng nhập</button>
+            <!-- <input type="submit" value="Đăng nhập"> -->
+            <a href="index.php?act=trangsanpham"><i class="fas fa-door-open"></i>   Quay lại trang chủ</a>
         </form>
     </div>
 

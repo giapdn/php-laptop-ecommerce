@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -118,9 +121,25 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
+                            <?php
+                            if (isset($_SESSION["username"])) {
+                                $user = $_SESSION["username"];
+                                echo '
+                                    <div class="header__top__right__auth">
+                                        <a href="#"><i class="fa fa-user"></i> ' . $user . '</a>
+                                    </div>
+                                ';
+                            } else {
+                                echo '
+                                    <div class="header__top__right__auth">
+                                        <a href="index.php?act=logIn"><i class="fa fa-user"></i> Đăng nhập</a>
+                                    </div>
+                                ';
+                            }
+                            ?>
+                            <!-- <div class="header__top__right__auth">
                                 <a href="index.php?act=logIn"><i class="fa fa-user"></i>Đăng nhập</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -146,7 +165,7 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="index.php?act=tintuc">Tư vấn</a></li>
+                            <!-- <li><a href="index.php?act=tintuc">Tư vấn</a></li> -->
                             <li><a href="index.php?act=lienhe">Liên hệ</a></li>
                         </ul>
                     </nav>

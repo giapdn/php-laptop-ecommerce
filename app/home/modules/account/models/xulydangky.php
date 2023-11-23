@@ -10,11 +10,15 @@ if ($password !== $rePassword) {
     echo "<script>alert('Tên tài khoản không ngắn hơn 5 kí tự và không dài quá 10 kí tự !')</script>";
     echo "<script>window.location.href='../views/login.php'</script>";
 } else {
-    // include "app/home/models/pdo.php";
-    // $query = "SELECT * FROM `users` WHERE `userName` =" . $username;
-    // $data = pdo_query($query);
+    include "pdo.php";
+    // $query = "SELECT * FROM `users` WHERE `userName` = '$username'";
+    $sql = "INSERT INTO `users`(`userName`,`password`) VALUES('$username','$password')";
+    pdo_execute($sql);
+    echo "<script>alert('Đăng ký thành công, hãy đăng nhập');</script>";
+    echo "<script>window.location.href='../views/login.php'</script>";
+
     // if (count($data) == 0) {
-    //     $sql = "INSERT INTO `users`(`userName`,`password`) VALUES(" . $username . "," . $password . "";
+    //     
     //     if (pdo_execute($sql)) {
     //         echo "<script>alert('Đăng ký thành công, hãy đăng nhập')</script>";
     //         echo "<script>window.location.href='../views/login.php'</script>";

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "app/home/views/header.php";
 
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
@@ -16,14 +17,24 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'lienhe':
             include "app/home/controllers/lienhe.php";
             break;
+        case 'addToCart':
+            echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
+            echo "<script>window.location.href='../duan1/index.php?act=trangsanpham'</script>";
+
+            break;
         case 'tintuc':
             include "app/home/controllers/tintuc.php";
             break;
         case 'giohang':
-            include "app/home/controllers/giohang.php";
+            if (isset($_SESSION["username"])) {
+                include "app/home/controllers/giohang.php";
+            } else {
+                echo "<script>alert('Đăng nhập để theo dõi giỏ hàng của bạn !')</script>";
+                echo "<script>window.location.href='modules/account/views/login.php'</script>";
+            }
             break;
         default:
-            # code...
+            include "app/home/controllers/body.php";
             break;
     }
 } else {
