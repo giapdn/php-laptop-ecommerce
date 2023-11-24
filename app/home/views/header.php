@@ -10,10 +10,10 @@ session_start()
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Laptop LSG</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet"> -->
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="app/home/public/css/bootstrap.min.css" type="text/css">
@@ -34,9 +34,9 @@ session_start()
 
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
+    <!-- <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="app/home/img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt=""></a>
+            <a href="#"><img src=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -88,7 +88,7 @@ session_start()
                 <li>Free Shipping for all Order of $99</li>
             </ul>
         </div>
-    </div>
+    </div> -->
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
@@ -113,7 +113,7 @@ session_start()
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
+                                <img src="app/home/public/img/language.png">
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
@@ -126,7 +126,7 @@ session_start()
                                 $user = $_SESSION["username"];
                                 echo '
                                     <div class="header__top__right__auth">
-                                        <a href="#"><i class="fa fa-user"></i> ' . $user . '</a>
+                                        <a href="index.php?act=logOut"><i class="fa fa-user"></i> ' . $user . '</a>
                                     </div>
                                 ';
                             } else {
@@ -137,9 +137,6 @@ session_start()
                                 ';
                             }
                             ?>
-                            <!-- <div class="header__top__right__auth">
-                                <a href="index.php?act=logIn"><i class="fa fa-user"></i>Đăng nhập</a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -149,7 +146,7 @@ session_start()
             <div class="row">
                 <div class="col-lg-3" width="242px" height="211px">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="app/home/img/Thiết_kế_chưa_có_tên-removebg-preview 1.png" alt=""></a>
+                        <a href="./index.html"><img src="app/home/public/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -214,7 +211,7 @@ session_start()
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="index.php?act=hotSearch" method="post">
-                                <input type="text" name="hotSearchData" placeholder="What do yo u need?">
+                                <input type="text" name="hotSearchData" placeholder="Bạn cần gì ?">
                                 <button type="submit" name="hotSearch" class="site-btn">Tìm kiếm</button>
                             </form>
                         </div>
