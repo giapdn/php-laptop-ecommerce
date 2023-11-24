@@ -37,7 +37,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 include "app/home/modules/giohang/giohang.php";
             } else {
                 echo "<script>alert('Đăng nhập để theo dõi giỏ hàng của bạn !')</script>";
-                echo "<script>window.location.href='modules/taikhoan/login-register.php'</script>";
+                echo "<script>window.location.href='app/home/modules/taikhoan/login-register.php'</script>";
             }
             break;
         default:

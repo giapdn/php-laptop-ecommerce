@@ -17,7 +17,6 @@
 <!-- Breadcrumb Section End -->
 <?php
 session_start();
-include "app/home/models/pdo.php";
 ?>
 
 <!-- Shoping Cart Section Begin -->
@@ -45,6 +44,7 @@ include "app/home/models/pdo.php";
                                 JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
                                 WHERE giohang.userName = '$username';
                                 ";
+                                include "../models/pdo.php";
                                 $data = pdo_query($sql);
                                 foreach ($data as $rows) {
                                     extract($rows);
