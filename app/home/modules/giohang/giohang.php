@@ -32,7 +32,6 @@ session_start();
                                 <th>Giá</th>
                                 <th>Số lượng</th>
                                 <th>Tổng</th>
-                                <th>Sửa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,17 +53,17 @@ session_start();
                                             <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
                                             <h5>' . $tenSanPham . '</h5>
                                         </td>
-                                        <td class="shoping__cart__price" style="color: red;">' . number_format($giaSanPham, 0, ',', '.') . ' Vnđ</td>                                            
+                                        <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . '</td>                                            
                                         <td class="shoping__cart__quantity">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" value="' . $soLuong . '">
-                                                </div>
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input name="soluong" value="' . $soluong . '">
                                             </div>
+                                        </div>
                                         </td>
-                                        <td class="shoping__cart__total">' . $soLuong * $giaSanPham . '</td>                                                                              
+                                        <td class="shoping__cart__total"><div style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . '</span></div></td>                                                                              
                                         <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
+                                            <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '"><span class="icon_close"></span></a>                           
                                         </td>
                                     </tr>
                                     ';
@@ -73,6 +72,7 @@ session_start();
                             ?>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
@@ -100,17 +100,17 @@ session_start();
                     <h5>Thanh toán</h5>
                     <ul>
                         <?php
-                        // if (isset($_SESSION["username"])) {
-                        //     $id = $_SESSION["username"];
-                        //     $sql = "SELECT SUM(sanpham.giaSanPham) AS sumCart
-                        //     FROM giohang
-                        //     JOIN sanpham ON giohang.id_sanpham = sanpham.id_sanpham
-                        //     WHERE `giohang.userName` = '$id';";
-                        //     $data = pdo_query($sql);
-                        //     echo '<li>Tổng <span>' . $data["sumCart"] . '</span></li>';
-                        // }
+                        if (isset($_SESSION["username"])) {
+                            $id = $_SESSION["username"];
+                            $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soLuong) AS sumCart
+                            FROM giohang
+                            JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
+                            GROUP BY giohang.userName;
+                            WHERE giohang.userName = '$id';";
+                            $data = pdo_query_one($sql);
+                            echo '<li>Tổng <span>' . number_format($data["sumCart"], 0, ',', '.') . ' Vnđ</span></li>';
+                        }
                         ?>
-                        <li>Tổng <span></span></li>
                     </ul>
                     <a href="#" class="primary-btn">Thanh toán</a>
                 </div>

@@ -29,6 +29,14 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
             echo "<script>window.location.href='../duan1/index.php?act=trangsanpham'</script>";
             break;
+        case 'delFromCart':
+            $id = $_GET["id_sanpham"];
+            $user = $_SESSION["username"];
+            $sql = "DELETE FROM `giohang` WHERE `userName` = '$user' AND `id_sanPham` = '$id'";
+            pdo_execute($sql);
+            echo "<script>alert('Xoá thành công !')</script>";
+            echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+            break;
         case 'chitietsanpham':
             include "app/home/modules/chitietsanpham/chitietSP.php";
             break;
