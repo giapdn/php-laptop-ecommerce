@@ -45,28 +45,32 @@ session_start();
                                 ";
                                 include "../models/pdo.php";
                                 $data = pdo_query($sql);
-                                foreach ($data as $rows) {
-                                    extract($rows);
-                                    echo '
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
-                                            <h5>' . $tenSanPham . '</h5>
-                                        </td>
-                                        <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . '</td>                                            
-                                        <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input name="soluong" value="' . $soluong . '">
+                                if (empty($data)) {
+                                    echo '<script>alert("Giỏ hàng của bạn đang trống !")</script>';
+                                } else {
+                                    foreach ($data as $rows) {
+                                        extract($rows);
+                                        echo '
+                                        <tr>
+                                            <td class="shoping__cart__item">
+                                                <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
+                                                <h5>' . $tenSanPham . '</h5>
+                                            </td>
+                                            <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . '</td>                                            
+                                            <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input name="soluong" value="' . $soluong . '">
+                                                </div>
                                             </div>
-                                        </div>
-                                        </td>
-                                        <td class="shoping__cart__total"><div style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . '</span></div></td>                                                                              
-                                        <td class="shoping__cart__item__close">
-                                            <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '"><span class="icon_close"></span></a>                           
-                                        </td>
-                                    </tr>
-                                    ';
+                                            </td>
+                                            <td class="shoping__cart__total"><div style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . '</span></div></td>                                                                              
+                                            <td class="shoping__cart__item__close">
+                                                <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '"><span class="icon_close"></span></a>                           
+                                            </td>
+                                        </tr>
+                                        ';
+                                    }
                                 }
                             }
                             ?>
@@ -102,20 +106,30 @@ session_start();
                         <?php
                         if (isset($_SESSION["username"])) {
                             $id = $_SESSION["username"];
-                            $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soLuong) AS sumCart
+                            $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS sumCart
                             FROM giohang
                             JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
                             GROUP BY giohang.userName;
                             WHERE giohang.userName = '$id';";
                             $data = pdo_query_one($sql);
-                            echo '<li>Tổng <span>' . number_format($data["sumCart"], 0, ',', '.') . ' Vnđ</span></li>';
+                            if ($data["sumCart"] === 0) {
+                                echo '<li>Tổng <span style="background-color: yellow;color: red;">' . 0 . ' Vnđ</span></li>';
+                            } else {
+                                echo '<li>Tổng <span style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' Vnđ</span></li>';
+                            }
                         }
                         ?>
                     </ul>
-                    <a href="#" class="primary-btn">Thanh toán</a>
+                    <a href="index.php?act=thanhtoan" class="primary-btn">Thanh toán</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Shoping Cart Section End -->
+
+<script>
+    function up(params) {
+
+    }
+</script>

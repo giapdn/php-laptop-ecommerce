@@ -29,7 +29,7 @@
                             $data = pdo_query($sql);
                             foreach ($data as $key) {
                                 extract($key);
-                                echo '<li><a href="index.php?act=listSPbyDM&id_danhmuc=' . $id_danhmuc . '">' . $tendanhmuc . '</a></li>';
+                                echo '<li><a style="font-weight: bold;border-bottom: 0.5px solid gray;" href="index.php?act=listSPbyDM&id_danhmuc=' . $id_danhmuc . '">' . $tendanhmuc . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -166,7 +166,7 @@
                     <div class="row">
                         <div class="product__discount__slider owl-carousel">
                             <?php
-                            $sql = "SELECT * FROM `sanpham` LIMIT 7";
+                            $sql = "SELECT * FROM `sanpham` LIMIT 8";
                             $data = pdo_query($sql);
                             foreach ($data as $key) {
                                 extract($key);
@@ -237,8 +237,8 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="#">' . $tenSanPham . '</a></h6>
-                                <h5>' . $giaSanPham . '</h5>
+                                <h6><a style="font-weight: bold; href="#">' . $tenSanPham . '</a></h6>
+                                <h5 style="background-color: yellow;"><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' vnđ</span></h5>
                             </div>
                             
                             </div>
@@ -262,8 +262,8 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="#">' . $tenSanPham . '</a></h6>
-                                <h5>' . $giaSanPham . '</h5>
+                                <h6><a style="font-weight: bold;" href="#">' . $tenSanPham . '</a></h6>
+                                <h5 style="background-color: yellow;><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' vnđ</span></h5>
                             </div>
                             
                             </div>

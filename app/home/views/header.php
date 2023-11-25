@@ -99,8 +99,8 @@ session_start()
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i> giapdnph35799@fpt.edu</li>
+                                <li>Chào bạn tới với cửa hàng của chúng tôi !</li>
                             </ul>
                         </div>
                     </div>
@@ -173,7 +173,22 @@ session_start()
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <?php
+                        // if (isset($_SESSION["username"])) {
+                        //     $user = $_SESSION["username"];
+                        //     $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS sum
+                        //     FROM giohang
+                        //     JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
+                        //     GROUP BY giohang.userName;
+                        //     WHERE giohang.userName = '$user';";
+                        //     include "app/admin/models/pdo.php";
+                        //     $x = pdo_query_one($sql);
+                        //     echo '<div class="header__cart__price">Tổng: <span>' . number_format($x["sum"], 0, ',', '.') . ' vnđ</span></div>';
+                        // } else {
+                        //     echo '<div class="header__cart__price">Tổng: <span>xxx</span></div>';
+                        // }
+                        ?>
+                        <div class="header__cart__price">Tổng: <span>xxx</span></div>
                     </div>
                 </div>
             </div>
@@ -211,7 +226,7 @@ session_start()
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="index.php?act=hotSearch" method="post">
-                                <input type="text" name="hotSearchData" placeholder="Bạn cần gì ?">
+                                <input type="text" name="hotSearchData" placeholder="Nhập sản phẩm bạn quan tâm">
                                 <button type="submit" name="hotSearch" class="site-btn">Tìm kiếm</button>
                             </form>
                         </div>
@@ -221,8 +236,8 @@ session_start()
 
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
+                                <h5>+84 88306943</h5>
+                                <span>Hỗ trợ 24/7</span>
                             </div>
                         </div>
                     </div>

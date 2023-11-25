@@ -24,11 +24,13 @@
 				$data = pdo_query($sql);
 				foreach ($data as $key) {
 					extract($key);
-					echo '<div class="col-lg-3">
-						<div class="categories__item set-bg" data-setbg="app/admin/uploads/' . $img_danhmuc . '">
-							<h5><a href="#">' . $tendanhmuc . '</a></h5>
+					echo '
+						<div class="col-lg-3" onclick="goTo(' . $id_danhmuc . ')">
+							<div class="categories__item set-bg" data-setbg="app/admin/uploads/' . $img_danhmuc . '">
+								<h5><a href="#">' . $tendanhmuc . '</a></h5>
+							</div>
 						</div>
-					</div>';
+					';
 				}
 				$data
 				?>
@@ -63,11 +65,10 @@
 			$data = pdo_query($sql);
 			foreach ($data as $rows) {
 				extract($rows);
-				$path = "index.php?act=chitietsanpham&idsp=" . $id_sanPham;
 				echo ' 
 					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 						<div class="featured__item">
-							<div class="featured__item__pic set-bg" data-setbg="app/admin/uploads/' . $img_path . '">
+							<div style="cursor: pointer;" class="featured__item__pic set-bg" data-setbg="app/admin/uploads/' . $img_path . '" onclick="chitietsp(' . $id_sanPham . ', ' . $id_danhmuc . ')">
 								<ul class="featured__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -75,8 +76,8 @@
 								</ul>
 							</div>
 							<div class="featured__item__text">
-								<h6><a href="' . $path . '">' . $tenSanPham . '</a></h6>
-								<h5>' . $giaSanPham . '</h5>
+								<h6><a style="font-weight: bold;" href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '">' . $tenSanPham . '</a></h6>
+								<h5 style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham, 0, ',', '.') . ' Vnđ</span></h5>
 							</div>
 						</div>
 					</div> 
@@ -296,3 +297,13 @@
 	</div>
 </section>
 <!-- Blog Section End -->
+
+<script>
+	function goTo(params) {
+		window.location.href = "index.php?act=listSPbyDM&id_danhmuc=" + params;
+	}
+
+	function chitietsp(params, id_danhmuc) {
+		window.location.href = "index.php?act=chitietsanpham&idsp=" + params + "&id_danhmuc=" + id_danhmuc;
+	}
+</script>

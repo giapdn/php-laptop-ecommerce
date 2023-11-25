@@ -27,7 +27,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             $sql = "INSERT INTO `giohang`(`userName`, `id_sanPham`) VALUES ('$user','$id')";
             pdo_execute($sql);
             echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
-            echo "<script>window.location.href='../duan1/index.php?act=trangsanpham'</script>";
+            echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
             break;
         case 'delFromCart':
             $id = $_GET["id_sanpham"];
@@ -47,6 +47,10 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 echo "<script>alert('Đăng nhập để theo dõi giỏ hàng của bạn !')</script>";
                 echo "<script>window.location.href='app/home/modules/taikhoan/login-register.php'</script>";
             }
+            break;
+        case 'thanhtoan':
+            echo "<script>alert('Thanh toán thành công, hãy theo dõi trạng thái đơn hàng của bạn ở phần tài khoản !')</script>";
+            echo "<script>window.location.href='../duan1/index.php'</script>";
             break;
         default:
             include "app/home/views/trangchu.php";
