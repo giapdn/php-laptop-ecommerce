@@ -7,7 +7,7 @@
     }
 
     body {
-       
+
         background: #f6f5f7;
         display: flex;
         justify-content: center;

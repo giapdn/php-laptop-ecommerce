@@ -9,9 +9,9 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             include "app/home/views/trangsanpham.php";
             break;
 
-            case 'checkout':
-                include "app/home/views/checkout.php";
-                break;
+        case 'checkout':
+            include "app/home/views/checkout.php";
+            break;
 
         case 'listSPbyDM':
             include "app/home/views/trangsanpham.php";
@@ -53,14 +53,10 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 echo "<script>window.location.href='app/home/modules/taikhoan/login-register.php'</script>";
             }
             break;
-
-            case 'thoat':
-                session_unset();
-                header('Location: index.php');
-              
-                break;
-
-
+        case 'thoat':
+            session_unset();
+            header('Location: index.php');
+            break;
         case 'thanhtoan':
             echo "<script>alert('Thanh toán thành công, hãy theo dõi trạng thái đơn hàng của bạn ở phần tài khoản !')</script>";
             echo "<script>window.location.href='../duan1/index.php'</script>";

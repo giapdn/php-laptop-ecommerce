@@ -311,7 +311,7 @@
 
 
 <a href="http://zaloapp.com/qr/p/2u0gjeeh2pht" class="zalo-button">
-  <img src="app/home/public/img/Icon_of_Zalo.svg.png" alt="Zalo Icon" class="zalo-icon" style="width: 70px; height: 70px;" >
+	<img src="app/home/public/img/zaloicon.jpg" alt="Zalo Icon" class="zalo-icon" style="width: 70px; height: 70px;">
 </a>
 
 <!-- Blog Section End -->
@@ -321,89 +321,112 @@
 
 
 <script>
-    // JavaScript để xử lý sự kiện khi cuộn trang và khi click nút
-    window.onscroll = function() {scrollFunction()};
+	// JavaScript để xử lý sự kiện khi cuộn trang và khi click nút
+	window.onscroll = function() {
+		scrollFunction()
+	};
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("myBtn").style.display = "block";
-        } else {
-            document.getElementById("myBtn").style.display = "none";
-        }
-    }
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			document.getElementById("myBtn").style.display = "block";
+		} else {
+			document.getElementById("myBtn").style.display = "none";
+		}
+	}
 
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
+	function topFunction() {
+		document.body.scrollTop = 0; // For Safari
+		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+	}
 
 	document.querySelector('.zalo-button').addEventListener('mouseenter', function() {
-  // Thêm class active khi di chuột vào nút
-  this.classList.add('active');
-});
+		// Thêm class active khi di chuột vào nút
+		this.classList.add('active');
+	});
 
-document.querySelector('.zalo-button').addEventListener('mouseleave', function() {
-  // Loại bỏ class active khi di chuột ra khỏi nút
-  this.classList.remove('active');
-});
-
+	document.querySelector('.zalo-button').addEventListener('mouseleave', function() {
+		// Loại bỏ class active khi di chuột ra khỏi nút
+		this.classList.remove('active');
+	});
 </script>
 
 
 <style>
+	.zalo-button {
+		position: fixed;
+		/* Cố định vị trí trên trang */
+		top: 94%;
+		/* Điều chỉnh vị trí từ trên xuống */
+		left: 20px;
+		/* Khoảng cách từ viền trái của trang */
+		transform: translateY(-50%);
+		/* Dịch chuyển nút lên trên để căn giữa theo chiều dọc */
+		z-index: 999;
+		/* Đảm bảo nằm trên các phần khác của trang */
+		display: flex;
+		align-items: center;
 
-.zalo-button {
-  position: fixed; /* Cố định vị trí trên trang */
-  top: 94%; /* Điều chỉnh vị trí từ trên xuống */
-  left: 20px; /* Khoảng cách từ viền trái của trang */
-  transform: translateY(-50%); /* Dịch chuyển nút lên trên để căn giữa theo chiều dọc */
-  z-index: 999; /* Đảm bảo nằm trên các phần khác của trang */
-  display: flex;
-  align-items: center;
+		color: #fff;
+		/* Màu của chữ */
+		padding: 10px 20px;
+		border-radius: 5px;
+		text-decoration: none;
+		/* Loại bỏ gạch chân khi hover */
+		transition: 0.3s;
+	}
 
-  color: #fff; /* Màu của chữ */
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none; /* Loại bỏ gạch chân khi hover */
-  transition: 0.3s;
-}
-.zalo-icon {
-	
-  vertical-align: middle;
-  transition: 0.3s;
- 
-}
+	.zalo-icon {
+
+		vertical-align: middle;
+		transition: 0.3s;
+
+	}
 
 
-.zalo-button:hover .zalo-icon {
-  transform: translateX(10%);
-}
+	.zalo-button:hover .zalo-icon {
+		transform: translateX(10%);
+	}
 
 
 
 
-/* CSS để tạo kiểu cho nút "quay trở lại đầu trang" */
-#myBtn {
-	
-  display: none; /* Ẩn ban đầu */
-  position: fixed; /* Cố định vị trí */
-  bottom: 1px; /* Khoảng cách từ bottom */
-  right: 20px; /* Khoảng cách từ right */
-  z-index: 99; /* Đảm bảo hiển thị trên cùng các phần tử bên dưới */
-  font-size: 30px; /* Kích thước chữ */
-  border: none;
- /* Không có viền */
-  outline: none; /* Không có đường viền khi focus */
-  background-color: #7fad39; /* Màu nền */
-  color: white; /* Màu chữ */
-  cursor: pointer; /* Con trỏ khi di chuột qua */
-  padding: 15px; /* Khoảng cách giữa nút và vùng click */
-  border-radius: 50%; /* Bo góc */
-  transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu nền */
-}
+	/* CSS để tạo kiểu cho nút "quay trở lại đầu trang" */
+	#myBtn {
 
-#myBtn:hover {
-  background-color: #88d80f; /* Màu nền khi di chuột qua */
-  color: black; /* Màu chữ khi di chuột qua */
-}
+		display: none;
+		/* Ẩn ban đầu */
+		position: fixed;
+		/* Cố định vị trí */
+		bottom: 1px;
+		/* Khoảng cách từ bottom */
+		right: 20px;
+		/* Khoảng cách từ right */
+		z-index: 99;
+		/* Đảm bảo hiển thị trên cùng các phần tử bên dưới */
+		font-size: 30px;
+		/* Kích thước chữ */
+		border: none;
+		/* Không có viền */
+		outline: none;
+		/* Không có đường viền khi focus */
+		background-color: #7fad39;
+		/* Màu nền */
+		color: white;
+		/* Màu chữ */
+		cursor: pointer;
+		/* Con trỏ khi di chuột qua */
+		padding: 15px;
+		/* Khoảng cách giữa nút và vùng click */
+		border-radius: 50%;
+		/* Bo góc */
+		transition: background-color 0.3s;
+		/* Hiệu ứng chuyển đổi màu nền */
+	}
+
+	#myBtn:hover {
+		background-color: #88d80f;
+		/* Màu nền khi di chuột qua */
+		color: black;
+		/* Màu chữ khi di chuột qua */
+	}
 </style>

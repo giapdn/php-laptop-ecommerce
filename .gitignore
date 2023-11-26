@@ -1,2 +1,3 @@
-app/admin/models/pdo.php
-app/home/models/pdo.php
+../duan1/app/admin/models/pdo.php
+../duan1/app/home/models/pdo.php
+../duan1/app/home/modules/models/pdo.php
