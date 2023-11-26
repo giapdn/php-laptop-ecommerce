@@ -1,5 +1,7 @@
 <?php
-session_start()
+ob_start();
+error_reporting(E_ALL);
+ini_set('display_error', 1);
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -121,22 +123,56 @@ session_start()
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
+
+                            <div class="header__top__right__language">
+                               
                             <?php
-                            if (isset($_SESSION["username"])) {
-                                $user = $_SESSION["username"];
-                                echo '
+                                if (isset($_SESSION["username"])) {
+                                    $user = $_SESSION["username"];
+
+
+                                    echo '
                                     <div class="header__top__right__auth">
-                                        <a href="index.php?act=logOut"><i class="fa fa-user"></i> ' . $user . '</a>
+                                        <a href="#"><i class="fa fa-user"></i> ' . $user . '</a>
                                     </div>
+
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li><a href="inde">Tài khoản</a></li>
+                                      
+                                    
+                                        <?php                                   
+                                        if ($role == 1) { ?>
+                                            <li>
+                                                <a href="app/admin/index.php">Admin</a>
+                                            </li>
+                                        <?php } ?>
+
+
+                                        <li><a href="index.php?act=thoat">Đăng xuất</a></li>
+                                    </ul>
+                                </div>
+
+
                                 ';
-                            } else {
-                                echo '
+                                } else {
+                                    echo '
                                     <div class="header__top__right__auth">
                                         <a href="index.php?act=logIn"><i class="fa fa-user"></i> Đăng nhập</a>
                                     </div>
+
+                                  
+                                  
+
                                 ';
-                            }
-                            ?>
+                                }
+                                ?>
+
+                            </div>
+
+
+
+                        
                         </div>
                     </div>
                 </div>

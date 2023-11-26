@@ -11,5 +11,5 @@ if (empty($data)) {
 } else {
     $_SESSION["username"] = $username;
     echo "<script>alert('Đăng nhập thành công !');</script>";
-    echo "<script>window.location.href='/duan1/index.php?act=trangsanpham';</script>";
+    echo "<script>window.location.href='/duan1/index.php';</script>";
 }

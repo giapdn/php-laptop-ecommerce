@@ -4,28 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../admin/public/css/style.css">
-   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
-    <title>Quản trị</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="../../public/css/main.css">
+    <script src="https://kit.fontawesome.com/8c204d0fdf.js" crossorigin="anonymous"></script>
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid main-page">
+    
+        <div class="app-main">
         <div class="brand">
             <h1>Admin</h1>
             
         </div>
 
-        <nav>
+
+            <nav class="sidebar bg-primary">
             <ul>
-                <li><i class="fas fa-home"></i> <a href="index.php?act=home">Trang chủ</a></li>
-                <li><i class="fas fa-layer-group"></i> <a href="index.php?act=listDanhMuc">Danh mục</a></li>
-                <li><i class="fas fa-boxes"></i> <a href="index.php?act=prodList">Sản phẩm</a></li>
-                <li><i class="fas fa-users"></i> <a href="index.php?act=userList">Khách hàng</a></li>
-                <li><i class="far fa-comment"></i> <a href="index.php?act=commentList">Bình luận</a></li>
-                <li><i class="fas fa-chart-bar"></i> <a href="index.php?act=cart">Đơn hàng</a></li>
-                <li><i class="fas fa-chart-bar"></i> <a href="index.php?act=report">Thống kê</a></li>
-            </ul>
-        </nav>
+                    <li>
+                        <a href="index.php?act=home"><i class="fa-solid fa-house ico-side"></i>Dashboards</a>
+                    </li>
+                    <li>
+                        <a href="index.php?act=quanlydonhang"><i class="fa-solid fa-cart-shopping ico-side"></i>Quản kí đơn hàng</a>
+                    </li>
+                    <li>
+                        <a href="index.php?act=danhmuc"><i class="fa-solid fa-folder-open ico-side"></i>Quản lí danh muc</a>
+                    </li>
+                    <li>
+                        <a href="index.php?act=quanlysp"><i class="fa-solid fa-mug-hot ico-side"></i>Quản lí sản phẩm</a>
+                    </li>
+                    <li>
+                        <a href="index.php?act=quanlythanhvien"><i class="fa-solid fa-user ico-side"></i>Quản lí thành viên</a>
+                    </li>
+                </ul>
+            </nav>
+            </nav>
+            
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script>
+        new DataTable('#example');
+    </script>
+</body>
+
+</html>

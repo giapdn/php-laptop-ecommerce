@@ -3466,3 +3466,17 @@ ol {
 		font-size: 24px;
 	}
 }
+
+.ff {
+	border-bottom: rgb(200, 200, 200) solid 1px;
+background-color: #efefef;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "h6 p p";
+  position: relative;
+}
+
+.ff h6{
+	padding-left: 10px;
+	
+}

@@ -1,67 +1,72 @@
-<div id="userChange" style="background-color: purple;">
-    <form action="../admin/models/userChange_process.php?x=<?php echo $_GET["name"]?>" method="post" style="background-color: purple;">
-        <label for="categoryID">Tên người dùng </label>
-        <input type="text" name="username" style="background-color: greenyellow;" readonly value="<?php getName();?>"> <br> <br>
-        <label for="categoryName">Mật khẩu</label>
-        <input type="text" name="password" style="background-color: greenyellow;" readonly value="<?php getPassword(); ?>"> <br> <br>
-        <label for="categoryName">Quyền </label>
-        <input type="text" name="power" placeholder="<?php getPower();?>"> <br> <br>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/8c204d0fdf.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid main-page">
+        <div class="app-main">
+            <div class="main-content">
 
 
-        <input type="submit" name="list" value="Danh sách" onclick="goToLi();">
-        <input type="submit" name="powerChange" value="Sửa">
-    </form>
-</div>
-<script>
-    function goToLi(params) {
-        event.preventDefault();
-        window.location.href="index.php?act=customers";
-    }
-</script>
-<?php
-function getName()
-{
-    if (isset($_GET["act"]) && $_GET["act"] == "userChange") {
-        if (isset($_GET["name"])) {
-            echo $_GET["name"];
-        }
-        else {
-            echo "!!!";
-        }
-    };
-}
-function getPassword()
-{
-    if (isset($_GET["act"]) && $_GET["act"] == "userChange") {
-        if (isset($_GET["name"])) {
-            $name = $_GET["name"];
-            $sql = "SELECT `password` FROM `users` WHERE `username` = '$name' LIMIT 1";
-            include "models/database.php";
-            $data = $conn->query($sql);
-            while ($rows = $data->fetch_assoc()) {
-                echo $rows["password"];
+                <form action="index.php?act=userChange&id=<?php echo $_GET["id"]?>" method="post">
+                    <h3 class="title-page">
+                        Sửa quyền đăng nhập
+                    </h3>
+                    <label >Tên đăng nhập</label><br>
+                    <input type="text" name="userName" class="btn btn-primary" readonly value="<?php getuser();?>"> <br> <br>
+                    
+                    <label >Quyền</label>
+                    <select name="quyenHan" class="form-control">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <br><br>
+                    
+                    <input type="submit" name="list" class="btn btn-primary" value="Danh sách" onclick="goToList()">
+                    <input type="submit" name="userChange" class="btn btn-primary" value="Sửa">
+                </form>
+            </div>
+            <script>
+                function goToList(params) {
+                    event.preventDefault();
+                    window.location.href="index.php?act=quanlythanhvien";
+                }
+            </script>
+            <?php
+            function getuser()
+            {
+                if (isset($_GET["act"]) && $_GET["act"] == "userChange") {
+                    if (isset($_GET["id"])) {
+                        echo $_GET["id"];
+                    }
+                    else {
+                        echo "!!!";
+                    }
+                };
             }
-        }
-        else {
-            echo "!!!";
-        }
-    };
-}
-function getPower()
-{
-    if (isset($_GET["act"]) && $_GET["act"] == "userChange") {
-        if (isset($_GET["name"])) {
-            $name = $_GET["name"];
-            $sql = "SELECT `power` FROM `users` WHERE `username` = '$name' LIMIT 1";
-            include "models/database.php";
-            $data = $conn->query($sql);
-            while ($rows = $data->fetch_assoc()) {
-                echo $rows["power"];
-            }
-        }
-        else {
-            echo "!!!";
-        }
-    };
-}
-?>
+            ?>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+

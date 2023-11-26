@@ -9,10 +9,11 @@ if (isset($_POST["categoryID"])) {
         if(isset($_POST['data-change']) && ($_POST['data-change'])){
             $a = pdo_query($sql);
             echo "<script>alert('Cập nhật xong !')</script>";
-            echo "<script>window.location.href='../index.php?act=categories';</script>";
+           
+            echo "<script>window.location.href='../index.php?act=danhmuc';</script>";
         } else {
             echo "<script>alert('Tên không được bỏ trống !')</script>";
-            echo "<script>window.location.href='../index.php?act=categories';</script>";
+            echo "<script>window.location.href='../index.php?act=danhmuc';</script>";
         }
     } catch (\mysqli_sql_exception $th) {
         echo "<script>alert(" . $th->getMessage() . ")</script>";
@@ -22,3 +23,5 @@ if (isset($_POST["categoryID"])) {
 } else {
     echo "Không có giá trị categoryID được gửi.";
 }
+
+

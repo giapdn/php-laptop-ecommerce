@@ -7,6 +7,7 @@
     }
 
     body {
+       
         background: #f6f5f7;
         display: flex;
         justify-content: center;
@@ -15,6 +16,8 @@
         font-family: 'Montserrat', sans-serif;
         height: 100vh;
         margin: -20px 0 50px;
+        background-size: cover;
+        background-image: url(../../public/img/banner/banner2.webp);
         background-size: cover;
     }
 

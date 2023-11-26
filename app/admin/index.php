@@ -1,18 +1,59 @@
 <?php
+include "header.php";
 include "models/pdo.php";
-include "views/default/header.php";
 if (isset($_GET["act"])) {
     $action = $_GET["act"];
     switch ($action) {
+
+
+        case 'danhmuc':
+            include "./views/danhmuc.php";
+            break;
+
         case 'home':
-            echo "<script>window.location.href = '/duan1/index.php';</script>";
+            include "./views/main.php";
             break;
-        case 'listDanhMuc':
-            include "views/category-list.php";
+
+        case 'quanlysp':
+            include "./views/quanlysp.php";
             break;
+
+        case 'quanlythanhvien':
+            include "./views/quanlythanhvien.php";
+            break;
+        case 'userDel':
+            if (isset($_POST["xoauser"])) {
+                $name = $_GET["name"];
+                $sql = "DELETE FROM `users` WHERE `userName` = '$name'";    
+                    pdo_query($sql);
+                    echo '<script>alert("Xoá thành công");</script>';
+                    echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
+                }
+        case 'userChange':
+            include "controllers/userChange.php";
+        case 'userChange' :
+            if(isset($_POST["userChange"])){
+                $id = $_GET["id"];
+                $userName = $_POST["userName"];
+                $quyenHan = $_POST["quyenHan"];
+                $sql = "UPDATE `users` SET `quyenHan`='$quyenHan'
+                WHERE `userName`='$id'";
+                pdo_execute($sql);
+                echo "<script>alert('Sửa thành công !')</script>";
+                echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
+            }
+        break;
+
+        case 'quanlydonhang':
+            include "./views/quanlydonhang.php";
+            break;
+
+
         case 'ctgryAddForm':
-            include "controllers/category-add.php";
-        case 'themdanhmuc':
+            include "./controllers/category-add.php";
+           
+
+         case 'themdanhmuc':
             if (isset($_POST["data-send"])) {
                 $categoryName = $_POST["categoryName"];
                 $sql = "INSERT INTO `danhmuc`(`tendanhmuc`) VALUES ('$categoryName')";
@@ -23,31 +64,45 @@ if (isset($_GET["act"])) {
                     } else {
                         pdo_execute($sql);
                         echo "<script>alert('Nạp dữ liệu thành công !')</script>";
-                        echo "<script>window.location.href='../admin/index.php?act=ctgryAddForm';</script>";
+                        echo "<script>window.location.href='../admin/index.php?act=danhmuc';</script>";
                     }
                 } catch (\mysqli_sql_exception $th) {
                     echo "OOP !: " . $th->getMessage();
                 }
             }
-            break;
+        break;
+
         case 'categoryDel':
             if (isset($_POST["categoryID"])) {
                 $category_id = $_POST["categoryID"];
                 $sql = "DELETE FROM `danhmuc` WHERE `id_danhmuc` = '$category_id'";
                 pdo_execute($sql);
                 echo "<script>alert('Xoá thành công !')</script>";
-                echo "<script>window.location.href='../admin/index.php?act=listDanhMuc';</script>";
-            }
-            break;
+                echo "<script>window.location.href='../admin/index.php?act=danhmuc';</script>";
+            } 
+        break;
+
         case 'categoryChange':
             include "controllers/category-change.php";
-            break;
-        case 'productAddForm':
+        break;
+
+        case 'prodDel':
+            if (isset($_POST["prod-delete-btn"])) {
+                $prodID = $_GET["id"];
+                $sql = "DELETE FROM `sanpham` WHERE `id_sanPham` = '$prodID'";
+                try {
+                    pdo_execute($sql);
+                    echo "<script>alert('Xoá thành công !')</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
+                } catch (\PDOException $th) {
+                    die("Something went wrong !");
+                }
+            }
+        break;
+
+        case 'formadd':
             include "controllers/prodAdd.php";
-            break;
-        case 'prodList':
-            include "views/product-list.php";
-            break;
+        break;
         case 'addSp':
             $prodName = $_POST["prodName"];
             $prodPrice = $_POST["prodPrice"];
@@ -68,25 +123,13 @@ if (isset($_GET["act"])) {
                     }
                     pdo_execute($sql);
                     echo "<script>alert('Nạp dữ liệu thành công !')</script>";
-                    echo "<script>window.location.href='../admin/index.php?act=prodList';</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
                 } else {
                     echo "File is not an image.";
                 }
             }
-            break;
-        case 'prodDel':
-            if (isset($_POST["prod-delete-btn"])) {
-                $prodID = $_GET["id"];
-                $sql = "DELETE FROM `sanpham` WHERE `id_sanPham` = '$prodID'";
-                try {
-                    pdo_execute($sql);
-                    echo "<script>alert('Xoá thành công !')</script>";
-                    echo "<script>window.location.href='../admin/index.php?act=prodList';</script>";
-                } catch (\PDOException $th) {
-                    die("Something went wrong !");
-                }
-            }
-            break;
+        break;
+
         case 'prodChange':
             include "controllers/prodChange.php";
             break;
@@ -111,75 +154,36 @@ if (isset($_GET["act"])) {
                     }
                     pdo_execute($sql);
                     echo "<script>alert('Sửa thành công !')</script>";
-                    echo "<script>window.location.href='../admin/index.php?act=prodList';</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
                 } else {
                     $query = "UPDATE `sanpham` SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc',
                     `id_danhmuc`='$productCategory' WHERE `id_sanPham`='$prodID'";
                     pdo_execute($query);
                     echo "<script>alert('Sửa thành công !')</script>";
-                    echo "<script>window.location.href='../admin/index.php?act=prodList';</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
                 }
             }
             break;
-        case 'userList':
-            include "views/userList.php";
-            break;
-        case 'commentList':
-            include "views/commentList.php";
-            break;
-
-
-        case 'userDel':
-            if (isset($_POST["xoauser"])) {
-                $name = $_GET["name"];
-                $sql = "DELETE FROM `users` WHERE `userName` = '$name'";
-
-                pdo_query($sql);
-                echo '<script>alert("Xoá thành công");</script>';
-                echo '<script>window.location.href="index.php?act=userList"</script>';
-            }
-        case 'userChange':
-            include "controllers/userChange.php";
-            break;
-        case 'commentDel':
-            if (isset($_POST["xoabl"])) {
-
-                $id = $_GET["id"];
-                $sql = "DELETE FROM `binhluan` WHERE `id_binhLuan`= '$id'";
-                pdo_query($sql);
-                echo '<script>alert("Xoá thành công");</script>';
-                echo '<script>window.location.href="index.php?act=commentList"</script>';
-            }
-            break;
-        case 'report':
-            include "views/static.php";
-            break;
 
         case 'cart':
-            include "views/donhangList.php";
+            include "views/quanlydonhang.php";
         break;
 
-        case 'timdonhang':
-            // $userName = $_POST['userName'];
-            // $timdonhang = "";
-            // $sql = "SELECT * FROM `donhang` WHERE 1";
-            // if($userName>0) $sql.=" AND userName=".$userName;
-            // if($timdonhang!="") $sql.=" AND id_donHang like '%".$timdonhang."%'";
-            // $sql.=" order by id_donHang desc";
-            // pdo_query($sql);
-            // if(isset($_POST['timdonhang']) && ($_POST['timdonhang'] !="")){
-            //     $timdonhang = $_POST['timdonhang'];
-            // }else{
-            //     $timdonhang = "";
-            // }
-            // include "views/donhangList.php";
-
-            
-            break;
-
-        case 'donhangsua':
-           
-            break;
+        case 'suadonhang':
+            include "controllers/suadonhang.php";
+        case 'sdonhang':
+            if(isset($_POST["sdonhang"])){
+                $id = $_GET["id"];
+                $id_donHang = $_POST["id_donHang"];
+                $trangThai = $_POST["trangThai"];
+                $sql = "UPDATE `donhang` SET `trangThai`='$trangThai'
+                WHERE `id_donHang`='$id'";
+                
+                    pdo_execute($sql);
+                    echo "<script>alert('Sửa thành công !')</script>";
+                    echo '<script>window.location.href="index.php?act=cart"</script>';
+            }
+        break;
 
         case 'donhangxoa':
             if(isset($_POST["xoaudonhang"])){
@@ -189,13 +193,32 @@ if (isset($_GET["act"])) {
                 echo '<script>alert("Xoá thành công");</script>';
                 echo '<script>window.location.href="index.php?act=cart"</script>';
             }
+        break;
+
+        case 'commentList':
+            include "views/commentList.php";
+        break;
+        
+        case 'commentDel':
+            if (isset($_POST["xoabl"])) {
+                $id = $_GET["id"];
+                $sql = "DELETE FROM `binhluan` WHERE `id_binhLuan`= '$id'";
+                pdo_query($sql);
+                echo '<script>alert("Xoá thành công");</script>';
+                echo '<script>window.location.href="index.php?act=commentList"</script>';
+            }
+        break;
+
+        case 'thongke':
+            include "views/bieudolist.php";
             break;
 
-        default:
-            include "views/static.php";
-            break;
+        case 'bieudo':
+            include "controllers/bieudo.php";
+        break;
+    default:
+        include "./views/main.php";
+    break;
     }
 } else {
-    include "views/static.php";
 }
-include "views/default/footer.php";
