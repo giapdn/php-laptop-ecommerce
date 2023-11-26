@@ -4,35 +4,30 @@ include "models/pdo.php";
 if (isset($_GET["act"])) {
     $action = $_GET["act"];
     switch ($action) {
-
-
         case 'danhmuc':
             include "./views/danhmuc.php";
             break;
-
         case 'home':
             include "./views/main.php";
             break;
-
         case 'quanlysp':
             include "./views/quanlysp.php";
             break;
-
         case 'quanlythanhvien':
             include "./views/quanlythanhvien.php";
             break;
         case 'userDel':
             if (isset($_POST["xoauser"])) {
                 $name = $_GET["name"];
-                $sql = "DELETE FROM `users` WHERE `userName` = '$name'";    
-                    pdo_query($sql);
-                    echo '<script>alert("Xoá thành công");</script>';
-                    echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
-                }
+                $sql = "DELETE FROM `users` WHERE `userName` = '$name'";
+                pdo_query($sql);
+                echo '<script>alert("Xoá thành công");</script>';
+                echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
+            }
         case 'userChange':
             include "controllers/userChange.php";
-        case 'userChange' :
-            if(isset($_POST["userChange"])){
+        case 'userChange':
+            if (isset($_POST["userChange"])) {
                 $id = $_GET["id"];
                 $userName = $_POST["userName"];
                 $quyenHan = $_POST["quyenHan"];
@@ -42,18 +37,13 @@ if (isset($_GET["act"])) {
                 echo "<script>alert('Sửa thành công !')</script>";
                 echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
             }
-        break;
-
+            break;
         case 'quanlydonhang':
             include "./views/quanlydonhang.php";
             break;
-
-
         case 'ctgryAddForm':
             include "./controllers/category-add.php";
-           
-
-         case 'themdanhmuc':
+        case 'themdanhmuc':
             if (isset($_POST["data-send"])) {
                 $categoryName = $_POST["categoryName"];
                 $sql = "INSERT INTO `danhmuc`(`tendanhmuc`) VALUES ('$categoryName')";
@@ -70,8 +60,7 @@ if (isset($_GET["act"])) {
                     echo "OOP !: " . $th->getMessage();
                 }
             }
-        break;
-
+            break;
         case 'categoryDel':
             if (isset($_POST["categoryID"])) {
                 $category_id = $_POST["categoryID"];
@@ -79,13 +68,11 @@ if (isset($_GET["act"])) {
                 pdo_execute($sql);
                 echo "<script>alert('Xoá thành công !')</script>";
                 echo "<script>window.location.href='../admin/index.php?act=danhmuc';</script>";
-            } 
-        break;
-
+            }
+            break;
         case 'categoryChange':
             include "controllers/category-change.php";
-        break;
-
+            break;
         case 'prodDel':
             if (isset($_POST["prod-delete-btn"])) {
                 $prodID = $_GET["id"];
@@ -98,11 +85,10 @@ if (isset($_GET["act"])) {
                     die("Something went wrong !");
                 }
             }
-        break;
-
+            break;
         case 'formadd':
             include "controllers/prodAdd.php";
-        break;
+            break;
         case 'addSp':
             $prodName = $_POST["prodName"];
             $prodPrice = $_POST["prodPrice"];
@@ -128,8 +114,7 @@ if (isset($_GET["act"])) {
                     echo "File is not an image.";
                 }
             }
-        break;
-
+            break;
         case 'prodChange':
             include "controllers/prodChange.php";
             break;
@@ -164,41 +149,37 @@ if (isset($_GET["act"])) {
                 }
             }
             break;
-
         case 'cart':
             include "views/quanlydonhang.php";
-        break;
-
+            break;
         case 'suadonhang':
             include "controllers/suadonhang.php";
         case 'sdonhang':
-            if(isset($_POST["sdonhang"])){
+            if (isset($_POST["sdonhang"])) {
                 $id = $_GET["id"];
                 $id_donHang = $_POST["id_donHang"];
                 $trangThai = $_POST["trangThai"];
                 $sql = "UPDATE `donhang` SET `trangThai`='$trangThai'
                 WHERE `id_donHang`='$id'";
-                
-                    pdo_execute($sql);
-                    echo "<script>alert('Sửa thành công !')</script>";
-                    echo '<script>window.location.href="index.php?act=cart"</script>';
-            }
-        break;
 
+                pdo_execute($sql);
+                echo "<script>alert('Sửa thành công !')</script>";
+                echo '<script>window.location.href="index.php?act=cart"</script>';
+            }
+            break;
         case 'donhangxoa':
-            if(isset($_POST["xoaudonhang"])){
+            if (isset($_POST["xoaudonhang"])) {
                 $id_donHang = $_GET["id_donHang"];
                 $sql = "DELETE FROM `donhang` WHERE `id_donHang`= '$id_donHang' ";
                 pdo_query($sql);
                 echo '<script>alert("Xoá thành công");</script>';
                 echo '<script>window.location.href="index.php?act=cart"</script>';
             }
-        break;
-
+            break;
         case 'commentList':
             include "views/commentList.php";
-        break;
-        
+            break;
+
         case 'commentDel':
             if (isset($_POST["xoabl"])) {
                 $id = $_GET["id"];
@@ -207,18 +188,16 @@ if (isset($_GET["act"])) {
                 echo '<script>alert("Xoá thành công");</script>';
                 echo '<script>window.location.href="index.php?act=commentList"</script>';
             }
-        break;
-
+            break;
         case 'thongke':
             include "views/bieudolist.php";
             break;
-
         case 'bieudo':
             include "controllers/bieudo.php";
-        break;
-    default:
-        include "./views/main.php";
-    break;
+            break;
+        default:
+            include "./views/main.php";
+            break;
     }
 } else {
 }

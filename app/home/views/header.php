@@ -1,7 +1,5 @@
 <?php
-ob_start();
-error_reporting(E_ALL);
-ini_set('display_error', 1);
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -125,54 +123,44 @@ ini_set('display_error', 1);
                             </div>
 
                             <div class="header__top__right__language">
-                               
-                            <?php
+                                <?php
                                 if (isset($_SESSION["username"])) {
                                     $user = $_SESSION["username"];
-
-
-                                    echo '
-                                    <div class="header__top__right__auth">
-                                        <a href="#"><i class="fa fa-user"></i> ' . $user . '</a>
-                                    </div>
-
-                                    <span class="arrow_carrot-down"></span>
-                                    <ul>
-                                        <li><a href="inde">Tài khoản</a></li>
-                                      
-                                    
-                                        <?php                                   
-                                        if ($role == 1) { ?>
-                                            <li>
-                                                <a href="app/admin/index.php">Admin</a>
-                                            </li>
-                                        <?php } ?>
-
-
-                                        <li><a href="index.php?act=thoat">Đăng xuất</a></li>
-                                    </ul>
-                                </div>
-
-
-                                ';
+                                    $sql = "SELECT `author` FROM `users` WHERE `userName` = '$user'";
+                                    $result = pdo_query_one($sql);
+                                    if ($result["author"] == "admin") {
+                                        echo '
+                                            <div class="header__top__right__auth">
+                                                <a href="#"><i class="fa fa-user"></i> ' . $user . '</a>
+                                            </div>
+                                            <span class="arrow_carrot-down"></span>
+                                            <ul>
+                                                <li><a href="index.php?act=tttk">Tài khoản</a></li>                                                                                                                 
+                                                <li><a href="app/admin/index.php">Admin</a></li>                                           
+                                                <li><a href="index.php?act=logOut">Đăng xuất</a></li>
+                                            </ul>
+                                        ';
+                                    } else {
+                                        echo '
+                                            <div class="header__top__right__auth">
+                                                <a href="#"><i class="fa fa-user"></i> ' . $user . '</a>
+                                            </div>
+                                            <span class="arrow_carrot-down"></span>
+                                            <ul>
+                                                <li><a href="index.php?act=tttk">Tài khoản</a></li>                                                                                                                                                          
+                                                <li><a href="index.php?act=logOut">Đăng xuất</a></li>
+                                            </ul>
+                                        ';
+                                    }
                                 } else {
                                     echo '
-                                    <div class="header__top__right__auth">
-                                        <a href="index.php?act=logIn"><i class="fa fa-user"></i> Đăng nhập</a>
-                                    </div>
-
-                                  
-                                  
-
-                                ';
+                                        <div class="header__top__right__auth">
+                                            <a href="index.php?act=logIn"><i class="fa fa-user"></i> Đăng nhập</a>
+                                        </div>
+                                    ';
                                 }
                                 ?>
-
                             </div>
-
-
-
-                        
                         </div>
                     </div>
                 </div>
@@ -247,7 +235,7 @@ ini_set('display_error', 1);
                         </div>
                         <ul>
                             <?php
-                            include "app/admin/models/pdo.php";
+                            // include "app/admin/models/pdo.php";
                             $sql = "SELECT * FROM `danhmuc`";
                             $data = pdo_query($sql);
                             foreach ($data as $rows) {

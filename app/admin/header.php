@@ -13,37 +13,29 @@
     </script>
     <link rel="stylesheet" href="./public/css/main.css">
     <script src="https://kit.fontawesome.com/8c204d0fdf.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Quản trị</title>
 </head>
 
 <body>
     <div class="container-fluid main-page">
-
         <div class="app-main">
-
-        <div class="brand">
-            <h1>Admin</h1>
-            
-        </div>
+            <div class="brand">
+                <h1>Admin</h1>
+            </div>
             <nav class="sidebar bg-primary">
                 <ul>
-
-                <li>
+                    <li>
                         <a href="index.php?act=home"><i class="fa-solid fa-house ico-side"></i>Trang chủ</a>
                     </li>
                     <li>
                         <a href="index.php?act=danhmuc"><i class="fa-solid fa-folder-open ico-side"></i>Quản lí danh mục</a>
                     </li>
-
                     <li>
                         <a href="index.php?act=quanlysp"><i class="fa-solid fa-mug-hot ico-side"></i>Quản lí sản phẩm</a>
                     </li>
-                    
                     <li>
-                        <a href="index.php?act=quanlydonhang"><i class="fa-solid fa-cart-shopping ico-side"></i>Quản kí đơn hàng</a>
+                        <a href="index.php?act=quanlydonhang"><i class="fa-solid fa-cart-shopping ico-side"></i>Đơn hàng</a>
                     </li>
-
-                    
                     <li>
                         <a href="index.php?act=quanlythanhvien"><i class="fa-solid fa-user ico-side"></i>Quản lí thành viên</a>
                     </li>
@@ -51,22 +43,16 @@
                         <a href="index.php?act=commentList"><i class="fa-solid fa-comment-dots ico-side"></i>Quản lí bình luận</a>
                     </li>
                     <li>
-                        <a href="index.php?act=thongke"><i class="fas fa-chart-bar"></i>   Thống kê</a>
+                        <a href="index.php?act=thongke"><i class="fas fa-chart-bar"></i> Thống kê</a>
                     </li>
                 </ul>
             </nav>
-            </nav>
-
         </div>
     </div>
     <script src="assets/js/main.js"></script>
     <script>
-// Bắt sự kiện khi di chuột vào hoặc rời khỏi phần tử a
-
+        // Bắt sự kiện khi di chuột vào hoặc rời khỏi phần tử a
     </script>
-
-
-
 </body>
 
 </html>
