@@ -77,7 +77,7 @@
 							</div>
 							<div class="featured__item__text">
 								<h6><a style="font-weight: bold;" href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '">' . $tenSanPham . '</a></h6>
-								<h5 style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham, 0, ',', '.') . ' Vnđ</span></h5>
+								<h5 style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</span></h5>
 							</div>
 						</div>
 					</div> 

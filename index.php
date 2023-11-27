@@ -21,6 +21,15 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'thanhtoan':
             include "app/home/modules/thanhtoan/thanhtoan.php";
             break;
+        case 'defaultPay':
+            include "app/home/modules/thanhtoan/thanhtoan.php";
+            break;
+        case 'momo':
+            include "app/home/modules/thanhtoan/thanhtoan.php";
+            break;
+        case 'paypal':
+            include "app/home/modules/thanhtoan/thanhtoan.php";
+            break;
         case 'tttk':
             echo "<script>window.location.href='app/home/modules/taikhoan/tttk.php'</script>";
             break;

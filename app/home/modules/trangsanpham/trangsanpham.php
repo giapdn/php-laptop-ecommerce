@@ -135,7 +135,7 @@
                                                 </div>
                                                 <div class="latest-product__item__text">
                                                     <h6>' . $tenSanPham . '</h6>
-                                                    <span style="background-color: yellow;color: red;">' . number_format($giaSanPham, 0, ',', '.') . ' Vnđ</span>
+                                                    <span style="color: red;">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</span>
                                                 </div>
                                             </a>
                                         ';
@@ -238,7 +238,7 @@
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a style="font-weight: bold; href="#">' . $tenSanPham . '</a></h6>
-                                            <h5 style="background-color: yellow;"><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' vnđ</span></h5>
+                                            <h5 style="background-color: yellow;"><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</span></h5>
                                         </div>
                                     </div>
                                 </div>       
@@ -262,7 +262,7 @@
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a style="font-weight: bold;" href="#">' . $tenSanPham . '</a></h6>
-                                            <h5 style="background-color: yellow;"><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' vnđ</span></h5>
+                                            <h5 style="background-color: yellow;"><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</span></h5>
                                         </div>
                                     </div>
                             </div>       

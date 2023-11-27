@@ -56,7 +56,7 @@ session_start();
                                                 <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
                                                 <h5>' . $tenSanPham . '</h5>
                                             </td>
-                                            <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . '</td>                                            
+                                            <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</td>                                            
                                             <td class="shoping__cart__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
@@ -64,7 +64,7 @@ session_start();
                                                 </div>
                                             </div>
                                             </td>
-                                            <td class="shoping__cart__total"><div style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . '</span></div></td>                                                                              
+                                            <td class="shoping__cart__total"><div style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . ' ₫</span></div></td>                                                                              
                                             <td class="shoping__cart__item__close">
                                                 <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '"><span class="icon_close"></span></a>                           
                                             </td>
@@ -113,9 +113,9 @@ session_start();
                             WHERE giohang.userName = '$id';";
                             $data = pdo_query_one($sql);
                             if ($data["sumCart"] === 0) {
-                                echo '<li>Tổng <span style="background-color: yellow;color: red;">' . 0 . ' Vnđ</span></li>';
+                                echo '<li>Tổng <span style="background-color: yellow;color: red;">' . 0 . ' ₫</span></li>';
                             } else {
-                                echo '<li>Tổng <span style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' Vnđ</span></li>';
+                                echo '<li>Tổng <span style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
                             }
                         }
                         ?>

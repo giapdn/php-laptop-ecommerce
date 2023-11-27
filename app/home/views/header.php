@@ -194,25 +194,44 @@ session_start();
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
+                            <?php
+                            if (isset($_SESSION["username"])) {
+                                $y = $_SESSION["username"];
+                                $x = "SELECT 
+                                    SUM(soluong) AS total
+                                    FROM 
+                                        giohang
+                                    WHERE 
+                                        userName = '$y'
+                                    GROUP BY 
+                                        userName;
+                                ";
+                                $z = pdo_query_one($x);
+                                echo '
+                                    <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span style="background-color: red;">' . $z["total"] . '</span></a></li>
+                                ';
+                            } else {
+                                echo '
+                                    <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span style="background-color: red;">0</span></a></li>
+                                ';
+                            }
+                            ?>
                         </ul>
                         <?php
-                        // if (isset($_SESSION["username"])) {
-                        //     $user = $_SESSION["username"];
-                        //     $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS sum
-                        //     FROM giohang
-                        //     JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
-                        //     GROUP BY giohang.userName;
-                        //     WHERE giohang.userName = '$user';";
-                        //     include "app/admin/models/pdo.php";
-                        //     $x = pdo_query_one($sql);
-                        //     echo '<div class="header__cart__price">Tổng: <span>' . number_format($x["sum"], 0, ',', '.') . ' vnđ</span></div>';
-                        // } else {
-                        //     echo '<div class="header__cart__price">Tổng: <span>xxx</span></div>';
-                        // }
+                        if (isset($_SESSION["username"])) {
+                            $id = $_SESSION["username"];
+                            $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS sumCart
+                            FROM giohang
+                            JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
+                            GROUP BY giohang.userName;
+                            WHERE giohang.userName = '$id';";
+                            $data = pdo_query_one($sql);
+                            echo '<div class="header__cart__price">Tổng: <span>' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></div>';
+                        } else {
+                            echo '<div class="header__cart__price">Tổng: <span>0 ₫</span></div>';
+                        }
                         ?>
-                        <div class="header__cart__price">Tổng: <span>xxx</span></div>
                     </div>
                 </div>
             </div>
@@ -235,12 +254,11 @@ session_start();
                         </div>
                         <ul>
                             <?php
-                            // include "app/admin/models/pdo.php";
                             $sql = "SELECT * FROM `danhmuc`";
                             $data = pdo_query($sql);
                             foreach ($data as $rows) {
                                 extract($rows);
-                                echo '<li><a href="#">' . $tendanhmuc . '</a></li>';
+                                echo '<li><a href="index.php?act=listSPbyDM&id_danhmuc=' . $id_danhmuc . '">' . $tendanhmuc . '</a></li>';
                             }
                             ?>
                         </ul>
