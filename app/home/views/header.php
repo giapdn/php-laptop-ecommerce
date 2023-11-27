@@ -24,6 +24,8 @@ session_start();
     <link rel="stylesheet" href="app/home/public/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="app/home/public/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="app/home/public/css/style.css" type="text/css">
+
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
 </head>
 
 <body>
@@ -208,9 +210,15 @@ session_start();
                                         userName;
                                 ";
                                 $z = pdo_query_one($x);
-                                echo '
-                                    <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span style="background-color: red;">' . $z["total"] . '</span></a></li>
-                                ';
+                                if ($z["total"] != 0) {
+                                    echo '
+                                        <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span style="background-color: red;">' . $z["total"] . '</span></a></li>
+                                    ';
+                                } else {
+                                    echo '
+                                        <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span style="background-color: red;">0</span></a></li>
+                                    ';
+                                }
                             } else {
                                 echo '
                                     <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span style="background-color: red;">0</span></a></li>
@@ -224,7 +232,7 @@ session_start();
                             $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS sumCart
                             FROM giohang
                             JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
-                            GROUP BY giohang.userName;
+                            -- GROUP BY giohang.userName;
                             WHERE giohang.userName = '$id';";
                             $data = pdo_query_one($sql);
                             echo '<div class="header__cart__price">Tổng: <span>' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></div>';

@@ -74,7 +74,6 @@
                                 $sumSQL = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS cartSum
                                 FROM giohang
                                 JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
-                                GROUP BY giohang.userName;
                                 WHERE giohang.userName = '$id';";
                                 $result = pdo_query_one($sumSQL);
                                 echo '
