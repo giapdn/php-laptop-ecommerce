@@ -67,6 +67,7 @@
   <!-- Footer Section End -->
 
   <!-- Js Plugins -->
+
   <script src="app/home/public/js/jquery-3.3.1.min.js"></script>
   <script src="app/home/public/js/bootstrap.min.js"></script>
   <script src="app/home/public/js/jquery.nice-select.min.js"></script>
@@ -75,9 +76,6 @@
   <script src="app/home/public/js/mixitup.min.js"></script>
   <script src="app/home/public/js/owl.carousel.min.js"></script>
   <script src="app/home/public/js/main.js"></script>
-
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 
   </body>
 

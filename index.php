@@ -32,6 +32,15 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'thanhtoan':
             include "app/home/modules/thanhtoan/thanhtoan.php";
             break;
+        case 'defaultPay':
+            include "app/home/modules/thanhtoan/thanhtoan.php";
+            break;
+        case 'momo':
+            include "app/home/modules/thanhtoan/thanhtoan.php";
+            break;
+        case 'paypal':
+            include "app/home/modules/thanhtoan/thanhtoan.php";
+            break;
         case 'tttk':
             echo "<script>window.location.href='app/home/modules/taikhoan/tttk.php'</script>";
             break;
@@ -52,18 +61,27 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             break;
         case 'addToCart':
             $id = $_GET["id_sanPham"];
-            $user = $_SESSION["username"];
-            $sql = "INSERT INTO `giohang`(`userName`, `id_sanPham`) VALUES ('$user','$id')";
-            pdo_execute($sql);
-            echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
-            echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+            $check = "SELECT * FROM giohang WHERE id_sanPham = '$id'";
+            $flag = pdo_query_one($check);
+            if (empty($flag)) {
+                $user = $_SESSION["username"];
+                $sql = "INSERT INTO `giohang`(`userName`, `id_sanPham`) VALUES ('$user','$id')";
+                pdo_execute($sql);
+                echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
+                echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+            } else {
+                $add = "UPDATE giohang SET soluong = soluong + 1 WHERE id_sanPham = '$id'";
+                pdo_execute($add);
+                echo "<script>alert('Tăng số lượng trong giỏ hàng thành công !')</script>";
+                echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+            }
             break;
         case 'delFromCart':
             $id = $_GET["id_sanpham"];
             $user = $_SESSION["username"];
             $sql = "DELETE FROM `giohang` WHERE `userName` = '$user' AND `id_sanPham` = '$id'";
             pdo_execute($sql);
-            echo "<script>alert('Xoá thành công !')</script>";
+            // echo "<script>alert('Xoá thành công !')</script>";
             echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
             break;
 
