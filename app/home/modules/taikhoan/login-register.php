@@ -303,7 +303,7 @@
                     <a href="quenmk.php">Quên mật khẩu?</a>
                     <button type="submit">Đăng nhập</button>
                     <!-- <input type="submit" value="Đăng nhập"> -->
-                    <a href="index.php?act=trangsanpham"><i class="fas fa-door-open"></i> Quay lại trang chủ</a>
+                    <a href="/duan1/index.php"><i class="fas fa-door-open"></i> Quay lại trang chủ</a>
                 </form>
             </div>
 

@@ -100,7 +100,9 @@
   					</ul>
 
   					<?php
-						$sql = "SELECT * FROM `binhluan` where id_binhLuan";
+					$id = $_GET["idsp"];
+					$sql = "SELECT * FROM `binhluan` where id_sanPham = '$id'";
+						
 						$data = pdo_query($sql);
 
 						foreach ($data as $rows) {
@@ -114,7 +116,10 @@
                             <h6>' . $userName . '</h6>
                             <p>' . $ngay_binhLuan . '</p>
                             <p>' . $noidung_binhLuan . '</p>
+							
                         </div>
+						
+  					</div>
                     </div>
                     <div class="tab-pane" id="tabs-2" role="tabpanel">
                         <div class="product__details__tab__desc">
@@ -158,13 +163,14 @@
                 ';
 						}
 						?>
-  					<div class="hero__search__form">
+						<div class="hero__search__form">
   						<form action="">
   							<input type="text" name="hotSearchData" placeholder="What do yo u need?" style="background-color: #dfdfdf;">
   							<button type="submit" name="hotSearch" class="site-btn">Gửi bình luận</button>
   						</form>
-  					</div>
+  					
   				</div>
+				
   			</div>
   		</div>
   	</div>

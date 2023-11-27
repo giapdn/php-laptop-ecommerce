@@ -19,9 +19,12 @@
 <body>
     <div class="container-fluid main-page">
         <div class="app-main">
-            <div class="brand">
+            <div class="brand"  style=" position: fixed;  z-index: 1000;">
                 <h1>Admin</h1>
             </div>
+<br>
+<br>
+<br>
             <nav class="sidebar bg-primary">
                 <ul>
                     <li>
@@ -43,7 +46,10 @@
                         <a href="index.php?act=commentList"><i class="fa-solid fa-comment-dots ico-side"></i>Quản lí bình luận</a>
                     </li>
                     <li>
-                        <a href="index.php?act=thongke"><i class="fas fa-chart-bar"></i> Thống kê</a>
+                        <a href="index.php?act=thongke"><i class="fas fa-chart-bar"></i>   Thống kê</a>
+                    </li>
+                    <li>
+                        <a href="/duan1/index.php"><i class="fas fa-sign-out-alt"></i>   Về Website</a>
                     </li>
                 </ul>
             </nav>

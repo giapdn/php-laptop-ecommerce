@@ -7,6 +7,8 @@ if (isset($_GET["act"])) {
         case 'danhmuc':
             include "./views/danhmuc.php";
             break;
+
+            
         case 'home':
             include "./views/main.php";
             break;

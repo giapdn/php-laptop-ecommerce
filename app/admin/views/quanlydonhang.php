@@ -56,6 +56,7 @@
                                 <td>'. $re["tongGiaDonHang"] .'</td>
                                 <td>'. $re["trangThai"] . '</td>
                                 <td>
+
                                     <form action="index.php?act=suadonhang&id=' . $re["id_donHang"] . '" method="post">
                                         <div class="btn btn-warning">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -77,7 +78,7 @@
                         
                         <div class="d-flex justify-content-end">
                             <input type="text" name="timdonhang"  placeholder="nhập mã đơn hàng" >
-                            <input type="submit" name="list"  value="tìm kiếm" >
+                            <input type="submit"  name="list"   value="tìm kiếm" style="background-color: blue;" >
                         </div>
                     </form>
                 </table>

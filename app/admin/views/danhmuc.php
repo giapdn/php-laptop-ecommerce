@@ -93,7 +93,7 @@
                                 <div class="categoryName">Tên danh mục</div>
                             </th>
                             <th>Ảnh</th>
-                            <th>Thao tác</th>
+                            <th >Thao tác</th>
                         </tr>
                     </thead>
                     <?php
@@ -114,9 +114,9 @@
                                         </td>
                                         <td></td>
                                         <td>
-                                            
+                                        <div class="ok" style="display: flex; " >
                                             <form action="' . $path . '" method="post">   
-                                                <div class="btn btn-warning">
+                                                <div class="btn btn-warning" style="margin-right: 10px;">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                     <input type="submit" name="data-change" class="btn btn-warning" value="Sửa">
                                                 </div>
@@ -129,13 +129,14 @@
                                                     <input type="submit" name="data-delete" class="btn btn-danger" value="Xoá">
                                                 </div>
                                             </form>
-                                            
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
                                 ';
                             }
                     ?>
+                 
                 </table>
             </div>
         </div>

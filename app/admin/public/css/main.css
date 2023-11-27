@@ -5,32 +5,27 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-
+    
 }
-
-body {
+body{
     background-color: #e6e6e6;
 }
-
-.site-logo {
+.site-logo{
     padding-left: 30px;
 }
-
-.header-info ul {
+.header-info ul{
     padding-left: 150px;
     display: flex;
     list-style: none;
     line-height: 60px;
 }
-
-.header-info ul li a {
+.header-info ul li a{
     font-weight: 700;
     color: #616161;
     margin-right: 30px;
     text-decoration: none;
     font-size: 18px;
 }
-
 .main-page {
     display: flex;
     position: relative;
@@ -59,7 +54,6 @@ body {
     border-radius: 0px 5px 5px 0px;
     z-index: 20;
 }
-
 nav ul {
     padding: 0 !important;
     list-style: none;
@@ -97,11 +91,9 @@ nav ul li a:hover {
     box-sizing: border-box;
     display: flex;
 }
-
-.main-content .statistics a {
+.main-content .statistics a{
     text-decoration: none;
 }
-
 .widget-chart {
     text-align: center;
     padding: 1rem;
@@ -109,91 +101,94 @@ nav ul li a:hover {
     position: relative;
 }
 
-.widget-chart {
+.widget-chart{
     color: #000;
     font-size: 24px;
     font-weight: 700;
 }
-
-.chart {
+.chart{
     padding: 15px;
     border-radius: 10px;
 }
-
-table {
+table{
     border: solid 1px #000;
     border-collapse: collapse;
 }
-
-.revenue th,
-td {
+.revenue th, td{
     width: 200px;
     border-left: solid 1px #000;
 }
-
-.chart h4 {
+.chart h4{
     margin-bottom: 25px;
 }
-
-.chart span {
+.chart span{
     margin-left: 180px;
     font-weight: 700;
 }
-
-.form-login {
+.form-login{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
-
-.form-gr {
+.form-gr{
     padding: 15px;
     border-radius: 10px;
 }
-
-.addPro .form-group {
+.addPro .form-group{
     margin-bottom: 20px;
 }
 
-h1 {
-    color: #d1d1d1;
+
+h1{
+color: #d1d1d1;
     background-color: #000;
-}
+}  
+
+
 
 .app-main ul li a {
+    
+    
     padding: 16px;
     border: 2px solid transparent;
-    border-radius: 5px;
-    /* Thêm bo góc tròn với bán kính 5px */
-}
-
-.app-main ul li a:hover {
+    border-radius: 5px; /* Thêm bo góc tròn với bán kính 5px */
+  }
+  
+  .app-main ul li a:hover {
     color: #000;
     background-color: white;
-    transition: 0, 5s;
-    padding-left: 7px;
-}
+   transition: 0,5s;
+   padding-left: 7px;
+  }
+  
 
-tbody tr td {
-    border: #cacaca solid 2px;
-}
+  tbody tr td{
+border: #cacaca solid 2px;
 
-.brand {
-    height: 90px;
+
+  }
+
+
+div .brand {
+    height: 80px;
     width: 100%;
-    background: #a7c3ee !important;
+    grid-area: brand;
+    background: #a7c3ee!important;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    position: fixed;
-}
-
-.brand h1 {
-    padding-left: 38px;
+    position: sticky;
+    top: 0px;
+    z-index: 5;
+  }
+   div .brand h1 {
+    padding-left: 40px;
     font-size: 50px;
-    background-color: rgba(0, 0, 0, 0);
-}
+   background-color:   rgba(0, 0, 0, 0);
+  }
 
-td .moden {
+td .moden{
     display: flex;
 }
+  
+

@@ -6,6 +6,17 @@ include "app/home/views/header.php";
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
+
+        case 'thank':
+            include "app/home/views/thank.php";
+            break;
+
+
+        case 'lichsu':
+            include "app/home/views/lichsumua.php";
+            break;
+
+
         case 'trangsanpham':
             include "app/home/modules/trangsanpham/trangsanpham.php";
             break;
@@ -55,6 +66,12 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             echo "<script>alert('Xoá thành công !')</script>";
             echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
             break;
+
+        case 'lienhe':
+            include "app/home/views/more/lienhe.php";
+            break;
+
+
         default:
             include "app/home/views/trangchu.php";
             break;

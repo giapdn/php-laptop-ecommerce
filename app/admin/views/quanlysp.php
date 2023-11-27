@@ -64,17 +64,19 @@
               <td>' . $rows["dateAdd"] . '</td>
               <td>' . $rows["mau"] . '</td>
               <td class="moden">
-                  <form action="index.php?act=prodChange&prodID=' . $rows["id_sanPham"] . '" method="post">
-                    <div class="btn btn-warning">
-                      <i class="fa-solid fa-pen-to-square"></i>
+              <div class="ok" style="display: flex; " >
+                  <form action="index.php?act=prodChange&prodID=' . $rows["id_sanPham"] . '" method="post" >
+                    <div class="btn btn-warning" style="margin-right: 10px; display: flex">
+                      <i class="fa-solid fa-pen-to-square" style="margin-top:9px ; "></i>
                       <input name="prod-change-btn" class="btn btn-warning" type="submit" value="Sửa">
                     </div>
                   </form>
                   
                   <form action="../admin/index.php?act=prodDel&id=' . $rows["id_sanPham"] . '" method="post">
-                    <div class="btn btn-danger">
-                      <i class="fa-solid fa-trash"></i>
-                      <input name="prod-delete-btn" class="btn btn-danger" type="submit" value="Xoá">                   
+                    <div class="btn btn-danger" style="margin-right: 10px; display: flex">
+                      <i class="fa-solid fa-trash" style="margin-top:9px ; "></i>
+                      <input name="prod-delete-btn" class="btn btn-danger" type="submit" value="Xoá">       
+                      </div>
                   </form>
               </td>
             </tr>

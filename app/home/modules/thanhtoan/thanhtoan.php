@@ -72,15 +72,15 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <div class="checkout__input__checkbox">
+                                <div class="checkout__input__checkbox" >
                                     <label for="paypal">
                                         Paypal
                                         <input type="checkbox" id="paypal">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-
-                                <button type="submit" class="site-btn">ĐẶT HÀNG</button>
+                                <a href="index.php?act=thank" class="primary-btn" style="width: 100%; height: 52px; font-size: 18px; text-align: center;">Tiếp tục đặt hàng</a>  
+                               
                             </div>
                         </div>
                     </div>

@@ -85,6 +85,8 @@ p {
 
 img {
 	max-width: 100%;
+	
+	
 }
 
 input:focus,
@@ -3480,3 +3482,5 @@ background-color: #efefef;
 	padding-left: 10px;
 	
 }
+
+

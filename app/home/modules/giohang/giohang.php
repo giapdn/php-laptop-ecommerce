@@ -16,7 +16,7 @@
 </section> -->
 <!-- Breadcrumb Section End -->
 <?php
-session_start();
+// session_start();
 ?>
 
 <!-- Shoping Cart Section Begin -->
@@ -43,7 +43,7 @@ session_start();
                                 JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
                                 WHERE giohang.userName = '$username';
                                 ";
-                                include "../models/pdo.php";
+                                // include "../models/pdo.php";
                                 $data = pdo_query($sql);
                                 if (empty($data)) {
                                     echo '<script>alert("Giỏ hàng của bạn đang trống !")</script>';

@@ -7,13 +7,7 @@
                       <div class="footer__about__logo">
                           <a href="#"><img src="app/home/public/img/logo3.png" alt=""></a>
                       </div>
-                      <ul>
-                          <!-- <img src="app/home/public/img/logo.png" alt=""> -->
-                          <li>Address: 60-49 Road 11378 New York</li>
-                          <li>Phone: +65 11.188.888</li>
-                          <li>Email: hello@colorlib.com</li>
-
-                      </ul>
+                     
                   </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
@@ -82,6 +76,7 @@
   <script src="app/home/public/js/owl.carousel.min.js"></script>
   <script src="app/home/public/js/main.js"></script>
 
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
   </body>

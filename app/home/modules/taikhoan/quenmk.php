@@ -263,19 +263,25 @@
     <div class="form-container sign-in-container">
         <form action="#">
             <h2>Quên mật khẩu</h2>
-            <input type="username" placeholder="Nhập username của bạn">
+            <input type="username" placeholder="Nhập Email của bạn">
             <div class="dkdn">
                 <button>Gửi</button>
                 <button>Nhập lại</button>
             </div>
+            
+
+            <input type="username" placeholder="Mật khẩu của bạn">
+
+            
         </form>
+
     </div>
 
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-right">
                 <h1>Chào, bạn!</h1>
-                <p>Vui lòng nhập username để kiểm tra mật khẩu</p>
+                <p>Vui lòng nhập email để kiểm tra mật khẩu</p>
                 <button class="ghost" id="signUp"><a href="login-register.php" style="color: white;">QUAY LẠI ĐĂNG NHẬP</a></button>
             </div>
         </div>

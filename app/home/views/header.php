@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -93,7 +93,7 @@ session_start();
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="header__top">
+        <div class="header__top" style="background-color: #7fad39;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -136,7 +136,7 @@ session_start();
                                             <span class="arrow_carrot-down"></span>
                                             <ul>
                                                 <li><a href="index.php?act=tttk">Tài khoản</a></li>                                                                                                                 
-                                                <li><a href="app/admin/index.php">Admin</a></li>                                           
+                                                <li><a href="app/admin/index.php?act=home">Admin</a></li>                                           
                                                 <li><a href="index.php?act=logOut">Đăng xuất</a></li>
                                             </ul>
                                         ';
@@ -176,7 +176,7 @@ session_start();
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="index.php">Trang chủ</a></li>
+                            <li ><a href="index.php">Trang chủ</a></li>
                             <li><a href="index.php?act=trangsanpham">Cửa hàng</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
@@ -269,3 +269,5 @@ session_start();
             </div>
         </div>
     </section>
+
+    

@@ -58,11 +58,12 @@
                                 <td>' . $a["sdt"] . '</td>
                                 <td>' . $a["name"] . '</td>
                                 <td>' . $a["email"] . '</td>
-                                <td>' . $a["quyenHan"] . '</td>
+                                <td>' . $a["author"] . '</td>
                                 <td>
-                                    <form action="index.php?act=userChange&id=' . $a["userName"] . '" method="post">
+                                <div class="ok" style="display: flex; " >
+                                    <form action="index.php?act=userChange&id=' . $a["userName"] . '" method="post" style="margin-right: 10px; display: flex">
                                         <div class="btn btn-warning">
-                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <i class="fa-solid fa-pen-to-square" ></i>
                                             <input type="submit" class="btn btn-warning" value="Sửa">
                                         </div>
                                     </form>
@@ -72,6 +73,7 @@
                                             <input name="xoauser" type="submit" class="btn btn-danger" value="Xoá ">
                                         </div>        
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>';
