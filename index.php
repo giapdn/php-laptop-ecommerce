@@ -75,7 +75,6 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 echo "<script>alert('Đăng nhập để thêm sản phẩm !')</script>";
                 echo "<script>window.location.href='../duan1/index.php?act=logIn'</script>";
             }
-
             break;
         case 'delFromCart':
             $id = $_GET["id_sanpham"];
@@ -85,12 +84,9 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             // echo "<script>alert('Xoá thành công !')</script>";
             echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
             break;
-
         case 'lienhe':
             include "app/home/views/more/lienhe.php";
             break;
-
-
         default:
             include "app/home/views/trangchu.php";
             break;

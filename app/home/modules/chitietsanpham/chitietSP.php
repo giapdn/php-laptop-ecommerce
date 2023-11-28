@@ -119,11 +119,12 @@
   								<?php
 									if (isset($_SESSION["username"])) {
 										echo '
-									<form action="">
-										<input type="text" name="hotSearchData" placeholder="Ý kiến của bạn về sản phaarm" style="background-color: #dfdfdf;">
-										<button type="submit" name="" class="site-btn">Gửi bình luận</button>
-									</form>
-								';
+										<form action="app/home/modules/chitietsanpham/main.php" method="post">
+											<input type="hidden" value="' . $id . '" name="id_sp">
+											<input type="text" name="hotSearchData" placeholder="Ý kiến của bạn về sản phaarm" style="background-color: #dfdfdf;">
+											<button type="submit" class="site-btn">Gửi bình luận</button>
+										</form>
+									';
 									} else {
 										echo 'Đăng nhập để có thể bình luận !';
 									}
