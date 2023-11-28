@@ -137,7 +137,8 @@
                                             </div>
                                             <span class="arrow_carrot-down"></span>
                                             <ul>
-                                                <li><a href="index.php?act=tttk">Tài khoản</a></li>                                                                                                                 
+                                                <li><a href="index.php?act=tttk">Tài khoản</a></li> 
+                                                <li><a href="index.php?act=lichsu">Đơn mua</a></li>                                                                                                                    
                                                 <li><a href="app/admin/index.php?act=home">Admin</a></li>                                           
                                                 <li><a href="index.php?act=logOut">Đăng xuất</a></li>
                                             </ul>
@@ -149,7 +150,8 @@
                                             </div>
                                             <span class="arrow_carrot-down"></span>
                                             <ul>
-                                                <li><a href="index.php?act=tttk">Tài khoản</a></li>                                                                                                                                                          
+                                                <li><a href="index.php?act=tttk">Tài khoản</a></li>  
+                                                <li><a href="index.php?act=lichsu">Đơn mua</a></li>                                                                                                                                                      
                                                 <li><a href="index.php?act=logOut">Đăng xuất</a></li>
                                             </ul>
                                         ';
@@ -178,7 +180,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li ><a href="index.php">Trang chủ</a></li>
+                            <li><a href="index.php">Trang chủ</a></li>
                             <li><a href="index.php?act=trangsanpham">Cửa hàng</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
@@ -295,5 +297,3 @@
             </div>
         </div>
     </section>
-
-    

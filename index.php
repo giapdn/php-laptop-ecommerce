@@ -6,17 +6,12 @@ include "app/home/views/header.php";
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
-
-        case 'thank':
+        case 'bill':
             include "app/home/views/thank.php";
             break;
-
-
         case 'lichsu':
             include "app/home/views/lichsumua.php";
             break;
-
-
         case 'trangsanpham':
             include "app/home/modules/trangsanpham/trangsanpham.php";
             break;
@@ -60,21 +55,27 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             }
             break;
         case 'addToCart':
-            $id = $_GET["id_sanPham"];
-            $check = "SELECT * FROM giohang WHERE id_sanPham = '$id'";
-            $flag = pdo_query_one($check);
-            if (empty($flag)) {
-                $user = $_SESSION["username"];
-                $sql = "INSERT INTO `giohang`(`userName`, `id_sanPham`) VALUES ('$user','$id')";
-                pdo_execute($sql);
-                echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
-                echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+            if (isset($_SESSION["username"])) {
+                $id = $_GET["id_sanPham"];
+                $check = "SELECT * FROM giohang WHERE id_sanPham = '$id'";
+                $flag = pdo_query($check);
+                if (empty($flag)) {
+                    $user = $_SESSION["username"];
+                    $sql = "INSERT INTO `giohang`(`userName`, `id_sanPham`) VALUES ('$user','$id')";
+                    pdo_execute($sql);
+                    echo "<script>alert('Thêm vào giỏ hàng thành công !')</script>";
+                    echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+                } else {
+                    $add = "UPDATE giohang SET soluong = soluong + 1 WHERE id_sanPham = '$id'";
+                    pdo_execute($add);
+                    echo "<script>alert('Tăng số lượng trong giỏ hàng thành công !')</script>";
+                    echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+                }
             } else {
-                $add = "UPDATE giohang SET soluong = soluong + 1 WHERE id_sanPham = '$id'";
-                pdo_execute($add);
-                echo "<script>alert('Tăng số lượng trong giỏ hàng thành công !')</script>";
-                echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
+                echo "<script>alert('Đăng nhập để thêm sản phẩm !')</script>";
+                echo "<script>window.location.href='../duan1/index.php?act=logIn'</script>";
             }
+
             break;
         case 'delFromCart':
             $id = $_GET["id_sanpham"];

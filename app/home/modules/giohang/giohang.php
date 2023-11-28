@@ -43,7 +43,6 @@
                                 JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
                                 WHERE giohang.userName = '$username';
                                 ";
-                                // include "../models/pdo.php";
                                 $data = pdo_query($sql);
                                 if (empty($data)) {
                                     // echo '<script>alert("Giỏ hàng của bạn đang trống !")</script>';
@@ -131,7 +130,7 @@
                         }
                         ?>
                     </ul>
-                    <a href="index.php?act=thanhtoan" class="primary-btn">Thanh toán</a>
+                    <a href="index.php?act=thanhtoan" class="primary-btn">Đặt hàng</a>
                 </div>
             </div>
         </div>

@@ -17,11 +17,11 @@
                         echo '<h4>Thanh toán qua PayPal</h4>';
                         break;
                     default:
-                        echo '<h4>Thanh toán</h4>';
+                        echo '<h4>Thanh toán khi nhận hàng</h4>';
                         break;
                 }
             } else {
-                echo '<h4>Thanh toán</h4>';
+                echo '<h4>Thanh toán khi nhận hàng</h4>';
             }
             ?>
             <form action="#">
@@ -77,7 +77,7 @@
                                 WHERE giohang.userName = '$id';";
                                 $result = pdo_query_one($sumSQL);
                                 echo '
-                                    <div class="checkout__order__total">Tổng: <span style="background-color: yellow;">' . number_format($result["cartSum"], 0, ',', '.') . '</span></div>
+                                    <div class="checkout__order__total">Tổng: <span id="sumCart" style="background-color: yellow;">' . number_format($result["cartSum"], 0, ',', '.') . '</span></div>
                                 ';
                             }
                             ?>
@@ -101,7 +101,7 @@
                                     Paypal
                                 </label>
                             </div>
-                            <button type="submit" class="site-btn">ĐẶT HÀNG</button>
+                            <button onclick="letPay()" class="site-btn">ĐẶT HÀNG</button>
                         </div>
                     </div>
                 </div>
@@ -112,6 +112,36 @@
 <!-- Checkout Section End -->
 
 <script>
+    var x = document.getElementById("name");
+    var y = document.getElementById("location");
+    var z = document.getElementById("phone");
+    var cartSum = document.getElementById("sumCart");
+
+    function letPay() {
+        console.log(x.value);
+        console.log(y.value);
+        console.log(z.value);
+        console.log(cartSum.textContent);
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "app/home/modules/thanhtoan/methods/process.php",
+            data: {
+                name: x.value,
+                location: y.value,
+                phone: z.value,
+                sum: cartSum.textContent
+            },
+            success: function(params) {
+                alert("Đặt hàng thành công !, hãy theo dõi trạng thái đơn hàng của bạn ");
+                window.location.href = "/duan1/index.php?act=bill";
+            },
+            error: function(params) {
+                console.log(0);
+            }
+        });
+    }
+
     function defaultPay(params) {
         window.location.href = "/duan1/index.php?act=defaultPay";
     }

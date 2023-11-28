@@ -98,76 +98,63 @@
   							<a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab" aria-selected="false">Reviews <span>(1)</span></a>
   						</li>
   					</ul>
-
-  					<?php
-					$id = $_GET["idsp"];
-					$sql = "SELECT * FROM `binhluan` where id_sanPham = '$id'";
-						
-						$data = pdo_query($sql);
-
-						foreach ($data as $rows) {
-							extract($rows);
-							echo ' 
-								<div class="tab-content">
-									<div class="tab-pane active" id="tabs-1" role="tabpanel">
+  					<div class="tab-content">
+  						<div class="tab-pane active" id="tabs-1" role="tabpanel">
+  							<?php
+								$id = $_GET["idsp"];
+								$sql = "SELECT * FROM `binhluan` where id_sanPham = '$id'";
+								$data = pdo_query($sql);
+								foreach ($data as $rows) {
+									extract($rows);
+									echo '
 										<div class="product__details__tab__desc ff">
 											<h6>' . $userName . '</h6>
 											<p>' . $ngay_binhLuan . '</p>
 											<p>' . $noidung_binhLuan . '</p>
 										</div>
-									</div>
-									<div class="tab-pane" id="tabs-2" role="tabpanel">
-										<div class="product__details__tab__desc">
-											<h6>Products Infomation</h6>
-											<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-												Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-												Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-												sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-												eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-												Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-												sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-												diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-												ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-												Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-												Proin eget tortor risus.</p>
-											<p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-												ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-												elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-												porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-												nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
-										</div>
-									</div>
-									<div class="tab-pane" id="tabs-3" role="tabpanel">
-										<div class="product__details__tab__desc">
-											<h6>Products Infomation</h6>
-											<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-												Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-												Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-												sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-												eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-												Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-												sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-												diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-												ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-												Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-												Proin eget tortor risus.</p>
-										</div>
-									</div>
-								</div>
-                			';
-						}
-						?>
-						<div class="hero__search__form">
-  						<form action="">
-  							<input type="text" name="hotSearchData" placeholder="What do yo u need?" style="background-color: #dfdfdf;">
-  							<button type="submit" name="hotSearch" class="site-btn">Gửi bình luận</button>
-  						</form>
-  					
+									';
+								}
+								?>
+  							<div class="hero__search__form">
+  								<?php
+									if (isset($_SESSION["username"])) {
+										echo '
+									<form action="">
+										<input type="text" name="hotSearchData" placeholder="Ý kiến của bạn về sản phaarm" style="background-color: #dfdfdf;">
+										<button type="submit" name="" class="site-btn">Gửi bình luận</button>
+									</form>
+								';
+									} else {
+										echo 'Đăng nhập để có thể bình luận !';
+									}
+									?>
+  							</div>
+  						</div>
+  						<div class="tab-pane" id="tabs-2" role="tabpanel">
+  							<div class="product__details__tab__desc">
+  								<h6>Products Infomation</h6>
+  								<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+  									Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+  								</p>
+  								<p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
+  									ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
+  									elit,
+  								</p>
+  							</div>
+  						</div>
+  						<div class="tab-pane" id="tabs-3" role="tabpanel">
+  							<div class="product__details__tab__desc">
+  								<h6>Products Infomation</h6>
+  								<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+  									Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+  									Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
+  								</p>
+  							</div>
+  						</div>
+  					</div>
   				</div>
-				
   			</div>
   		</div>
-  	</div>
   </section>
   <!-- Product Details Section End -->
 
