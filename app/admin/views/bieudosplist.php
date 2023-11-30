@@ -27,14 +27,14 @@
 
             <div class="main-content">
                 <h3 class="title-page">
-                    THỐNG KÊ DANH SÁCH THEO DANH MỤC
+                    THỐNG KÊ DANH SÁCH SẢN PHẨM BÁN CHẠY
                 </h3>
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>ID danh mục</th>
-                            <th>Tên danh mục</th>
-                            <th>Số lượng</th>
+                            <th>ID sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng đã bán</th>
                             <th>Giá thấp nhất</th>
                             <th>Giá cao nhất</th>
                             <th>Giá trung bình</th>
@@ -42,11 +42,9 @@
                     </thead>
 
                     <?php
-
-
-                        $sql="select danhmuc.id_danhmuc as madm,danhmuc.tendanhmuc as tendm,count(sanpham.id_sanPham) as countsp,min(sanpham.giaSanPham) as mingia,max(sanpham.giaSanPham) as maxgia,avg(sanpham.giaSanPham) as avggia";
-                        $sql.= " from sanpham left join danhmuc on danhmuc.id_danhmuc =sanpham.id_danhmuc  ";
-                        $sql.= " group by danhmuc.id_danhmuc  order by danhmuc.id_danhmuc  desc";
+                        $sql="select sanpham.id_sanPham as madm,sanpham.tenSanPham as tendm,count(chitietdonhang.id_sanPham) as countsp,min(chitietdonhang.tongGia) as mingia,max(chitietdonhang.tongGia) as maxgia,avg(chitietdonhang.tongGia) as avggia";
+                        $sql.= " from chitietdonhang left join sanpham on sanpham.id_sanPham  =chitietdonhang.id_sanPham   ";
+                        $sql.= " group by sanpham.id_sanPham  order by sanpham.id_sanPham   desc";
                         $listtk = pdo_query($sql);
                         // return $listtk;
                         foreach ($listtk as $lis) {
@@ -67,7 +65,7 @@
 
                     ?>
                     <div class="d-flex justify-content-end">
-                        <a href="index.php?act=bieudo" class="btn btn-primary mb-2">Xem biểu đồ</a>
+                        <a href="index.php?act=bieudosp" class="btn btn-primary mb-2">Xem biểu đồ</a>
                     </div>
                 </table>
 

@@ -63,8 +63,8 @@
                                             </td>
                                             <td class="shoping__cart__total"><div style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . ' ₫</span></div></td>                                                                              
                                             <td class="shoping__cart__item__close">
-                                                <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '"><span class="icon_close"></span></a>                           
-                                            </td>
+                                            <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '" class="jj"><i class="fas fa-times-circle"></i></a>                           
+                                        </td>
                                         </tr>
                                         ';
                                     }
@@ -166,3 +166,15 @@
         });
     }
 </script>
+
+
+<style>
+    a.jj:hover {
+        color: red;
+        font-size: 20px;
+     
+    }
+    a.jj{
+        color: #7fad39;
+    }
+</style>

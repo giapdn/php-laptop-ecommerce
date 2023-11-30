@@ -170,6 +170,11 @@ border: #cacaca solid 2px;
 
 
 div .brand {
+
+    position: fixed;  /* giữ phần tử ở vị trí cố định trên màn hình */
+    top: 0;  /* giữ phần tử ở phía trên cùng của trình duyệt khi di chuyển */
+    left: 0; /* giữ phần tử ở phía trái của trình duyệt khi di chuyển */
+    z-index: 1000; 
     height: 80px;
     width: 100%;
     grid-area: brand;
@@ -180,6 +185,7 @@ div .brand {
     position: sticky;
     top: 0px;
     z-index: 5;
+    
   }
    div .brand h1 {
     padding-left: 40px;
@@ -192,3 +198,82 @@ td .moden{
 }
   
 
+
+.timkiem input[type=text] {
+    padding-left: 10px;
+    border: none;
+    margin-left: 10px;
+    width: 130px;
+    height: 30px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    border: none;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  .timkiem input[type=text]:focus {
+    width: 400px;
+
+
+  }
+
+  .timkiem {
+    margin-left: 13px;
+    display: flex;
+    align-items: center;
+   
+}
+
+.timkiem input {
+    margin-left: 5px; /* Adjust the margin as needed */
+}
+
+.timkiem a{
+font-size: 30px;
+    color: #fff;
+}
+  
+
+.notification {
+    display: flex;
+    align-items: center;
+}
+
+.notification img {
+    margin-right: 10px; /* Dời lề theo cần thiết */
+}
+
+.notification i{
+padding: 5px;
+    color: #fff;
+    font-size: 30px;
+ 
+}
+.notification{
+margin-right: 40px;
+
+
+}
+
+.notification a{
+    margin-top: 5px;
+color: black;
+text-decoration: none;
+margin-right: 10px;
+
+
+}
+
+.notification button{
+    border-radius: 50% ;
+  background-color: #a7c3ee;
+  border: 1px solid #a7c3ee;
+    
+}
+
+div.aa {
+    width: 100%;
+    display: flex;
+justify-content: space-between;
+
+}

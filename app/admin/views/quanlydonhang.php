@@ -49,15 +49,15 @@
                         echo '
                         <tbody>
                             <tr>
-                                <td>'. $re["id_donHang"] .'</td>
-                                <td>'. $re["userName"] .'</td>
-                                <td>'. $re["ngayDatHang"] .'</td>
-                                <td>'. $re["soLuong"] .'</td>
-                                <td>'. $re["tongGiaDonHang"] .'</td>
-                                <td>'. $re["trangThai"] . '</td>
+                                <td>' . $re["id_donHang"] . '</td>
+                                <td>' . $re["userName"] . '</td>
+                                <td>' . $re["ngayDatHang"] . '</td>
+                                <td>' . $re["soLuong"] . '</td>
+                                <td>' . $re["tongGiaDonHang"] . '</td>
+                                <td>' . $re["trangThai"] . '</td>
                                 <td>
-
-                                    <form action="index.php?act=suadonhang&id=' . $re["id_donHang"] . '" method="post">
+                                <div class="ok" style="display: flex; " >
+                                    <form action="index.php?act=suadonhang&id=' . $re["id_donHang"] . '" method="post" style="margin-right: 10px;">
                                         <div class="btn btn-warning">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                             <input name="suadonhang"  class="btn btn-warning" type="submit" value="Sửa">
@@ -69,16 +69,19 @@
                                             <input name="xoaudonhang" type="submit" class="btn btn-danger"  value="Xoá ">
                                         </div>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>';
                     }
                     ?>
                     <form action="index.php?timdonhang&id_donHang='" method="post">
-                        
-                        <div class="d-flex justify-content-end">
-                            <input type="text" name="timdonhang"  placeholder="nhập mã đơn hàng" >
-                            <input type="submit"  name="list"   value="tìm kiếm" style="background-color: blue;" >
+
+                        <div class="d-flex justify-content-end" style="margin-bottom: 10px;">
+                            <input type="text" name="timdonhang" placeholder="nhập mã đơn hàng" style="border-radius: 5px;">
+                            
+                            <input type="submit"  name="list" value="Tìm kiếm" style="margin-left: 5px; color: white; background-color: #0d6efd; padding: 5px; border-radius:5px; border:1px solid #0d6efd" >
+                          
                         </div>
                     </form>
                 </table>

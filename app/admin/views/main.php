@@ -28,7 +28,7 @@
          
             <div class="main-content">
                 <h3 class="title-page">
-                    Dashboards
+                    Tổng Quan
                 </h3>
                 <section class="statistics row">
                     <div class="col-sm-12 col-md-6 col-xl-3">
@@ -39,7 +39,18 @@
                                         Tổng sản phẩm
                                     </h5>
                                 </div>
-                                <span class="widget-numbers">3M</span>
+                                <span class="widget-numbers">
+                                <?php
+                               $sql ="SELECT SUM(soLuong) AS tong FROM sanpham ";
+                                $lis = pdo_query($sql);
+                                foreach ($lis as $a) {
+                                    echo '
+                                    ' . number_format($a["tong"], 0, ',', '.') . '
+                                    ';
+                                }
+
+                            ?>
+                                </span>
                             </div>
                         </a>
                     </div>
@@ -52,7 +63,18 @@
                                         Tổng thành viên
                                     </h5>
                                 </div>
-                                <span class="widget-numbers">3M</span>
+                                <span class="widget-numbers">
+                                <?php
+                               $sql ="SELECT count(userName) AS tong FROM users ";
+                                $lis = pdo_query($sql);
+                                foreach ($lis as $a) {
+                                    echo '
+                                    ' . number_format($a["tong"], 0, ',', '.') . '
+                                    ';
+                                }
+
+                            ?>
+                                </span>
                             </div>
                         </a>
                     </div>
@@ -64,7 +86,18 @@
                                         Tổng doanh mục
                                     </h5>
                                 </div>
-                                <span class="widget-numbers">3M</span>
+                                <span class="widget-numbers">
+                                <?php
+                               $sql ="SELECT count(id_danhmuc) AS tong FROM danhmuc ";
+                                $lis = pdo_query($sql);
+                                foreach ($lis as $a) {
+                                    echo '
+                                    ' . number_format($a["tong"], 0, ',', '.') . '
+                                    ';
+                                }
+
+                            ?>
+                                </span>
                             </div>
                         </a>
                     </div>
@@ -73,10 +106,21 @@
                             <div class="card mb-3 widget-chart">
                                 <div class="widget-subheading fsize-1 pt-2 opacity-10 text-warning font-weight-bold">
                                     <h5>
-                                        Tổng doanh mục
+                                        Tổng đơn hàng
                                     </h5>
                                 </div>
-                                <span class="widget-numbers">3M</span>
+                                <span class="widget-numbers">
+                                <?php
+                               $sql ="SELECT COUNT(id_donHang) AS tong FROM donhang ";
+                                $lis = pdo_query($sql);
+                                foreach ($lis as $a) {
+                                    echo '
+                                    ' . number_format($a["tong"], 0, ',', '.') . '
+                                    ';
+                                }
+
+                            ?>
+                                </span>
                             </div>
                         </a>
                     </div>
@@ -93,64 +137,45 @@
                                     <button type="button" class="btn btn-primary">Xem</button>
                                 </div>
                             </form>
-                            <p>Tổng doanh thu: <span>100.000.000 VND</span></p>
+                            <p style="font-weight: bold; font-size:25.5px;">Tổng doanh thu: 
+                            <?php
+                               $sql ="SELECT SUM(tongGiaDonHang) AS tong FROM donhang ";
+                                $lis = pdo_query($sql);
+                                foreach ($lis as $a) {
+                                    echo '
+                                    ' . number_format($a["tong"], 0, ',', '.') . ' Vnđ
+                                    ';
+                                }
+
+                            ?>
+                            </p>
+                            <!-- <td>' . number_format($a["tongGiaDonHang"], 0, ',', '.') . ' Vnđ</td> -->
                             <table class="revenue table table-hover">
                                 <thead>
-                                    <th>#</th>
                                     <th>Mã đơn hàng</th>
-                                    <th>Doanh thu</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Doanh thu đơn hàng</th>
                                 </thead>
+                                <?php
+                                    $sql ="SELECT * FROM `donhang`  ORDER BY id_donHang DESC LIMIT 10";
+                                    $data = pdo_query($sql);
+                                    foreach($data as $a){
+                                        echo'
+                                        <tbody>
+                                        <tr>
+                                            <td>'. $a["id_donHang"] .'</td>
+                                            <td>'. $a["ngayDatHang"] .'</td>
+                                            <td>' . $a["tongGiaDonHang"] . ' Vnđ</td>
+                                       
+                                        </tr
+                                        ';
+                                    }
+                                ?>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>GIA001</td>
-                                        <td>100.000</td>
+                                        
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>GIA002</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>GIA003</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>GIA004</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>GIA004</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>GIA004</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>GIA004</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>GIA004</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>GIA004</td>
-                                        <td>100.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>GIA004</td>
-                                        <td>100.000</td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -163,22 +188,22 @@
                                     <th>Mã đơn hàng</th>
                                     <th>Trạng thái</th>
                                 </thead>
+                                <?php
+                                    $sql ="SELECT * FROM `donhang`  ORDER BY ngayDatHang DESC LIMIT 4";
+                                    $data = pdo_query($sql);
+                                    foreach($data as $a){
+                                        echo'
+                                        <tbody>
+                                        <tr>
+                                            <td>'. $a["id_donHang"] .'</td>
+                                            <td>'. $a["trangThai"] .'</td>
+                                        </tr
+                                        ';
+                                    }
+                                ?>
                                 <tbody>
                                     <tr>
-                                        <td>GIA001</td>
-                                        <td>Chờ duyệt</td>
-                                    </tr>
-                                    <tr>
-                                        <td>GIA002</td>
-                                        <td>Đã duyệt</td>
-                                    </tr>
-                                    <tr>
-                                        <td>GIA003</td>
-                                        <td>Chờ TT</td>
-                                    </tr>
-                                    <tr>
-                                        <td>GIA004</td>
-                                        <td>Đã duyệt</td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -189,22 +214,27 @@
                             <h4>Khách hàng mới</h4>
                             <table class="revenue table table-hover">
                                 <thead>
-                                    <th>#</th>
                                     <th>Username</th>
+                                    <th>Số điện thoại</th>
                                 </thead>
+                                <?php
+                                    $sql ="SELECT * FROM `users` ORDER BY userName DESC LIMIT 4";
+                                    $data = pdo_query($sql);
+                                    foreach($data as $a){
+                                        echo'
+                                        <tbody>
+                                        <tr>
+                                            <td>'. $a["userName"] .'</td>
+                                            <td>'. $a["sdt"] .'</td>
+                                        </tr
+                                        ';
+                                    }
+                                ?>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>giangcoder1</td>
+                                        
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>giangcoder2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>giangcoder3</td>
-                                    </tr>
+                                   
                                 </tbody>
                             </table>
                         </div>
