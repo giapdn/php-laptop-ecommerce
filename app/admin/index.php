@@ -197,6 +197,12 @@ if (isset($_GET["act"])) {
         case 'bieudo':
             include "controllers/bieudo.php";
             break;
+        case 'thongkesp':
+            include "views/bieudosplist.php";
+        break;
+        case 'bieudosp':
+            include "controllers/bieudosp.php";
+        break;
         default:
             include "./views/main.php";
             break;

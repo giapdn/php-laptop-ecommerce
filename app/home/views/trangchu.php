@@ -1,20 +1,29 @@
-<section class="breadcrumb-section set-bg" data-setbg="app/home/public/img/banner/banner4.jpg">
+<section class="categories" >
 	<div class="container">
-		<div class="row">
-			<div class="hero__item set-bg">
-				<div class="hero__text">
-					<span>SẢN PHẨM CÔNG NGHỆ</span>
-					<h2>Laptop <br />100% Chính hãng</h2>
-					<p>Miễn phí giao hàng toàn quốc</p>
-					<a href="index.php?act=trangsanpham" class="primary-btn">MUA NGAY</a>
-				</div>
+		<div class="banner" style="background-color: #014e01; ">
+			<div class="slide">
+
+				<img class="tt" src="app/home/public/img/banner/banner1a.jpg" alt="">
+			</div>
+			<div class="slide">
+
+				<img class="tt" src="app/home/public/img/banner/banner5a.jpg" alt="">
+			</div>
+			<div class="slide">
+
+				<img class="tt" src="app/home/public/img/banner/banner3a.jpg" alt="">
+			</div>
+			<div class="slide">
+
+				<img class="tt" src="app/home/public/img/banner/banner4a.webp" alt="">
+			</div>
+			<div class="slide">
+
+				<img class="tt" src="app/home/public/img/banner/banner1a.jpg" alt="">
 			</div>
 		</div>
 	</div>
-</section>
-<br>
-<br>
-
+	</section>
 
 
 <!-- <section class="categories">
@@ -101,7 +110,7 @@
 						<div class="featured__item">
 							<div style="cursor: pointer;" class="featured__item__pic set-bg" data-setbg="app/admin/uploads/' . $img_path . '" onclick="chitietsp(' . $id_sanPham . ', ' . $id_danhmuc . ')">
 								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="index.php?act=addyeuthich&id_sanPham=' . $id_sanPham . '"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
 									<li><a href="index.php?act=addToCart&id_sanPham=' . $id_sanPham . '"><i class="fa fa-shopping-cart"></i></a></li>
 								</ul>
@@ -141,7 +150,7 @@
 
 	<!-- Latest Product Section Begin -->
 	<section class="latest-product spad">
-		<div class="container">
+	<div class="container" style="background-color: #7fad39;   border-radius: 10px;   border: 2px solid #d1d1d1; padding-top:20px;background-image: url(app/home/public/img/banner/bannerxanh.jpg);">
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
 					<div class="latest-product__text">
@@ -372,44 +381,15 @@
 
 
 
-	<a href="http://zaloapp.com/qr/p/2u0gjeeh2pht" class="zalo-button">
-		<img src="app/home/public/img/zalo_sharelogo (1).png" alt="Zalo Icon" class="zalo-icon" style="width: 70px; height: 70px;">
-	</a>
+
 
 	<!-- Blog Section End -->
-	<button onclick="topFunction()" id="myBtn" title="Go to top" style="width: 70px;
-  height: 70px;">↑</button>
+<button onclick="topFunction()" id="myBtn" title="Go to top" style="width: 50px;
+  height: 50px;">↑</button>
 
 
 
 	<script>
-		// JavaScript để xử lý sự kiện khi cuộn trang và khi click nút
-		window.onscroll = function() {
-			scrollFunction()
-		};
-
-		function scrollFunction() {
-			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-				document.getElementById("myBtn").style.display = "block";
-			} else {
-				document.getElementById("myBtn").style.display = "none";
-			}
-		}
-
-		function topFunction() {
-			document.body.scrollTop = 0; // For Safari
-			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-		}
-
-		document.querySelector('.zalo-button').addEventListener('mouseenter', function() {
-			// Thêm class active khi di chuột vào nút
-			this.classList.add('active');
-		});
-
-		document.querySelector('.zalo-button').addEventListener('mouseleave', function() {
-			// Loại bỏ class active khi di chuột ra khỏi nút
-			this.classList.remove('active');
-		});
 
 
 
@@ -462,6 +442,47 @@
 				clearInterval(loop);
 
 			}
+
+
+
+
+
+
+
+
+		// JavaScript để xử lý sự kiện khi cuộn trang và khi click nút
+		window.onscroll = function() {
+			scrollFunction()
+		};
+
+		function scrollFunction() {
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				document.getElementById("myBtn").style.display = "block";
+			} else {
+				document.getElementById("myBtn").style.display = "none";
+			}
+		}
+
+		function topFunction() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+
+		document.querySelector('.zalo-button').addEventListener('mouseenter', function() {
+			// Thêm class active khi di chuột vào nút
+			this.classList.add('active');
+		});
+
+		document.querySelector('.zalo-button').addEventListener('mouseleave', function() {
+			// Loại bỏ class active khi di chuột ra khỏi nút
+			this.classList.remove('active');
+		});
+
+
+
+
+
+
 	</script>
 
 
@@ -471,57 +492,13 @@
 }
 
 .slide img {
+	
   width: 100%;
-  height: 100%;
+  height: 400px;
   object-fit: cover; /* This property is used to maintain the aspect ratio of the images */
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-		.zalo-button {
-
-			position: fixed;
-			/* Cố định vị trí trên trang */
-			top: 94%;
-			/* Điều chỉnh vị trí từ trên xuống */
-			left: 20px;
-			/* Khoảng cách từ viền trái của trang */
-			transform: translateY(-50%);
-			/* Dịch chuyển nút lên trên để căn giữa theo chiều dọc */
-			z-index: 999;
-			/* Đảm bảo nằm trên các phần khác của trang */
-			display: flex;
-			align-items: center;
-
-			color: #fff;
-			/* Màu của chữ */
-			padding: 10px 20px;
-			border-radius: 5px;
-			text-decoration: none;
-			/* Loại bỏ gạch chân khi hover */
-			transition: 0.3s;
-
-		}
-
-		.zalo-icon {
-
-			vertical-align: middle;
-			transition: 0.3s;
-		}
-
-		.zalo-button:hover .zalo-icon {
-			transform: translateX(10%);
-		}
 
 		/* CSS để tạo kiểu cho nút "quay trở lại đầu trang" */
 		#myBtn {
@@ -530,13 +507,13 @@
 			/* Ẩn ban đầu */
 			position: fixed;
 			/* Cố định vị trí */
-			bottom: 20px;
+			bottom: 25px;
 			/* Khoảng cách từ bottom */
 			right: 20px;
 			/* Khoảng cách từ right */
 			z-index: 99;
 			/* Đảm bảo hiển thị trên cùng các phần tử bên dưới */
-			font-size: 30px;
+			font-size: 15px;
 			/* Kích thước chữ */
 			border: none;
 			/* Không có viền */
@@ -651,4 +628,9 @@
 			background: #014e01;
 			/* Màu thanh cuộn khi di chuột vào */
 		}
+
+
+
+
+		
 	</style>

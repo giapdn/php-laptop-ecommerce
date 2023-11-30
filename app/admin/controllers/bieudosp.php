@@ -16,9 +16,9 @@
         ['Task', 'Hours per Day'],
 
         <?php
-        $sql = "select danhmuc.id_danhmuc as madm,danhmuc.tendanhmuc as tendm,count(sanpham.id_sanPham) as countsp,min(sanpham.giaSanPham) as mingia,max(sanpham.giaSanPham) as maxgia,avg(sanpham.giaSanPham) as avggia";
-        $sql .= " from sanpham left join danhmuc on danhmuc.id_danhmuc =sanpham.id_danhmuc  ";
-        $sql .= " group by danhmuc.id_danhmuc  order by danhmuc.id_danhmuc  desc";
+        $sql="select sanpham.id_sanPham as madm,sanpham.tenSanPham as tendm,count(chitietdonhang.id_sanPham) as countsp,min(chitietdonhang.tongGia) as mingia,max(chitietdonhang.tongGia) as maxgia,avg(chitietdonhang.tongGia) as avggia";
+        $sql.= " from chitietdonhang left join sanpham on sanpham.id_sanPham  =chitietdonhang.id_sanPham   ";
+        $sql.= " group by sanpham.id_sanPham  order by sanpham.id_sanPham   desc";
         $listtk = pdo_query($sql);
 
         $tongdm = count($listtk);
@@ -37,7 +37,7 @@
 
       // Optional; add a title and set the width and height of the chart
       var options = {
-        'title': 'Biểu đồ thống kê theo loại',
+        'title': 'Biểu đồ thống kê sản phẩm bán chạy',
         'width': 1100,
         'height': 800
       };

@@ -7,6 +7,57 @@ include "./app/home/modules/models/methods.php";
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
+
+
+
+
+
+        case 'yeuthich':
+            include "app/home/views/yeuthich.php";
+            break;
+
+        case 'delyeuthich':
+            $id = $_GET["id_sanPham"];
+            $user = $_SESSION["username"];
+            $sql = "DELETE FROM `yeuthich` WHERE `userName` = '$user' AND `id_sanPham` = '$id'";
+            pdo_execute($sql);
+            echo "<script>alert('Xoá thành công !')</script>";
+            echo "<script>window.location.href='../duan1/index.php?act=yeuthich'</script>";
+            break;
+
+
+        case 'addyeuthich':
+            if (isset($_SESSION["username"])) {
+                $id = $_GET["id_sanPham"];
+                $check = "SELECT * FROM yeuthich WHERE id_sanPham = '$id'";
+                $flag = pdo_query($check);
+                if (empty($flag)) {
+                    $user = $_SESSION["username"];
+                    $sql = "INSERT INTO `yeuthich`(`userName`, `id_sanPham`) VALUES ('$user','$id')";
+                    pdo_execute($sql);
+                    echo "<script>alert('Thêm vào yêu thích thành công!')</script>";
+                    echo "<script>window.location.href='../duan1/index.php?act=yeuthich'</script>";
+                }
+            } else {
+                echo "<script>alert('Đăng nhập để thêm sản phẩm !')</script>";
+                echo "<script>window.location.href='../duan1/index.php?act=logIn'</script>";
+            }
+            break;
+
+
+
+
+        case 'page':
+            include "app/home/views/page.php";
+            break;
+
+
+
+
+
+
+
+
         case 'pending':
             include "app/home/modules/donhang/trangthaidonhang.php";
             break;

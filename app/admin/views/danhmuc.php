@@ -21,7 +21,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="width:100%">
     <!-- <div class="container-fluid main-page">
         <div class="app-main">
             
@@ -74,9 +74,9 @@
     </div> -->
 
     <div class="container-fluid main-page">
-        <div class="app-main">
+        <div class="app-main" >
 
-            <div class="main-content">
+            <div class="main-content" >
                 <h3 class="title-page">
                     Danh mục
                 </h3>

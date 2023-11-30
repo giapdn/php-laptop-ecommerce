@@ -43,8 +43,8 @@ session_start();
                                             </td>
                                             <td class="shoping__cart__total"><div style="background-color: yellow;"><span id="' . $id_sanPham . '" style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . ' ₫</span></div></td>                                                                              
                                             <td class="shoping__cart__item__close">
-                                                <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '"><span class="icon_close"></span></a>                           
-                                            </td>
+                                            <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '" class="jj"><i class="fas fa-times-circle"></i></a>                           
+                                        </td>
                                         </tr>
                                     ';
                                 }

@@ -182,13 +182,8 @@
                         <ul>
                             <li><a href="index.php">Trang chủ</a></li>
                             <li><a href="index.php?act=trangsanpham">Cửa hàng</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
+                            <li><a href="index.php?act=page">Pages</a>
+                               
                             </li>
                             <!-- <li><a href="index.php?act=tintuc">Tư vấn</a></li> -->
                             <li><a href="index.php?act=lienhe">Liên hệ</a></li>
@@ -198,7 +193,46 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
+                      
+
+
+
+
+
+
+
+                        <?php
+                                if (isset($_SESSION["username"])) {
+                                    $y = $_SESSION["username"];
+                                    $x = "SELECT 
+                                        Count(soluong) AS total 
+                                        FROM 
+                                        yeuthich
+                                        WHERE 
+                                            userName = '$y';
+                                    ";
+                                    $z = pdo_query_one($x);
+                                    if ($z["total"] != 0) {
+                                        echo '
+                                            <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">' . $z["total"] . '</span></a></li>
+                                        ';
+                                    } else {
+                                        echo '
+                                            <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
+                                        ';
+                                    }
+                                } else {
+                                    echo '
+                                        <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
+                                    ';
+                                }
+                            ?>
+
+
+
+
+
+
                             <?php
                             if (isset($_SESSION["username"])) {
                                 $y = $_SESSION["username"];
@@ -208,8 +242,7 @@
                                         giohang
                                     WHERE 
                                         userName = '$y'
-                                    GROUP BY 
-                                        userName;
+                                  
                                 ";
                                 $z = pdo_query_one($x);
                                 if ($z["total"] != 0) {

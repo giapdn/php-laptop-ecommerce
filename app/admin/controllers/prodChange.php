@@ -27,7 +27,7 @@
 
             <div class="main-content">
                 <h3 class="title-page">
-                    Thêm sản phẩm
+                    Sửa sản phẩm
                 </h3>
 
                 <form class="addPro" action="index.php?act=prodChangeProcess&id=<?php echo getID() ?>" method="POST" enctype="multipart/form-data">
