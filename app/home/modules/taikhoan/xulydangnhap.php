@@ -3,7 +3,7 @@ session_start();
 $username = $_POST["username"];
 $password = $_POST["password"];
 $sql = "SELECT `userName`, `password`  FROM `users` WHERE `userName` = '$username' AND `password` = '$password'";
-include "pdo.php";
+include "../models/pdo.php";
 $data = pdo_query_one($sql);
 if (empty($data)) {
     echo "<script>alert('Không tìm thấy tài khoản của bạn, thử lại.');</script>";

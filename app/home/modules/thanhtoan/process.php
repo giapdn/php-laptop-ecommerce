@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     `donhang`(`userName`, `ngayDatHang`, `tongGiaDonHang`, `pttt`, `tenNguoiNhan`, `diaChi`, `SDT`)
     VALUES 
     ('$user',NOW(),'$sum','TTKNH','$name','$location','$phone')";
-    include "pdo.php";
+    include "../models/pdo.php";
     pdo_execute($sql);
     $x = "SELECT MAX(id_donHang) AS max FROM donhang";
     $data = pdo_query_one($x);
@@ -23,5 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $z = "INSERT INTO chitietdonhang(id_donHang, soLuong, id_sanPham) VALUES ('$max', '$soluong', '$id_sp')";
         pdo_execute($z);
     }
-    echo json_encode(['id' => $max]);
+    $xoaGH = "DELETE FROM giohang WHERE userName = '$user'";
+    pdo_execute($xoaGH);
+    header('Content-Type: application/json');
+    echo json_encode(['id_donhang' => $max]);
 }

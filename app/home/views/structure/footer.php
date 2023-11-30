@@ -7,7 +7,7 @@
                       <div class="footer__about__logo">
                           <a href="#"><img src="app/home/public/img/logo3.png" alt=""></a>
                       </div>
-                     
+
                   </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
@@ -76,6 +76,7 @@
   <script src="app/home/public/js/mixitup.min.js"></script>
   <script src="app/home/public/js/owl.carousel.min.js"></script>
   <script src="app/home/public/js/main.js"></script>
+  <script src="app/home/public/js/ajax.js"></script>
 
   </body>
 

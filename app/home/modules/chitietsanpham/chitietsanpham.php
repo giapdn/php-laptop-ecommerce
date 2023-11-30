@@ -1,23 +1,3 @@
-  <!-- Breadcrumb Section Begin -->
-  <!-- <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <a href="./index.html">Vegetables</a>
-                            <span>Vegetable’s Package</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-  <!-- Breadcrumb Section End -->
-
-
   <!-- Product Details Section Begin -->
   <section class="product-details spad">
   	<div class="container">
@@ -121,8 +101,8 @@
 										echo '
 										<form action="app/home/modules/chitietsanpham/main.php" method="post">
 											<input type="hidden" value="' . $id . '" name="id_sp">
-											<input type="text" name="hotSearchData" placeholder="Ý kiến của bạn về sản phaarm" style="background-color: #dfdfdf;">
-											<button type="submit" class="site-btn">Gửi bình luận</button>
+											<input type="text" name="coment-data" placeholder="Ý kiến của bạn về sản phẩm" style="background-color: #dfdfdf;">
+											<button type="submit" name="send" class="site-btn">Gửi bình luận</button>
 										</form>
 									';
 									} else {

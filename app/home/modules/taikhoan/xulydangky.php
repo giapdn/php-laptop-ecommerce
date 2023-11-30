@@ -11,7 +11,7 @@ if ($password !== $rePassword) {
     echo "<script>window.location.href='login-register.php'</script>";
 } else {
     $sql = "INSERT INTO `users`(`userName`,`password`) VALUES('$username','$password')";
-    include "pdo.php";
+    include "../models/pdo.php";
     pdo_execute($sql);
     echo "<script>alert('Đăng ký thành công, hãy đăng nhập');</script>";
     echo "<script>window.location.href='login-register.php'</script>";

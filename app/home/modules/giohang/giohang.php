@@ -1,22 +1,5 @@
-<!-- Breadcrumb Section Begin -->
-<!-- <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Shopping Cart</h2>
-                    <div class="breadcrumb__option">
-                        <a href="./index.html">Home</a>
-                        <span>Shopping Cart</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- Breadcrumb Section End -->
 <?php
-// session_start();
+session_start();
 ?>
 
 <!-- Shoping Cart Section Begin -->
@@ -34,7 +17,7 @@
                                 <th>Tổng</th>
                             </tr>
                         </thead>
-                        <tbody id="cart">
+                        <tbody>
                             <?php
                             if (isset($_SESSION["username"])) {
                                 $username = $_SESSION["username"];
@@ -44,12 +27,9 @@
                                 WHERE giohang.userName = '$username';
                                 ";
                                 $data = pdo_query($sql);
-                                if (empty($data)) {
-                                    // echo '<script>alert("Giỏ hàng của bạn đang trống !")</script>';
-                                } else {
-                                    foreach ($data as $rows) {
-                                        extract($rows);
-                                        echo '
+                                foreach ($data as $rows) {
+                                    extract($rows);
+                                    echo '
                                         <tr>
                                             <td class="shoping__cart__item">
                                                 <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
@@ -58,22 +38,21 @@
                                             <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</td>                                            
                                             <td class="shoping__cart__quantity">
                                             <div class="quantity">
-                                                <input style="width: 30px;border: 0px;" type="number" min="1" step="1" value="' . $soluong . '" id="soluong" oninput="changeSL(' . $id_sanPham . ')">                                                                   
+                                                <input style="width: 40px;border: 0px;" type="number" min="1" max="5" step="1" value="' . $soluong . '" oninput="ajaxSL(' . $id_sanPham . ', this.value)">                                                 
                                             </div>
                                             </td>
-                                            <td class="shoping__cart__total"><div style="background-color: yellow;"><span style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . ' ₫</span></div></td>                                                                              
+                                            <td class="shoping__cart__total"><div style="background-color: yellow;"><span id="' . $id_sanPham . '" style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . ' ₫</span></div></td>                                                                              
                                             <td class="shoping__cart__item__close">
                                                 <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '"><span class="icon_close"></span></a>                           
                                             </td>
                                         </tr>
-                                        ';
-                                    }
+                                    ';
                                 }
                             }
                             ?>
                         </tbody>
                         <!-- <div class="pro-qty">
-                            <input min="1" step="1" data-id-sp=' . $id_sanPham . ' value="' . $soluong . '" class="quantity-input" id="x">
+                            <input min="1" value="' . $soluong . '" oninput="ajaxSL(' . $id_sanPham . ', this.value)">
                         </div> -->
                     </table>
 
@@ -116,17 +95,17 @@
                         }
                     }
                     ?>
-                    <ul id="g">
+                    <ul>
                         <?php
                         if (isset($_SESSION["username"])) {
                             $id = $_SESSION["username"];
                             $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS sumCart
-                            FROM giohang
-                            JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
-                            -- GROUP BY giohang.userName;
-                            WHERE giohang.userName = '$id';";
+                                FROM giohang
+                                JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
+                                WHERE giohang.userName = '$id';
+                            ";
                             $data = pdo_query_one($sql);
-                            echo '<li>Tổng <span style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
+                            echo '<li>Tổng <span id="totalCart" style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
                         }
                         ?>
                     </ul>
@@ -137,32 +116,3 @@
     </div>
 </section>
 <!-- Shoping Cart Section End -->
-
-<script>
-    var input = document.getElementById("soluong");
-
-    function changeSL(id) {
-        $.ajax({
-            url: 'app/home/modules/giohang/process.php',
-            type: 'POST',
-            data: {
-                id_sp: id,
-                sl: input.value
-            },
-            success: function(response) {
-                console.log("ok");
-                $('#cart').html(response);
-                $.ajax({
-                    url: 'app/home/modules/giohang/total.php',
-                    type: 'POST',
-                    success: function(params) {
-                        $('#g').html(params);
-                    }
-                });
-            },
-            error: function(error) {
-                console.error('Lỗi yêu cầu:', error);
-            }
-        });
-    }
-</script>
