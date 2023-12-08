@@ -3,7 +3,11 @@ include "pdo.php";
 if (isset($_POST["categoryID"])) {
     $categoryID = $_POST["categoryID"];
     $categoryName = $_POST["categoryName"];
-    $sql = "UPDATE `danhmuc` SET `tendanhmuc`= '$categoryName' WHERE `id_danhmuc`= '$categoryID'";
+    $img_path = $_FILES["img_danhmuc"]["name"];
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["img_danhmuc"]["name"]);
+    move_uploaded_file($_FILES["img_danhmuc"]["tmp_name"], $target_file);
+    $sql = "UPDATE `danhmuc` SET `tendanhmuc`= '$categoryName' ,`img_danhmuc`='$img_path' WHERE `id_danhmuc`= '$categoryID'";
    
     try {
         if(isset($_POST['data-change']) && ($_POST['data-change'])){

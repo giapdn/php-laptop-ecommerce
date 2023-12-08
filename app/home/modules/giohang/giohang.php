@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!-- Shoping Cart Section Begin -->
 <section class="shoping-cart spad">
     <div class="container">
@@ -32,7 +28,8 @@ session_start();
                                     echo '
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
+                                                <img src="app/admin/uploads/' . $img_path . '" style="height: 150px;width: auto;">
+                                                <br>
                                                 <h5>' . $tenSanPham . '</h5>
                                             </td>
                                             <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</td>                                            
@@ -105,7 +102,11 @@ session_start();
                                 WHERE giohang.userName = '$id';
                             ";
                             $data = pdo_query_one($sql);
-                            echo '<li>Tổng <span id="totalCart" style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
+                            if ($data["sumCart"] != null) {
+                                echo '<li>Tổng <span id="totalCart" style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
+                            } else {
+                                echo '<li>Tổng <span id="totalCart" style="background-color: yellow;color: red;">' . number_format(0, 0, ',', '.') . ' ₫</span></li>';
+                            }
                         }
                         ?>
                     </ul>

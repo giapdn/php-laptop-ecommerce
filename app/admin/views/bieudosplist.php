@@ -32,37 +32,37 @@
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
+                        <tr>
                             <th>ID sản phẩm</th>
                             <th>Tên sản phẩm</th>
                             <th>Số lượng đã bán</th>
-                            <th>Giá thấp nhất</th>
-                            <th>Giá cao nhất</th>
+                            <th>Giá sản phẩm</th>
+                            <th>Ảnh sản phẩm</th>
                             <th>Giá trung bình</th>
                         </tr>
                     </thead>
 
                     <?php
-                        $sql="select sanpham.id_sanPham as madm,sanpham.tenSanPham as tendm,count(chitietdonhang.id_sanPham) as countsp,min(chitietdonhang.tongGia) as mingia,max(chitietdonhang.tongGia) as maxgia,avg(chitietdonhang.tongGia) as avggia";
-                        $sql.= " from chitietdonhang left join sanpham on sanpham.id_sanPham  =chitietdonhang.id_sanPham   ";
-                        $sql.= " group by sanpham.id_sanPham  order by sanpham.id_sanPham   desc";
-                        $listtk = pdo_query($sql);
-                        // return $listtk;
-                        foreach ($listtk as $lis) {
-                            // extract($lis);
-                            echo '
+                    $sql = "select sanpham.id_sanPham as madm,sanpham.giaSanPham as giaSanPham,sanpham.tenSanPham as tendm,count(chitietdonhang.id_sanPham) as countsp,sanpham.img_path as img";
+                    $sql .= " from chitietdonhang left join sanpham on sanpham.id_sanPham  =chitietdonhang.id_sanPham   ";
+                    $sql .= " group by sanpham.id_sanPham  order by sanpham.id_sanPham   desc";
+                    $listtk = pdo_query($sql);
+                    // return $listtk;
+                    foreach ($listtk as $lis) {
+                        // extract($lis);
+                        echo '
                                 <tbody>
                                     <tr>
                                         <td>' . $lis["madm"] . '</td>
-                                        <td>' . $lis["tendm"]. '</td>
+                                        <td>' . $lis["tendm"] . '</td>
                                         <td>' . $lis["countsp"] . '</td>
-                                        <td>' . $lis["mingia"] . '</td>
-                                        <td>' . $lis["maxgia"] . '</td>
-                                        <td>' . $lis["avggia"] . '</td>
+                                        <td>' . $lis["giaSanPham"] . '</td>
+                                        <td><img src="uploads/' .  $lis["img"] . '" alt="" width="40%" ></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             ';
-                        }
-
+                    }
                     ?>
                     <div class="d-flex justify-content-end">
                         <a href="index.php?act=bieudosp" class="btn btn-primary mb-2">Xem biểu đồ</a>

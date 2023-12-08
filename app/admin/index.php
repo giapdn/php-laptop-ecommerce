@@ -1,14 +1,44 @@
 <?php
-include "header.php";
+session_start();
 include "models/pdo.php";
+include "header.php";
 if (isset($_GET["act"])) {
     $action = $_GET["act"];
     switch ($action) {
+        case 'searchOrder':
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                include "./views/quanlydonhang.php";
+            }
+            break;
         case 'danhmuc':
             include "./views/danhmuc.php";
             break;
-
-            
+        case 'quanlybienthe':
+            include "./modules/bienthe/listBienthe.php";
+            break;
+        case 'variantChange_Form':
+            include "modules/bienthe/variantChange_Form.php";
+            break;
+        case 'variantChange_Process':
+            $ID = $_POST["ID"];
+            $prodID = $_POST["prodID"];
+            $chip = $_POST["chip"];
+            $ram = $_POST["ram"];
+            $gb = $_POST["gb"];
+            $display = $_POST["display"];
+            $color = $_POST["color"];
+            $weight = $_POST["weight"];
+            $price = $_POST["price"];
+            $push = "UPDATE `bienthe_sanpham` SET `chip`='$chip',`ram`='$ram',`gb`='$gb',`display`='$display',`color`='$color',`price`='$price',`weight`='$weight' WHERE ID = '$ID'";
+            pdo_execute($push);
+            include "./modules/bienthe/listBienthe.php";
+            break;
+        case 'variantDel':
+            $ID = $_GET["ID"];
+            $del_Variant = "DELETE FROM bienthe_sanpham WHERE `ID` = '$ID'";
+            pdo_execute($del_Variant);
+            echo '<script>window.location.href="index.php?act=quanlybienthe"</script>';
+            break;
         case 'home':
             include "./views/main.php";
             break;
@@ -23,25 +53,44 @@ if (isset($_GET["act"])) {
                 $name = $_GET["name"];
                 $sql = "DELETE FROM `users` WHERE `userName` = '$name'";
                 pdo_query($sql);
-                echo '<script>alert("Xoá thành công");</script>';
                 echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
             }
         case 'userChange':
             include "controllers/userChange.php";
-        case 'userChange':
-            if (isset($_POST["userChange"])) {
-                $id = $_GET["id"];
-                $userName = $_POST["userName"];
-                $quyenHan = $_POST["quyenHan"];
-                $sql = "UPDATE `users` SET `quyenHan`='$quyenHan'
-                WHERE `userName`='$id'";
-                pdo_execute($sql);
-                echo "<script>alert('Sửa thành công !')</script>";
-                echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
-            }
+            break;
+        case 'userChangeProcess':
+            $id = $_GET["id"];
+            $userName = $_POST["userName"];
+            $quyenHan = $_POST["quyenHan"];
+            $sql = "UPDATE `users` SET `author` = '$quyenHan' WHERE `userName` = '$id'";
+            pdo_execute($sql);
+            echo "<script>alert('Sửa thành công !')</script>";
+            echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
             break;
         case 'quanlydonhang':
             include "./views/quanlydonhang.php";
+            break;
+        case 'capnhatdonhang':
+            include "./views/quanlydonhang.php";
+            break;
+        case 'orderStateChange':
+            if (isset($_POST["__button"])) {
+                $state = $_POST["__orderState"];
+                $orderID = $_POST["__orderID"];
+                $sql = "UPDATE donhang SET trangThai = '$state' WHERE id_donHang = '$orderID'";
+                pdo_execute($sql);
+                echo "<script>alert('Xong')</script>";
+                echo "<script>window.location.href='../admin/index.php?act=capnhatdonhang';</script>";
+            }
+            break;
+        case 'donchohuy':
+            include "./modules/donhang/donchohuy.php";
+            break;
+        case 'xemdon':
+            include "./modules/donhang/chitietdonhuy.php";
+            break;
+        case 'chitietdonhang':
+            include "./modules/donhang/chitietdonhang.php";
             break;
         case 'ctgryAddForm':
             include "./controllers/category-add.php";
@@ -104,16 +153,22 @@ if (isset($_GET["act"])) {
             $sql = "INSERT INTO `sanpham`(`tenSanPham`, `giaSanPham`, `moTaSanPham`, `img_path`, `id_danhmuc`, `dateAdd`)
             VALUES ('$prodName','$prodPrice','$prodDesc','$prodImg','$prodCategory', NOW())";
             if (isset($_POST["prod-data-send"])) {
-                $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
-                if ($check !== false) {
-                    if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
-                        die("OOP !");
+                if (!empty($prodImg)) {
+                    $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
+                    if ($check !== false) {
+                        if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
+                            die("OOP !");
+                        }
+                        pdo_execute($sql);
+                        echo "<script>alert('Nạp dữ liệu thành công !')</script>";
+                        echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
+                    } else {
+                        echo "File is not an image.";
                     }
+                } else {
                     pdo_execute($sql);
                     echo "<script>alert('Nạp dữ liệu thành công !')</script>";
                     echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
-                } else {
-                    echo "File is not an image.";
                 }
             }
             break;
@@ -121,6 +176,13 @@ if (isset($_GET["act"])) {
             include "controllers/prodChange.php";
             break;
         case 'prodChangeProcess':
+            $chip = $_POST["chip"];
+            $ram = $_POST["ram"];
+            $gb = $_POST["gb"];
+            $display = $_POST["display"];
+            $color = $_POST["color"];
+            $weight = $_POST["weight"];
+
             $prodID = $_GET["id"];
             $prodName = $_POST["prodName"];
             $prodPrice = $_POST["prodPrice"];
@@ -130,21 +192,29 @@ if (isset($_GET["act"])) {
             $sql = "UPDATE `sanpham` SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc',
                 `img_path`='$prodImg',`id_danhmuc`='$productCategory' WHERE `id_sanPham`='$prodID'";
             $target_dir = "uploads/";
-            $flag = 1;
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $target_file = $target_dir . basename($_FILES["prodImg"]["name"]);
             if (isset($_POST["prod-data-change"])) {
-                $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
-                if ($check !== false) {
-                    if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
-                        die("OOP !");
+                if (!empty($prodImg)) {
+                    $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
+                    if ($check !== false) {
+                        if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
+                            die("OOP !");
+                        }
+                        pdo_execute($sql);
+                        echo "<script>alert('Sửa thành công !')</script>";
+                        echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
+                    } else {
+                        $query = "UPDATE `sanpham` 
+                        SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc', `id_danhmuc`='$productCategory', `chip`='$chip',`ram`='$ram',`store`='$gb',`display`='$display',`color`='$color',`weight`='$weight' 
+                        WHERE `id_sanPham`='$prodID'";
+                        pdo_execute($query);
+                        echo "<script>alert('Sửa thành công !')</script>";
+                        echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
                     }
-                    pdo_execute($sql);
-                    echo "<script>alert('Sửa thành công !')</script>";
-                    echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
                 } else {
-                    $query = "UPDATE `sanpham` SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc',
-                    `id_danhmuc`='$productCategory' WHERE `id_sanPham`='$prodID'";
+                    $query = "UPDATE `sanpham` 
+                        SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc', `id_danhmuc`='$productCategory', `chip`='$chip',`ram`='$ram',`store`='$gb',`display`='$display',`color`='$color',`weight`='$weight' 
+                        WHERE `id_sanPham`='$prodID'";
                     pdo_execute($query);
                     echo "<script>alert('Sửa thành công !')</script>";
                     echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
@@ -199,13 +269,117 @@ if (isset($_GET["act"])) {
             break;
         case 'thongkesp':
             include "views/bieudosplist.php";
-        break;
+            break;
         case 'bieudosp':
             include "controllers/bieudosp.php";
-        break;
+            break;
+        case 'tintuc':
+            include "views/tintuc.php";
+            break;
+        case 'deltintuc':
+            if (isset($_POST["xoatt"])) {
+                $id = $_GET["id"];
+                $sql = "DELETE FROM `tintuc` WHERE `id_tinTuc` = '$id'";
+                pdo_query($sql);
+                echo '<script>alert("Xoá thành công");</script>';
+                echo '<script>window.location.href="index.php?act=tintuc"</script>';
+            }
+            break;
+        case 'suatt':
+            include "controllers/suatt.php";
+        case 'suatintuc':
+            if (isset($_POST["suatintuc"])) {
+                $id = $_GET["id"];
+                $id_tinTuc = $_POST["id_tinTuc"];
+                $noidung_tinTuc = $_POST["noidung_tinTuc"];
+                $tieude = $_POST["tieude"];
+                $img_path = $_FILES["img_path"]["name"];
+                $target_dir = "uploads/";
+                $target_file = $target_dir . basename($_FILES["img_path"]["name"]);
+                if (empty($img_path)) {
+                    $sql = "UPDATE `tintuc` SET `noidung_tinTuc`='$noidung_tinTuc',`tieude`='$tieude' 
+                            WHERE `id_tinTuc`='$id'";
+                    pdo_execute($sql);
+                    echo "<script>alert('Sửa thành công !')</script>";
+                    echo '<script>window.location.href="index.php?act=tintuc"</script>';
+                } else {
+                    move_uploaded_file($_FILES["img_path"]["tmp_name"], $target_file);
+                    $sql = "UPDATE `tintuc` SET `noidung_tinTuc`='$noidung_tinTuc',`tieude`='$tieude',`img_path`='$img_path' 
+                            WHERE `id_tinTuc`='$id'";
+                    pdo_execute($sql);
+                    echo "<script>alert('Sửa thành công !')</script>";
+                    echo '<script>window.location.href="index.php?act=tintuc"</script>';
+                }
+            }
+
+            break;
+        case 'themtt':
+            include "./controllers/themtt.php";
+        case 'them':
+            if (isset($_POST["themtt"])) {
+                $noidung_tinTuc = $_POST["noidung_tinTuc"];
+                $tieude = $_POST["tieude"];
+                $img_path = $_FILES["img_path"]["name"];
+                $target_dir = "uploads/";
+                $target_file = $target_dir . basename($_FILES["img_path"]["name"]);
+                move_uploaded_file($_FILES["img_path"]["tmp_name"], $target_file);
+                $sql = "INSERT INTO `tintuc`(`noidung_tinTuc`, `ngaydang_tinTuc`,`tieude`, `img_path`) 
+                        VALUES ('$noidung_tinTuc',NOW(),'$tieude','$img_path')";
+
+                pdo_execute($sql);
+                echo "<script>alert('Nạp dữ liệu thành công !')</script>";
+                echo "<script>window.location.href='../admin/index.php?act=tintuc';</script>";
+            }
+            break;
+        case 'banner':
+            include "views/banner.php";
+            break;
+        case 'xoabn':
+            if (isset($_POST["xoabn"])) {
+                $id = $_GET["id"];
+                $sql = "DELETE FROM `banner` WHERE `id` = '$id'";
+                pdo_query($sql);
+                echo '<script>alert("Xoá thành công");</script>';
+                echo '<script>window.location.href="index.php?act=banner"</script>';
+            }
+            break;
+        case 'sua':
+            include "controllers/suabaner.php";
+        case 'suabn':
+            if (isset($_POST["suabn"])) {
+                $id = $_GET["id"];
+                $img_path = $_FILES["img_path"]["name"];
+                $target_dir = "uploads/";
+                $target_file = $target_dir . basename($_FILES["img_path"]["name"]);
+                move_uploaded_file($_FILES["img_path"]["tmp_name"], $target_file);
+                $sql = "UPDATE `banner` SET `img_path`='$img_path' WHERE `id`='$id'";
+                pdo_execute($sql);
+                echo "<script>alert('Sửa thành công !')</script>";
+                echo '<script>window.location.href="index.php?act=banner"</script>';
+            }
+
+            break;
+        case 'thembaner':
+            include "controllers/thembanner.php";
+        case 'thembn':
+            if (isset($_POST["them"])) {
+                $img_path = $_FILES["img_path"]["name"];
+                $target_dir = "uploads/";
+                $target_file = $target_dir . basename($_FILES["img_path"]["name"]);
+                move_uploaded_file($_FILES["img_path"]["tmp_name"], $target_file);
+                $sql = "INSERT INTO `banner`( `img_path`) 
+                        VALUES ('$img_path')";
+
+                pdo_execute($sql);
+                echo "<script>alert('Nạp dữ liệu thành công !')</script>";
+                echo "<script>window.location.href='../admin/index.php?act=banner';</script>";
+            }
+            break;
+
         default:
             include "./views/main.php";
             break;
     }
 } else {
 }
+include "./views/footer.php";

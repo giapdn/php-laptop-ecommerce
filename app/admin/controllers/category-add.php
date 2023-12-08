@@ -26,15 +26,22 @@
         <div class="app-main">
             <div class="main-content">
 
-                <form action="index.php?act=themdanhmuc" method="post">
+                <form action="index.php?act=themdanhmuc" method="post" enctype="multipart/form-data">
                     <h3 class="title-page">
-                        Thêm sản phẩm
+                        Thêm danh mục
                     </h3>
                     <div class="form-group">
                         <label>Tên danh mục</label>
-                        <input type="text" class="form-control" name="categoryName" id="name" placeholder="Nhập tên sả phẩm">
-        
+                        <input type="text" class="form-control" name="categoryName" id="name" placeholder="Nhập tên danh mục">
                     </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="prodImg">Ảnh banner</label>
+                        <div class="custom-file">
+                            <input type="file" name="img_danhmuc" class="custom-file-input" id="exampleInputFile">
+                        </div>
+                    </div>
+                    <br>
 
                     <div class="form-group">
 

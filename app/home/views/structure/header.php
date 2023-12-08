@@ -1,6 +1,3 @@
-<?php
-// session_start();
-?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -23,9 +20,14 @@
     <link rel="stylesheet" href="app/home/public/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="app/home/public/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="app/home/public/css/slicknav.min.css" type="text/css">
+
     <link rel="stylesheet" href="app/home/public/css/style.css" type="text/css">
 
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery UI library -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -119,7 +121,7 @@
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">Spanissadhuashoduhoashdoashoudhahdauhduashduashoud</a></li>
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
@@ -129,6 +131,10 @@
                                 if (isset($_SESSION["username"])) {
                                     $user = $_SESSION["username"];
                                     $sql = "SELECT `author` FROM `users` WHERE `userName` = '$user'";
+                                    $getOrders = "SELECT COUNT(id_donHang) AS orderC FROM donhang WHERE userName = '$user' AND trangThai != 'canceled' AND trangThai != 'success' AND trangThai != 'cancelConfirming'";
+                                    $orderCount = pdo_query_one($getOrders);
+                                    $getThongBao = "SELECT COUNT(noidung) AS thongbao FROM thongbao WHERE userName = '$user' AND checked != '0'";
+                                    $thongbao = pdo_query_one($getThongBao);
                                     $result = pdo_query_one($sql);
                                     if ($result["author"] == "admin") {
                                         echo '
@@ -137,9 +143,10 @@
                                             </div>
                                             <span class="arrow_carrot-down"></span>
                                             <ul>
-                                                <li><a href="index.php?act=tttk">Tài khoản</a></li> 
-                                                <li><a href="index.php?act=lichsu">Đơn mua</a></li>                                                                                                                    
-                                                <li><a href="app/admin/index.php?act=home">Admin</a></li>                                           
+                                            <li><a href="index.php?act=thongbao">Thông báo <span style="color: red;position: relative;top: -4px;">' . $thongbao["thongbao"] . '</span></a></li> 
+                                                <li><a href="index.php?act=tttk">Tài khoản</a></li>           
+                                                <li><a href="index.php?act=lichsu">Đơn mua <span style="color: red;position: relative;top: -4px;">' . $orderCount["orderC"] . '</span></a></li>                                                                                                                    
+                                                <li><a href="app/admin/index.php?act=home">Admin</a></li>                                         
                                                 <li><a href="index.php?act=logOut">Đăng xuất</a></li>
                                             </ul>
                                         ';
@@ -150,8 +157,9 @@
                                             </div>
                                             <span class="arrow_carrot-down"></span>
                                             <ul>
+                                            <li><a href="index.php?act=thongbao">Thông báo <span style="color: red;position: relative;top: -4px;">' . $thongbao["thongbao"] . '</span></a></li> 
                                                 <li><a href="index.php?act=tttk">Tài khoản</a></li>  
-                                                <li><a href="index.php?act=lichsu">Đơn mua</a></li>                                                                                                                                                      
+                                                <li><a href="index.php?act=lichsu">Đơn mua <span style="color: red;position: relative;top: -4px;">' . $orderCount["orderC"] . '</span></a></li>                                                                                                                                                      
                                                 <li><a href="index.php?act=logOut">Đăng xuất</a></li>
                                             </ul>
                                         ';
@@ -182,10 +190,7 @@
                         <ul>
                             <li><a href="index.php">Trang chủ</a></li>
                             <li><a href="index.php?act=trangsanpham">Cửa hàng</a></li>
-                            <li><a href="index.php?act=page">Pages</a>
-                               
-                            </li>
-                            <!-- <li><a href="index.php?act=tintuc">Tư vấn</a></li> -->
+                            <li><a href="index.php?act=page">Pages</a></li>
                             <li><a href="index.php?act=lienhe">Liên hệ</a></li>
                         </ul>
                     </nav>
@@ -193,46 +198,30 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                      
-
-
-
-
-
-
-
-                        <?php
-                                if (isset($_SESSION["username"])) {
-                                    $y = $_SESSION["username"];
-                                    $x = "SELECT 
-                                        Count(soluong) AS total 
-                                        FROM 
-                                        yeuthich
-                                        WHERE 
-                                            userName = '$y';
+                            <?php
+                            if (isset($_SESSION["username"])) {
+                                $y = $_SESSION["username"];
+                                $x = "SELECT 
+                                        COUNT(id_sanPham) AS total 
+                                        FROM yeuthich                                
+                                        WHERE userName = '$y';                                         
                                     ";
-                                    $z = pdo_query_one($x);
-                                    if ($z["total"] != 0) {
-                                        echo '
+                                $z = pdo_query_one($x);
+                                if ($z["total"] != 0) {
+                                    echo '
                                             <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">' . $z["total"] . '</span></a></li>
                                         ';
-                                    } else {
-                                        echo '
-                                            <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
-                                        ';
-                                    }
                                 } else {
                                     echo '
+                                            <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
+                                        ';
+                                }
+                            } else {
+                                echo '
                                         <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
                                     ';
-                                }
+                            }
                             ?>
-
-
-
-
-
-
                             <?php
                             if (isset($_SESSION["username"])) {
                                 $y = $_SESSION["username"];
@@ -267,10 +256,13 @@
                             $sql = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS sumCart
                             FROM giohang
                             JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
-                            -- GROUP BY giohang.userName;
                             WHERE giohang.userName = '$id';";
                             $data = pdo_query_one($sql);
-                            echo '<div class="header__cart__price">Tổng: <span>' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></div>';
+                            if ($data["sumCart"] != null) {
+                                echo '<div class="header__cart__price">Tổng: <span>' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></div>';
+                            } else {
+                                echo '<div class="header__cart__price">Tổng: <span>0 ₫</span></div>';
+                            }
                         } else {
                             echo '<div class="header__cart__price">Tổng: <span>0 ₫</span></div>';
                         }

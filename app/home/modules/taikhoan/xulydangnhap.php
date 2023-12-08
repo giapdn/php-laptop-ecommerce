@@ -7,7 +7,7 @@ include "../models/pdo.php";
 $data = pdo_query_one($sql);
 if (empty($data)) {
     echo "<script>alert('Không tìm thấy tài khoản của bạn, thử lại.');</script>";
-    echo "<script>window.location.href='login-register.php'</script>";
+    echo "<script>window.location.href='login.php'</script>";
 } else {
     $_SESSION["username"] = $username;
     echo "<script>alert('Đăng nhập thành công !');</script>";

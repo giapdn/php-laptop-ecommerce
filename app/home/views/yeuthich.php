@@ -12,7 +12,7 @@
                                 <th>Thêm vào giỏ hàng</th>
                             </tr>
                         </thead>
-                        <tbody id="cart">
+                        <tbody>
                             <?php
                             if (isset($_SESSION["username"])) {
                                 $username = $_SESSION["username"];
@@ -23,7 +23,13 @@
                                 ";
                                 $data = pdo_query($sql);
                                 if (empty($data)) {
-                                    // echo '<script>alert("Giỏ hàng của bạn đang trống !")</script>';
+                                    echo '
+                                        <tr>
+                                            <td>
+                                                <h5>Bạn chưa thêm sản phẩm nào vào mục yêu thích !</h5>
+                                            </td>
+                                        </tr>
+                                    ';
                                 } else {
                                     foreach ($data as $rows) {
                                         extract($rows);
@@ -56,7 +62,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
 <!-- Shoping Cart Section End -->
@@ -64,39 +70,10 @@
     a.jj:hover {
         color: red;
         font-size: 20px;
-     
+
     }
-    a.jj{
+
+    a.jj {
         color: #7fad39;
     }
 </style>
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
