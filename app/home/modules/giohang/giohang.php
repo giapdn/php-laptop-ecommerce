@@ -30,6 +30,8 @@
                                             <td class="shoping__cart__item">
                                                 <img src="app/admin/uploads/' . $img_path . '" style="height: 150px;width: auto;">
                                                 <br>
+                                                <img src="app/admin/uploads/' . $img_path . '" style="height: 150px;width: auto;">
+                                                <br>
                                                 <h5>' . $tenSanPham . '</h5>
                                                 <h6 style="color: #85929e;">Chip:'.$chip.', Ram:'.$chip.', Store:'.$store.', Màu:'.$color.', Card:'.$card.'</h6>
                                             </td>
@@ -104,14 +106,14 @@
                             ";
                             $data = pdo_query_one($sql);
                             if ($data["sumCart"] != null) {
-                                echo '<li>Tổng <span id="totalCart" style="background-color: color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
+                                echo '<li>Tổng <span id="totalCart" style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
                             } else {
-                                echo '<li>Tổng <span id="totalCart" style="background-color: color: red;">' . number_format(0, 0, ',', '.') . ' ₫</span></li>';
+                                echo '<li>Tổng <span id="totalCart" style="background-color: yellow;color: red;">' . number_format(0, 0, ',', '.') . ' ₫</span></li>';
                             }
                         }
                         ?>
                     </ul>
-                    <a href="index.php?act=thanhtoan" class="primary-btn">Đặt hàng</a>
+                    <a href="index.php?act=thanhtoan&payCart=5" class="primary-btn">Đặt hàng</a>
                 </div>
             </div>
         </div>

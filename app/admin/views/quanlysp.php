@@ -20,6 +20,24 @@
                             <th>Date add</th>
                             <th>Thông số</th>
                             <th>Thao tác</th>
+            <div class="main-content">
+                <h3 class="title-page">Sản phẩm</h3>
+                <div class="d-flex justify-content-end">
+                    <a href="index.php?act=formadd" class="btn btn-primary mb-2">Thêm sản phẩm</a>
+                </div>
+                <table id="example" class="table table-striped" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Giá</th>
+                            <th>Mô tả</th>
+                            <th>Ảnh.</th>
+                            <th>Views</th>
+                            <th>Category</th>
+                            <th>Date add</th>
+                            <th>Thông số</th>
+                            <th>Thao tác</th>
 
                         </tr>
                     </thead>

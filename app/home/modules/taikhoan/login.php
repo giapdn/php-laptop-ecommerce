@@ -170,7 +170,7 @@
     .overlay {
         background: #7fad39;
         background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-        background: linear-gradient(to right, #3a6002,#7fad39);
+        background: linear-gradient(to right, #3a6002, #7fad39);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 0 0;
@@ -271,7 +271,7 @@
 
 <body>
     <div class="lll">
-        <!-- <h2>Sign in/up Form</h2> -->
+        <!-- <!-- <h2>Sign in/up Form</h2> --> -->
         <div class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="xulydangky.php" method="post">
@@ -282,10 +282,10 @@
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <span>or use your email for registration</span>
-                    <input name="username" type="text" placeholder="Tên tài khoản" />
-                    <input name="password" type="password" placeholder="Nhập mật khẩu" />
-                    <input name="rePassword" type="password" placeholder="Nhập lại mật khẩu" />
-                    <button >ĐĂNG KÝ</button>
+                    <input name="username" type="text" placeholder="Tên tài khoản">
+                    <input name="password" type="password" placeholder="Nhập mật khẩu">
+                    <input name="rePassword" type="password" placeholder="Nhập lại mật khẩu">
+                    <button>ĐĂNG KÝ</button>
                 </form>
             </div>
 
@@ -300,9 +300,10 @@
                     <span>or use your account</span>
                     <input name="username" type="text" placeholder="User" autocomplete="off">
                     <input name="password" type="password" placeholder="Password" autocomplete="off">
+                    <input name="username" type="text" placeholder="User" autocomplete="off">
+                    <input name="password" type="password" placeholder="Password" autocomplete="off">
                     <a href="quenmk.php">Quên mật khẩu?</a>
                     <button type="submit">Đăng nhập</button>
-                    <!-- <input type="submit" value="Đăng nhập"> -->
                     <a href="/duan1/index.php"><i class="fas fa-door-open"></i> Quay lại trang chủ</a>
                 </form>
             </div>

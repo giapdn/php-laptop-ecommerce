@@ -10,6 +10,7 @@
                     <thead>
                         <tr>
                         <tr>
+                        <tr>
                             <th>ID sản phẩm</th>
                             <th>Tên sản phẩm</th>
                             <th>Số lượng đã bán</th>
@@ -32,6 +33,7 @@
                                 <tbody>
                                     <tr>
                                         <td>' . $lis["madm"] . '</td>
+                                        <td>' . $lis["tendm"] . '</td>
                                         <td>' . $lis["tendm"] . '</td>
                                         <td>' . $lis["countsp"] . '</td>
                                         <td>' . $lis["giaSanPham"] . '</td>

@@ -21,6 +21,7 @@ function pdo_get_connection()
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_execute($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
     try {
@@ -41,6 +42,7 @@ function pdo_execute($sql)
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
     try {
@@ -63,6 +65,7 @@ function pdo_query($sql)
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query_one($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
     try {
@@ -85,6 +88,7 @@ function pdo_query_one($sql)
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query_value($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
     try {
@@ -99,3 +103,4 @@ function pdo_query_value($sql)
         unset($conn);
     }
 }
+

@@ -21,6 +21,7 @@ function pdo_get_connection()
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_execute($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
     try {
@@ -41,16 +42,19 @@ function pdo_execute($sql)
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
-    try {
+    try  {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
         $rows = $stmt->fetchAll();
         return $rows;
     } catch (PDOException $e) {
+    } catch (PDOException $e) {
         throw $e;
+    } finally {
     } finally {
         unset($conn);
     }
@@ -63,16 +67,19 @@ function pdo_query($sql)
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query_one($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
-    try {
+    try  {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
     } catch (PDOException $e) {
+    } catch (PDOException $e) {
         throw $e;
+    } finally {
     } finally {
         unset($conn);
     }
@@ -85,16 +92,19 @@ function pdo_query_one($sql)
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query_value($sql)
+
 {
     $sql_args = array_slice(func_get_args(), 1);
-    try {
+    try  {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return array_values($row)[0];
     } catch (PDOException $e) {
+    } catch (PDOException $e) {
         throw $e;
+    } finally {
     } finally {
         unset($conn);
     }

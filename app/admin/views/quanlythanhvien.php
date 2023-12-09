@@ -2,6 +2,7 @@
     <div class="container-fluid main-page">
         <div class="app-main">
 
+
             <div class="main-content">
                 <h3 class="title-page">
                     Khách hàng
@@ -19,9 +20,11 @@
                         </tr>
                     </thead>
 
+
                     <?php
                     $sql = "SELECT * FROM `users`";
                     $result = pdo_query($sql);
+                    foreach ($result as $a) {
                     foreach ($result as $a) {
                         echo '
                         <tbody>
@@ -50,6 +53,7 @@
                                 </td>
                             </tr>
                         </tbody>';
+                    }
                     }
                     ?>
                 </table>

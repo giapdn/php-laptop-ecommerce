@@ -21,8 +21,14 @@
     <link rel="stylesheet" href="app/home/public/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="app/home/public/css/slicknav.min.css" type="text/css">
 
+
     <link rel="stylesheet" href="app/home/public/css/style.css" type="text/css">
 
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery UI library -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- jQuery UI library -->
@@ -38,62 +44,6 @@
 
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
-    <!-- <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="index.php?act=giohang"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="index.php?act=lienhe">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div> -->
-    <!-- Humberger End -->
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -133,7 +83,7 @@
                                     $sql = "SELECT `author` FROM `users` WHERE `userName` = '$user'";
                                     $getOrders = "SELECT COUNT(id_donHang) AS orderC FROM donhang WHERE userName = '$user' AND trangThai != 'canceled' AND trangThai != 'success' AND trangThai != 'cancelConfirming'";
                                     $orderCount = pdo_query_one($getOrders);
-                                    $getThongBao = "SELECT COUNT(noidung) AS thongbao FROM thongbao WHERE userName = '$user' AND checked != '0'";
+                                    $getThongBao = "SELECT COUNT(noidung) AS thongbao FROM thongbao WHERE userName = '$user' AND checked != 1";
                                     $thongbao = pdo_query_one($getThongBao);
                                     $result = pdo_query_one($sql);
                                     if ($result["author"] == "admin") {
@@ -143,6 +93,10 @@
                                             </div>
                                             <span class="arrow_carrot-down"></span>
                                             <ul>
+                                            <li><a href="index.php?act=thongbao">Thông báo <span style="color: red;position: relative;top: -4px;">' . $thongbao["thongbao"] . '</span></a></li> 
+                                                <li><a href="index.php?act=tttk">Tài khoản</a></li>           
+                                                <li><a href="index.php?act=lichsu">Đơn mua <span style="color: red;position: relative;top: -4px;">' . $orderCount["orderC"] . '</span></a></li>                                                                                                                    
+                                                <li><a href="app/admin/index.php?act=home">Admin</a></li>                                         
                                             <li><a href="index.php?act=thongbao">Thông báo <span style="color: red;position: relative;top: -4px;">' . $thongbao["thongbao"] . '</span></a></li> 
                                                 <li><a href="index.php?act=tttk">Tài khoản</a></li>           
                                                 <li><a href="index.php?act=lichsu">Đơn mua <span style="color: red;position: relative;top: -4px;">' . $orderCount["orderC"] . '</span></a></li>                                                                                                                    
@@ -158,7 +112,9 @@
                                             <span class="arrow_carrot-down"></span>
                                             <ul>
                                             <li><a href="index.php?act=thongbao">Thông báo <span style="color: red;position: relative;top: -4px;">' . $thongbao["thongbao"] . '</span></a></li> 
+                                            <li><a href="index.php?act=thongbao">Thông báo <span style="color: red;position: relative;top: -4px;">' . $thongbao["thongbao"] . '</span></a></li> 
                                                 <li><a href="index.php?act=tttk">Tài khoản</a></li>  
+                                                <li><a href="index.php?act=lichsu">Đơn mua <span style="color: red;position: relative;top: -4px;">' . $orderCount["orderC"] . '</span></a></li>                                                                                                                                                      
                                                 <li><a href="index.php?act=lichsu">Đơn mua <span style="color: red;position: relative;top: -4px;">' . $orderCount["orderC"] . '</span></a></li>                                                                                                                                                      
                                                 <li><a href="index.php?act=logOut">Đăng xuất</a></li>
                                             </ul>
@@ -191,6 +147,7 @@
                             <li><a href="index.php">Trang chủ</a></li>
                             <li><a href="index.php?act=trangsanpham">Cửa hàng</a></li>
                             <li><a href="index.php?act=page">Pages</a></li>
+                            <li><a href="index.php?act=page">Pages</a></li>
                             <li><a href="index.php?act=lienhe">Liên hệ</a></li>
                         </ul>
                     </nav>
@@ -205,7 +162,17 @@
                                         COUNT(id_sanPham) AS total 
                                         FROM yeuthich                                
                                         WHERE userName = '$y';                                         
+                            <?php
+                            if (isset($_SESSION["username"])) {
+                                $y = $_SESSION["username"];
+                                $x = "SELECT 
+                                        COUNT(id_sanPham) AS total 
+                                        FROM yeuthich                                
+                                        WHERE userName = '$y';                                         
                                     ";
+                                $z = pdo_query_one($x);
+                                if ($z["total"] != 0) {
+                                    echo '
                                 $z = pdo_query_one($x);
                                 if ($z["total"] != 0) {
                                     echo '
@@ -213,13 +180,19 @@
                                         ';
                                 } else {
                                     echo '
+                                } else {
+                                    echo '
                                             <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
                                         ';
                                 }
                             } else {
                                 echo '
+                                }
+                            } else {
+                                echo '
                                         <li><a href="index.php?act=yeuthich"><i class="fa fa-heart"></i> <span style="background-color: red;">0</span></a></li>
                                     ';
+                            }
                             }
                             ?>
                             <?php
@@ -259,7 +232,11 @@
                             WHERE giohang.userName = '$id';";
                             $data = pdo_query_one($sql);
                             if ($data["sumCart"] != null) {
+                                if ($data["sumCart"] != null) {
                                 echo '<div class="header__cart__price">Tổng: <span>' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></div>';
+                            } else {
+                                echo '<div class="header__cart__price">Tổng: <span>0 ₫</span></div>';
+                            }
                             } else {
                                 echo '<div class="header__cart__price">Tổng: <span>0 ₫</span></div>';
                             }

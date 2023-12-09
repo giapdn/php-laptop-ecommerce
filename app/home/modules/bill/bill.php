@@ -10,6 +10,7 @@
                         <div class="checkout__order">
                             <h4>Đơn hàng của bạn</h4>
                             <?php
+                            #thông tin người nhận
                             if (isset($_GET["orderID"])) {
                                 $orderID = $_GET["orderID"];
                                 if (isset($_GET["checked"])) {
@@ -31,6 +32,7 @@
                             ?>
                             <div class="checkout__order__products">
                                 <?php
+                                # sản phẩm đã mua
                                 if (isset($_GET["orderID"])) {
                                     $orderID = $_GET["orderID"];
                                     $sql = "SELECT chitietdonhang.soLuong, sanpham.*
@@ -62,6 +64,7 @@
                                 Tổng giá trị đơn hàng:
                                 <span>
                                     <?php
+                                    # tổng giá đơn hàng
                                     if (isset($_GET["orderID"])) {
                                         echo getCartSum($_GET["orderID"]);
                                     } else if (isset($_GET["vnp_TxnRef"])) {
@@ -73,6 +76,7 @@
                                 </span>
                             </div>
                             <?php
+                            #nút huỷ
                             if (isset($_GET["orderID"])) {
                                 $orderID = $_GET["orderID"];
                                 $sql = "SELECT pttt, trangThai FROM donhang WHERE id_donHang = '$orderID'";
@@ -80,11 +84,12 @@
                                 extract($result);
                                 if (isset($_GET["flag"]) && $_GET["flag"] == 'noNeedDelBtn') {
                                     # code...
-                                } else if ($trangThai != "canceled" && $trangThai != "success" && $trangThai != "shipping" && $trangThai != "cancelConfirming" && $pttt != "Vnpay") {
+                                } else if ($trangThai != "canceled" && $trangThai != "success" && $trangThai != "shipping" && $trangThai != "cancelConfirming" && $pttt != "Vnpay" && $pttt != "momo_wallet" && $pttt != "TTKNH-paid") {
                                     echo '<button onclick="cancelOrder(' . $orderID . ')" type="submit" class="site-btn del-order-btn" style="background-color: red;">Huỷ đơn hàng</button>';
                                 }
                             }
                             ?>
+
                             <script>
                                 function cancelOrder(orderID) {
                                     event.preventDefault();
@@ -97,8 +102,13 @@
                                                 orderID: Number(orderID)
                                             },
                                             success: function(response) {
-                                                alert(`Đơn hàng ${orderID} đã được tạm huỷ và sẽ phải chờ xác nhận nó thể huỷ hay không, hãy chờ thông báo từ shop.`)
-                                                window.location.href = `../duan1/index.php?act=cancelConfirming`;
+                                                if (response.accept == "no") {
+                                                    alert(`Đơn hàng ${orderID} đã được tạm huỷ và sẽ phải chờ xác nhận nó thể huỷ hay không, hãy chờ thông báo từ shop.`)
+                                                    window.location.href = `../duan1/index.php?act=cancelConfirming`;
+                                                } else {
+                                                    alert(`Đơn hàng ${orderID} đã được huỷ thành công.`)
+                                                    window.location.href = `../duan1/index.php?act=canceled`;
+                                                }
                                             },
                                             error: function(error) {
                                                 console.log(error);
@@ -114,7 +124,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
                             <h4>Đơn mua</h4>
-                            <button type="submit" onclick="goToMyOrder('lichsu')" class="site-btn">Theo dõi đơn hàng</button>
+                            <button type="submit" onclick="goToMyOrder('lichsu''lichsu')" class="site-btn">Theo dõi đơn hàng</button>
                         </div>
                     </div>
                 </div>

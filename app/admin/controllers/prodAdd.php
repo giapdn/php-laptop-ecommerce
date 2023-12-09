@@ -13,32 +13,32 @@
                         <input type="text" class="form-control" name="prodID" readonly>
                     </div>
 
-                    <div class="form-group">
-                        <label for="prodName">Tên sản phẩm:</label>
-                        <input type="text" class="form-control" name="prodName" id="name" placeholder="Nhập tên sả phẩm">
-                    </div>
+                <div class="form-group">
+                    <label for="prodName">Tên sản phẩm:</label>
+                    <input type="text" class="form-control" name="prodName" id="name" placeholder="Nhập tên sả phẩm">
+                </div>
 
-                    <div class="form-group">
-                        <label for="prodPrice">Giá </label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text">$</span>
-                            </div>
-                            <input type="text" name="prodPrice" id="price" class="form-control" placeholder="Nhập giá sản phẩm">
+                <div class="form-group">
+                    <label for="prodPrice">Giá </label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text">$</span>
                         </div>
+                        <input type="text" name="prodPrice" id="price" class="form-control" placeholder="Nhập giá sản phẩm">
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label>Mô tả</label>
-                        <textarea class="form-control" name="prodDesc" rows="3" placeholder="Nhập mô tả ngắn về sản phẩm" style="height: 78px;"></textarea>
-                    </div>
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea class="form-control" name="prodDesc" rows="3" placeholder="Nhập mô tả ngắn về sản phẩm" style="height: 78px;"></textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label for="prodImg">Ảnh sản phẩm</label>
-                        <div class="custom-file">
-                            <input type="file" name="prodImg" class="custom-file-input" id="exampleInputFile">
-                        </div>
+                <div class="form-group">
+                    <label for="prodImg">Ảnh sản phẩm</label>
+                    <div class="custom-file">
+                        <input type="file" name="prodImg" class="custom-file-input" id="exampleInputFile">
                     </div>
+                </div>
 
                     <div class="form-group">
                         <label for="productCategory">Danh mục:</label>

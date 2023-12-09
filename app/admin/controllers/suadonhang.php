@@ -15,6 +15,10 @@
                         <option value="shipping">shiping</option>
                         <option value="success">success</option>
                         <option value="canceled">canceled</option>
+                        <option value="<?php echo x() ?>"><?php echo x() ?></option>
+                        <option value="shipping">shiping</option>
+                        <option value="success">success</option>
+                        <option value="canceled">canceled</option>
                     </select>
                     <br><br>
                     <input type="submit" name="list" class="btn btn-primary" value="Danh sách" onclick="goToList()">

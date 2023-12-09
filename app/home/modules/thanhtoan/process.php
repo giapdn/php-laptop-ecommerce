@@ -9,24 +9,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $push_order = "INSERT INTO `donhang`(`userName`, `ngayDatHang`, `tongGiaDonHang`, `pttt`, `tenNguoiNhan`, `diaChi`, `SDT`) 
         VALUES ('$user', NOW(), '$sum', 'TTKNH', '$name', '$location', '$phone');
     ";
+    $push_order = "INSERT INTO `donhang`(`userName`, `ngayDatHang`, `tongGiaDonHang`, `pttt`, `tenNguoiNhan`, `diaChi`, `SDT`) 
+        VALUES ('$user', NOW(), '$sum', 'TTKNH', '$name', '$location', '$phone');
+    ";
     include "../models/pdo.php";
     pdo_execute($push_order);
 
+    #lấy ra đơn hàng vừa mua
     $get_orderID = "SELECT MAX(id_donHang) AS orderID FROM donhang";
     $data = pdo_query_one($get_orderID);
     extract($data);
+    #Trường hợp mua ngay 1 sản phẩm ko thông qua giỏ hàng và thanh toán khi nhận hàng
     if (isset($_POST["prodID"])) {
         $prodID = $_POST["prodID"];
+        $soluong = $_POST["soluong"];
         $_getProd = "SELECT * FROM sanpham WHERE id_sanPham = '$prodID'";
         $result = pdo_query_one($_getProd);
         extract($result);
-        $push_ctdh = "INSERT INTO chitietdonhang(id_donHang, soLuong, id_sanPham) VALUES ('$orderID', '1', '$prodID')";
-        pdo_execute($push_ctdh);
+        if (isset($_POST["gb"])) {
+            $gb = $_POST["gb"];
+            $push_ctdh = "INSERT INTO chitietdonhang(id_donHang, soLuong, id_sanPham, GB) VALUES ('$orderID', '$soluong', '$prodID', '$gb')";
+            pdo_execute($push_ctdh);
+        } else {
+            $sql = "SELECT store FROM sanpham WHERE id_sanPham = '$prodID'";
+            $v = pdo_query_one($sql);
+            extract($v);
+            $push_ctdh = "INSERT INTO chitietdonhang(id_donHang, soLuong, id_sanPham, GB) VALUES ('$orderID', '$soluong', '$prodID', '$store')";
+            pdo_execute($push_ctdh);
+        }
     } else {
+        #Trường hợp giỏ hàng (Mua thường)
         $get_cart = "SELECT * FROM giohang WHERE userName = '$user'";
         $result = pdo_query($get_cart);
         foreach ($result as $rows) {
-            extract($rows);
+            // extract($rows);
             $prodID = $rows["id_sanPham"];
             $soluong = $rows["soluong"];
             $push_ctdh = "INSERT INTO chitietdonhang(id_donHang, soLuong, id_sanPham) VALUES ('$orderID', '$soluong', '$prodID')";
@@ -36,6 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
     header('Content-Type: application/json');
+    echo json_encode(['orderID' => $orderID]);
+} else {
+    http_response_code(400);
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
     echo json_encode(['orderID' => $orderID]);
 } else {
     http_response_code(400);

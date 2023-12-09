@@ -1,10 +1,17 @@
 <?php
 session_start();
+session_start();
 include "models/pdo.php";
+include "header.php";
 include "header.php";
 if (isset($_GET["act"])) {
     $action = $_GET["act"];
     switch ($action) {
+        case 'searchOrder':
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                include "./views/quanlydonhang.php";
+            }
+            break;
         case 'searchOrder':
             if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 include "./views/quanlydonhang.php";
@@ -67,8 +74,39 @@ if (isset($_GET["act"])) {
             echo "<script>alert('Sửa thành công !')</script>";
             echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
             break;
+        case 'userChangeProcess':
+            $id = $_GET["id"];
+            $userName = $_POST["userName"];
+            $quyenHan = $_POST["quyenHan"];
+            $sql = "UPDATE `users` SET `author` = '$quyenHan' WHERE `userName` = '$id'";
+            pdo_execute($sql);
+            echo "<script>alert('Sửa thành công !')</script>";
+            echo '<script>window.location.href="index.php?act=quanlythanhvien"</script>';
+            break;
         case 'quanlydonhang':
             include "./views/quanlydonhang.php";
+            break;
+        case 'capnhatdonhang':
+            include "./views/quanlydonhang.php";
+            break;
+        case 'orderStateChange':
+            if (isset($_POST["__button"])) {
+                $state = $_POST["__orderState"];
+                $orderID = $_POST["__orderID"];
+                $sql = "UPDATE donhang SET trangThai = '$state' WHERE id_donHang = '$orderID'";
+                pdo_execute($sql);
+                echo "<script>alert('Xong')</script>";
+                echo "<script>window.location.href='../admin/index.php?act=capnhatdonhang';</script>";
+            }
+            break;
+        case 'donchohuy':
+            include "./modules/donhang/donchohuy.php";
+            break;
+        case 'xemdon':
+            include "./modules/donhang/chitietdonhuy.php";
+            break;
+        case 'chitietdonhang':
+            include "./modules/donhang/chitietdonhang.php";
             break;
         case 'capnhatdonhang':
             include "./views/quanlydonhang.php";
@@ -180,6 +218,22 @@ if (isset($_GET["act"])) {
                     pdo_execute($sql);
                     echo "<script>alert('Nạp dữ liệu thành công !')</script>";
                     echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
+                if (!empty($prodImg)) {
+                    $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
+                    if ($check !== false) {
+                        if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
+                            die("OOP !");
+                        }
+                        pdo_execute($sql);
+                        echo "<script>alert('Nạp dữ liệu thành công !')</script>";
+                        echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
+                    } else {
+                        echo "File is not an image.";
+                    }
+                } else {
+                    pdo_execute($sql);
+                    echo "<script>alert('Nạp dữ liệu thành công !')</script>";
+                    echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
                 }
             }
 
@@ -188,6 +242,13 @@ if (isset($_GET["act"])) {
             include "controllers/prodChange.php";
             break;
         case 'prodChangeProcess':
+            $chip = $_POST["chip"];
+            $ram = $_POST["ram"];
+            $gb = $_POST["gb"];
+            $display = $_POST["display"];
+            $color = $_POST["color"];
+            $weight = $_POST["weight"];
+
             $chip = $_POST["chip"];
             $ram = $_POST["ram"];
             $gb = $_POST["gb"];
@@ -206,6 +267,27 @@ if (isset($_GET["act"])) {
             $target_dir = "uploads/";
             $target_file = $target_dir . basename($_FILES["prodImg"]["name"]);
             if (isset($_POST["prod-data-change"])) {
+                if (!empty($prodImg)) {
+                    $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
+                    if ($check !== false) {
+                        if (move_uploaded_file($_FILES["prodImg"]["tmp_name"], $target_file) == false) {
+                            die("OOP !");
+                        }
+                        pdo_execute($sql);
+                        echo "<script>alert('Sửa thành công !')</script>";
+                        echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
+                    } else {
+                        $query = "UPDATE `sanpham` 
+                        SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc', `id_danhmuc`='$productCategory', `chip`='$chip',`ram`='$ram',`store`='$gb',`display`='$display',`color`='$color',`weight`='$weight' 
+                        WHERE `id_sanPham`='$prodID'";
+                        pdo_execute($query);
+                        echo "<script>alert('Sửa thành công !')</script>";
+                        echo "<script>window.location.href='../admin/index.php?act=quanlysp';</script>";
+                    }
+                } else {
+                    $query = "UPDATE `sanpham` 
+                        SET `tenSanPham`='$prodName',`giaSanPham`='$prodPrice',`moTaSanPham`='$prodDesc', `id_danhmuc`='$productCategory', `chip`='$chip',`ram`='$ram',`store`='$gb',`display`='$display',`color`='$color',`weight`='$weight' 
+                        WHERE `id_sanPham`='$prodID'";
                 if (!empty($prodImg)) {
                     $check = getimagesize($_FILES["prodImg"]["tmp_name"]);
                     if ($check !== false) {
@@ -281,6 +363,7 @@ if (isset($_GET["act"])) {
             break;
         case 'thongkesp':
             include "views/bieudosplist.php";
+            break;
             break;
         case 'bieudosp':
             include "controllers/bieudosp.php";
@@ -416,4 +499,5 @@ if (isset($_GET["act"])) {
     }
 } else {
 }
+include "./views/footer.php";
 include "./views/footer.php";

@@ -293,6 +293,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trung tâm tài khoản</title>
+    <title>Trung tâm tài khoản</title>
 </head>
 
 <body>
@@ -300,7 +301,8 @@ session_start();
 
         <div class="container" id="container">
             <div class="form-container sign-in-container">
-                <form action="/duan1/index.php?act=capnhattk" method="post">
+                <form action="" method="post">
+                    <!-- <h1>Thông tin tk</h1> -->
                     <?php
                     $user = $_SESSION["username"];
                     $sql = "SELECT * FROM users WHERE userName = '$user'";
@@ -309,7 +311,7 @@ session_start();
                     extract($result);
                     echo '
                         <span style="position: relative;left: -100px;">Tên đăng nhập</span>
-                        <input name="username" type="text" value="' . $userName . '" placeholder="User" >
+                        <input name="username" type="text" value="' . $userName . '" placeholder="User">
                         <span style="position: relative;left: -125px;">Email</span>
                         <input name="email" type="text" value="' . $email . '" placeholder="Email">
                         <span style="position: relative;left: -120px;">Địa chỉ</span>
@@ -318,7 +320,7 @@ session_start();
                         <input name="sdt" type="text" value="' . $sdt . '" placeholder="Nhập số điện thoại">
                     ';
                     ?>
-                    <button type="submit" name="capnhat">Cập nhật</button>
+                    <button type="submit">Cập nhật</button>
                 </form>
             </div>
 
@@ -326,6 +328,15 @@ session_start();
                 <div class="overlay">
                     <div class="overlay-panel overlay-right">
                         <?php
+                        $user = $_SESSION["username"];
+                        $sql = "SELECT avatar FROM users WHERE userName = '$user'";
+                        $result = pdo_query_one($sql);
+                        extract($result);
+                        echo '
+                            <div class="circle" style="position: relative;top: -20px;">
+                                <img src="/duan1/app/home/public/img/' . $avatar . '" alt="Your avatar">
+                             </div>
+                        ';
                         $user = $_SESSION["username"];
                         $sql = "SELECT avatar FROM users WHERE userName = '$user'";
                         $result = pdo_query_one($sql);

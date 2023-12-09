@@ -11,7 +11,9 @@ session_start();
 					<div class="product__details__pic__item">
 						<?php
 						$x = $_GET["idsp"];
+						$addView = "UPDATE sanpham SET views = views + 1 WHERE id_sanPham = '$x'";
 						$sql = "SELECT sanpham.img_path FROM sanpham WHERE id_sanPham = '$x'";
+						pdo_execute($addView);
 						$y = pdo_query_one($sql);
 						echo '<img class="product__details__pic__item--large" src="app/admin/uploads/' . $y["img_path"] . '" alt="img">';
 						?>
@@ -67,37 +69,32 @@ session_start();
 					';
 					?>
 					<!-- Lựa chọn option -->
-					<div class="product__details__price d-flex">
+
+					<div class="product__details__price d-flex" style="align-items: center;">
 						<?php
 						$id = $_GET["idsp"];
 						$sql = "SELECT DISTINCT `gb` FROM bienthe_sanpham WHERE id_sanPham = '$id'";
+						$query = "SELECT store FROM sanpham WHERE id_sanPham = '$id'";
+						$flag = pdo_query_one($query);
 						$result = pdo_query($sql);
 						if (count($result) <= 1) {
 						} else {
-							echo '<select id="hehehe" class="custom-select x y" onchange="ajaxSelect(this.value, ' . $id . ')">';
+							echo '<select id="hehehe" class="custom-select x y" onchange="ajaxSelect(' . $id . ')">';
 							foreach ($result as $key) {
 								extract($key);
-								echo '<option value="' . $gb . '" selected>' . $gb . ' GB</option>';
+								if ($flag["store"] == $gb) {
+									echo '<option value="' . $gb . '" selected>' . $gb . ' GB</option>';
+								} else {
+									echo '<option value="' . $gb . '">' . $gb . ' GB</option>';
+								}
 							}
 							echo '</select>';
 						}
-						?>
-						<?php
-						$id = $_GET["idsp"];
-						$sql = "SELECT DISTINCT `color` FROM bienthe_sanpham WHERE id_sanPham = '$id'";
-						$result = pdo_query($sql);
-						if (count($result) == 0) {
-							# code...
-						} elseif (count($result) == 1) {
-							# code...
-						} else {
-							foreach ($result as $key) {
-								echo '<input class="btn btn-primary ml-2" type="button" value="' . $key["color"] . '" onclick="getColor(this.value)">';
-							}
-						}
+						echo '<input oninput="ajaxSelect(' . $id . ')" id="so__luong" type="number" min="1" step="1" max="5" value="1" style="width: 90px; margin-left: 5px;" class="form-control">';
 						?>
 					</div>
 					<!-- Mua hafng -->
+
 					<div class="product__details__quantity">
 						<div style="cursor: pointer;" onclick="goToPayForm('<?php echo $_GET['idsp'] ?>');" class="primary-btn">Mua ngay</div>
 					</div>

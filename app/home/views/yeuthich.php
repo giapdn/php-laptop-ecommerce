@@ -13,6 +13,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <tbody>
                             <?php
                             if (isset($_SESSION["username"])) {
                                 $username = $_SESSION["username"];
@@ -23,6 +24,13 @@
                                 ";
                                 $data = pdo_query($sql);
                                 if (empty($data)) {
+                                    echo '
+                                        <tr>
+                                            <td>
+                                                <h5>Bạn chưa thêm sản phẩm nào vào mục yêu thích !</h5>
+                                            </td>
+                                        </tr>
+                                    ';
                                     echo '
                                         <tr>
                                             <td>
@@ -62,6 +70,7 @@
                 </div>
             </div>
         </div>
+
 
     </div>
 </section>

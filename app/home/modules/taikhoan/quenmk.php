@@ -259,23 +259,23 @@
 <h2>Bạn quên mật khẩu ?</h2>
 
 <div class="container" id="container">
-
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form action="xulyquenmk.php" method="post">
             <h2>Quên mật khẩu</h2>
-            <input type="username" placeholder="Nhập Email của bạn">
+            <input type="text" name="username" placeholder="Nhập tên tài khoản của bạn">
+            <input type="email" name="email" placeholder="Nhập email liên kết với tk">
+            <input type="text" name="sdt" placeholder="Nhập sdt liên kết với tk">
+            <input type="text" name="name" placeholder="Nhập tên ngườu dùng liên kết với tk">
             <div class="dkdn">
-                <button>Gửi</button>
-                <button>Nhập lại</button>
+                <button>Gửi mật khẩu mới</button>
+                <!-- <button>Nhập lại</button> -->
             </div>
-            
-
-            <input type="username" placeholder="Mật khẩu của bạn">
-
-            
         </form>
-
     </div>
+
+
+
+
 
     <div class="overlay-container">
         <div class="overlay">

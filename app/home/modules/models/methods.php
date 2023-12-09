@@ -41,7 +41,7 @@ function showBillProd($sql)
 }
 
 //trang sản phẩm
-function showUuDai($sql)
+function showTopViewsProd($sql)
 {
     $data = pdo_query($sql);
     foreach ($data as $key) {
@@ -49,18 +49,17 @@ function showUuDai($sql)
         echo '
             <div class="col-lg-4">
                 <div class="product__discount__item">
-                    <div class="product__discount__item__pic set-bg" data-setbg="app/admin/uploads/' . $img_path . '">
+                    <div class="product__discount__item__pic set-bg" data-setbg="app/admin/uploads/' . $img_path . '" onclick="chitietsp(' . $id_sanPham . ', ' . $id_danhmuc . ')" style="cursor: pointer;">
                         <div class="product__discount__percent">-20%</div>
                         <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="index.php?act=addyeuthich&id_sanPham=' . $id_sanPham . '"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                             <li><a href="index.php?act=addToCart&id_sanPham=' . $id_sanPham . '"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="product__discount__item__text">
-                        <span>' . $id_danhmuc . '</span>
                         <h5><a href="#">' . $tenSanPham . '</a></h5>
-                        <div class="product__item__price">$30.00 <span>' . $giaSanPham . '</span></div>
+                        <div class="product__item__price" style="color: red; background-color: yellow;">' . number_format((int)$giaSanPham, 0, ',', '.') . ' đ</div>
                     </div>
                 </div>
             </div>
@@ -76,23 +75,22 @@ function showSanPham($sql)
         echo ' 
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="/duan1/app/admin/uploads/' . $img_path . '">
+                    <div class="product__item__pic set-bg" data-setbg="/duan1/app/admin/uploads/' . $img_path . '" onclick="chitietsp(' . $id_sanPham . ', ' . $id_danhmuc . ')" style="cursor: pointer;">
                         <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="index.php?act=addyeuthich&id_sanPham=' . $id_sanPham . '"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                             <li><a href="index.php?act=addToCart&id_sanPham=' . $id_sanPham . '"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="product__item__text">
                         <h6><a style="font-weight: bold; href="#">' . $tenSanPham . '</a></h6>
-                        <h5 ><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</span></h5>
+                        <h5 style="background-color: yellow;"><span style="color: red !important;">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</span></h5>
                     </div>
                 </div>
             </div>       
         ';
     }
 }
-
 
 // trang đơn mua
 function showDonHang($sql)
@@ -104,10 +102,26 @@ function showDonHang($sql)
         foreach ($result as $rows) {
             extract($rows);
             $state = "";
-            if ($pttt == "Vnpay") {
+            $shipState = '';
+            if ($pttt == "Vnpay" || $pttt == "TTKNH-paid" || $pttt == "momo_wallet") {
                 $state = "Đã thanh toán";
             } else {
                 $state = "Chưa thanh toán";
+            }
+            if ($trangThai == 'pending') {
+                $shipState = 'Chờ xác nhận';
+            } elseif ($trangThai == 'shipping') {
+                $shipState = 'Đang giao hàng';
+            } elseif ($trangThai == 'shipped') {
+                $shipState = 'Đã giao hàng';
+            } elseif ($trangThai == 'success') {
+                $shipState = 'Hoàn thành';
+            } elseif ($trangThai == 'cancelConfirming') {
+                $shipState = 'Đang chờ xác nhận huỷ';
+            } elseif ($trangThai == 'canceled') {
+                $shipState = 'Đã huỷ';
+            } elseif ($trangThai == 'confirmed') {
+                $shipState = 'Đã xác nhận';
             }
             echo '
                 <div class="checkout__order__products">
@@ -116,8 +130,8 @@ function showDonHang($sql)
                         <div class="thongtin" style="font-size: smaller; color: gray; ">
                             <label class="text-primary">Mã đơn: ' . $id_donHang . '</label><br>
                             <label class="text-primary">Ngày đặt hàng: ' . $ngayDatHang . '</label><br>
-                            <label class="text-primary">Trạng thái đơn hàng<span style="color: red;"> :' . $trangThai . '</span></label> <br>
-                            <label class="text-primary">Đã thanh toán: ' . $state . '</label><br>
+                            <label class="text-primary">Trạng thái đơn hàng <span style="color: red;"> :' . $shipState . '</span></label> <br>
+                            <label class="text-primary">Thanh toán <span style="color: red;"> :' . $state . '</span></label><br>
                         </div>
                     </div>
                 </div>
@@ -127,7 +141,7 @@ function showDonHang($sql)
                 echo '<button type="button" class="site-btn" style="width:170px;">Mua lại</button>';
             }
             if ($trangThai == 'shipped') {
-                echo '<button type="button" onclick="confirmOrder(' . $id_donHang . ')" class="site-btn" style="width: 170px; background-color: orangered !important;">Đã nhận hàng</button>';
+                echo '<button type="button" onclick="confirmOrder(' . $id_donHang . ', ' . $pttt . ')" class="site-btn" style="width: 170px; background-color: orangered !important;">Đã nhận</button>';
             }
             echo '
                 <button type="button" onclick="goToBill(' . $id_donHang . ')" class="site-btn" style="width:170px;">Chi tiết</button>
@@ -141,9 +155,8 @@ function getCartSum($orderID)
 {
     $sql = "SELECT tongGiaDonHang FROM donhang WHERE id_donHang = '$orderID'";
     $data = pdo_query_one($sql);
-    $x = (int)$data["tongGiaDonHang"];
-    if ($x != null) {
-        return number_format($x, 0, ',', '.') . ' đ';
+    if ($data["tongGiaDonHang"] != null) {
+        return $data["tongGiaDonHang"] . ' đ';
     } else {
         return '0 đ';
     }

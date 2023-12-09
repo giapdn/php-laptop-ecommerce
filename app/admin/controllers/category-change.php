@@ -24,12 +24,12 @@
                 </form>
             </div>
 
-            <script>
-                function goToList(params) {
-                    event.preventDefault();
-                    window.location.href = "index.php?act=danhmuc";
-                }
-            </script>
+        <script>
+            function goToList(params) {
+                event.preventDefault();
+                window.location.href = "index.php?act=danhmuc";
+            }
+        </script>
 
             <?php
             function getCTGRYID()

@@ -1,7 +1,9 @@
 <?php
 session_start();
 include "app/admin/models/pdo.php";
+include "app/admin/models/pdo.php";
 include "app/home/views/structure/header.php";
+include "app/home/modules/models/methods.php";
 include "app/home/modules/models/methods.php";
 
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
@@ -21,8 +23,9 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'addyeuthich':
             if (isset($_SESSION["username"])) {
                 $user = $_SESSION["username"];
+                $user = $_SESSION["username"];
                 $id = $_GET["id_sanPham"];
-                $check = "SELECT * FROM `yeuthich` WHERE `userName` = '$user' AND `id_sanPham` = '$id'";
+                $check = "SELECT * FROM ``yeuthich`` WHERE `userName` = '$user' AND ``userName` = '$user' AND `id_sanPham`` = '$id'";
                 $flag = pdo_query($check);
                 if (empty($flag)) {
                     $sql = "INSERT INTO `yeuthich`(`userName`, `id_sanPham`) VALUES ('$user','$id')";
@@ -32,11 +35,17 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 } else {
                     echo "<script>alert('Sản phẩm đã có trong mục yêu thích !')</script>";
                     echo "<script>window.location.href='../duan1/index.php?act=yeuthich'</script>";
+                } else {
+                    echo "<script>alert('Sản phẩm đã có trong mục yêu thích !')</script>";
+                    echo "<script>window.location.href='../duan1/index.php?act=yeuthich'</script>";
                 }
             } else {
                 echo "<script>alert('Đăng nhập để thêm sản phẩm !')</script>";
                 echo "<script>window.location.href='../duan1/index.php?act=logIn'</script>";
             }
+            break;
+        case 'thongbao':
+            include "app/home/modules/thongbao/thongbao.php";
             break;
         case 'thongbao':
             include "app/home/modules/thongbao/thongbao.php";
@@ -53,7 +62,13 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'shipped':
             include "app/home/modules/donhang/trangthaidonhang.php";
             break;
+        case 'shipped':
+            include "app/home/modules/donhang/trangthaidonhang.php";
+            break;
         case 'success':
+            include "app/home/modules/donhang/trangthaidonhang.php";
+            break;
+        case 'cancelConfirming':
             include "app/home/modules/donhang/trangthaidonhang.php";
             break;
         case 'cancelConfirming':
@@ -91,7 +106,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 if ($result["sumCart"] != 0) {
                     include "app/home/modules/thanhtoan/thanhtoan.php";
                 } else {
-                    echo "<script>alert('Giỏ hàng của bạn đang trống !, hãy thêm sản phẩm bạn muốn mua vào giỏ hàng và tiến hành thanh toán !')</script>";
+                    // echo "<script>alert('Giỏ hàng của bạn đang trống !, hãy thêm sản phẩm bạn muốn mua vào giỏ hàng và tiến hành thanh toán !')</script>";
                     echo "<script>window.location.href='../duan1/index.php?act=giohang'</script>";
                 }
             }
@@ -100,8 +115,9 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             # 9704198526191432198
             # NGUYENVANA
             # 07/15
-            if (isset($_GET["vnp_TxnRef"])) {
-                $username = $_SESSION["username"];
+            $username = $_SESSION["username"];
+            #vnpay
+            if (isset($_GET["cartTypeVnpay"])) { 
                 $name = $_GET["name"];
                 $location = $_GET["location"];
                 $phone = $_GET["phone"];
@@ -113,68 +129,94 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 pdo_execute($push_order);
                 get_Del_Cart($username, getOrderID());
                 include "app/home/modules/bill/bill.php";
+
+                #Mua bình thường
+            } elseif (isset($_GET["prodID"])) {
+                $name = $_GET["name"];
+                $location = $_GET["location"];
+                $phone = $_GET["phone"];
+                $decodedName = urldecode($name);
+                $decodedLocation = urldecode($location);
+                $decodedPhoneNumber = urldecode($phone);
+                $orderPrice = $_GET["vnp_Amount"] / 100;
+                $push_order = "INSERT INTO `donhang` (`userName`, `ngayDatHang`, `tongGiaDonHang`, `pttt`, `tenNguoiNhan`, `diaChi`, `SDT`) VALUES ('$username', NOW(), '$orderPrice', 'Vnpay', '$decodedName', '$decodedLocation', '$decodedPhoneNumber');";
+                pdo_execute($push_order);
+                $prodID = $_GET["prodID"];
+                $soluong = $_GET["soluong"];
+                $_getProd = "SELECT * FROM sanpham WHERE id_sanPham = '$prodID'";
+                $result = pdo_query_one($_getProd);
+                $orderID = getOrderID();
+                extract($result);
+                if (isset($_GET["gb"])) {
+                    $gb = $_GET["gb"];
+                    $push_ctdh = "INSERT INTO chitietdonhang(id_donHang, soLuong, id_sanPham, GB) VALUES ('$orderID', '$soluong', '$prodID', '$gb')";
+                    pdo_execute($push_ctdh);
+                } else {
+                    $sql = "SELECT store FROM sanpham WHERE id_sanPham = '$prodID'";
+                    $v = pdo_query_one($sql);
+                    extract($v);
+                    $push_ctdh = "INSERT INTO chitietdonhang(id_donHang, soLuong, id_sanPham, GB) VALUES ('$orderID', '$soluong', '$prodID', '$store')";
+                    pdo_execute($push_ctdh);
+                }
+                include "app/home/modules/bill/bill.php";
+
+                #Hiện bill
             } else if (isset($_GET["orderID"])) {
                 include "app/home/modules/bill/bill.php";
+
+                #Momo
             } elseif (isset($_GET["momoPay"])) {
                 $name = $_GET["name"];
                 $location = $_GET["location"];
                 $phone = $_GET["phone"];
                 $amout = $_GET["amount"];
                 $pttt = $_GET["orderType"];
-                $username = $_SESSION["username"];
-                $push_order = "INSERT INTO `donhang` (`userName`, `ngayDatHang`, `tongGiaDonHang`, `pttt`, `tenNguoiNhan`, `diaChi`, `SDT`) VALUES ('$username', NOW(), '$amout', '$pttt', '$name', '$location', '$phone');";
-                pdo_execute($push_order);
-                get_Del_Cart($username, getOrderID());
-                include "app/home/modules/bill/bill.php";
+                if (isset($_GET["payTypeMomo"]) && $_GET["payTypeMomo"] == 10) {
+                    $push_order = "INSERT INTO `donhang` (`userName`, `ngayDatHang`, `tongGiaDonHang`, `pttt`, `tenNguoiNhan`, `diaChi`, `SDT`) VALUES ('$username', NOW(), '$amout', '$pttt', '$name', '$location', '$phone');";
+                    pdo_execute($push_order);
+                    get_Del_Cart($username, getOrderID());
+                    include "app/home/modules/bill/bill.php";
+                }
             }
             break;
         case 'defaultPay':
             include "app/home/modules/thanhtoan/thanhtoan.php";
             break;
         case 'vnpay':
+            $vnp_Returnurl = "";
             $name = $_GET["name"];
             $location = $_GET["location"];
             $phoneNumber = $_GET["phone"];
             $encodedName = urlencode($name);
             $encodedLocation = urlencode($location);
             $encodedPhoneNumber = urlencode($phoneNumber);
+            if (isset($_GET["prodID"]) && isset($_GET["soluong"])) {
+                $prodID = $_GET["prodID"];
+                $soluong = $_GET["soluong"];
+                if (isset($_GET["gb"])) {
+                    $gb = $_GET["gb"];
+                    $vnp_Returnurl = "http://localhost/duan1/index.php?act=bill&name=" . $encodedName . "&location=" . $encodedLocation . "&phone=" . $encodedPhoneNumber . "&prodID=" . $prodID . "&soluong=" . $soluong . "&gb=" . $gb;
+                } else {
+                    $vnp_Returnurl = "http://localhost/duan1/index.php?act=bill&name=" . $encodedName . "&location=" . $encodedLocation . "&phone=" . $encodedPhoneNumber . "&prodID=" . $prodID . "&soluong=" . $soluong;
+                }
+            } else {
+                $vnp_Returnurl = "http://localhost/duan1/index.php?act=bill&name=" . $encodedName . "&location=" . $encodedLocation . "&phone=" . $encodedPhoneNumber . "&cartTypeVnpay=" . 1;
+            }
 
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "http://localhost/duan1/index.php?act=bill&name=" . $encodedName . "&location=" . $encodedLocation . "&phone=" . $encodedPhoneNumber;
+            // $vnp_Returnurl = "http://localhost/duan1/index.php?act=bill&name=" . $encodedName . "&location=" . $encodedLocation . "&phone=" . $encodedPhoneNumber;
             $vnp_TmnCode = "POKN2CIK"; //Mã website tại VNPAY  POKN2CIK
             $vnp_HashSecret = "AXLHALPCYGBUIYLBPWVMXMDXHESWNTNR"; //Chuỗi bí mật AXLHALPCYGBUIYLBPWVMXMDXHESWNTNR
 
-            $vnp_TxnRef = 'NewJeans' . rand(00, 9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+            $vnp_TxnRef = 'NewJeans' . 'NewJeans' . rand(00, 9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
             $vnp_OrderInfo = "billInfor";
             $vnp_OrderType = "billType";
+            $vnp_Amount = $_GET["price"] * 100;
             $vnp_Amount = $_GET["price"] * 100;
             $vnp_Locale = 'vn';
             $vnp_BankCode = 'NCB';
             $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
-            //Add Params of 2.0.1 Version
-            // $vnp_ExpireDate = $_POST['txtexpire'];
-            //Billing
-            // $vnp_Bill_Mobile = $_GET["phone"];
-            // $vnp_Bill_Email = $_POST['txt_billing_email'];
-            // $fullName = trim($_GET["name"]);
-            // if (isset($fullName) && trim($fullName) != '') {
-            //     $name = explode(' ', $fullName);
-            //     $vnp_Bill_FirstName = array_shift($name);
-            //     $vnp_Bill_LastName = array_pop($name);
-            // }
-            // $vnp_Bill_Address = $_GET["location"];
-            // $vnp_Bill_City = $_POST['txt_bill_city'];
-            // $vnp_Bill_Country = $_POST['txt_bill_country'];
-            // $vnp_Bill_State = $_POST['txt_bill_state'];
-            // // Invoice
-            // $vnp_Inv_Phone = $_POST['txt_inv_mobile'];
-            // $vnp_Inv_Email = $_POST['txt_inv_email'];
-            // $vnp_Inv_Customer = $_POST['txt_inv_customer'];
-            // $vnp_Inv_Address = $_POST['txt_inv_addr1'];
-            // $vnp_Inv_Company = $_POST['txt_inv_company'];
-            // $vnp_Inv_Taxcode = $_POST['txt_inv_taxcode'];
-            // $vnp_Inv_Type = $_POST['cbo_inv_type'];
             $inputData = array(
                 "vnp_Version" => "2.1.0",
                 "vnp_TmnCode" => $vnp_TmnCode,
@@ -188,27 +230,15 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 "vnp_OrderType" => $vnp_OrderType,
                 "vnp_ReturnUrl" => $vnp_Returnurl,
                 "vnp_TxnRef" => $vnp_TxnRef
-                // "vnp_ExpireDate" => $vnp_ExpireDate,
-                // "vnp_Bill_Mobile" => $vnp_Bill_Mobile,
-                // "vnp_Bill_FullName" => $fullName,
-                // "vnp_Bill_Email" => $vnp_Bill_Email,
-                // "vnp_Bill_FirstName" => $vnp_Bill_FirstName,
-                // "vnp_Bill_LastName" => $vnp_Bill_LastName,
-                // "vnp_Bill_Address" => $vnp_Bill_Address,
-                // "vnp_Bill_City" => $vnp_Bill_City,
-                // "vnp_Bill_Country" => $vnp_Bill_Country,
-                // "vnp_Inv_Phone" => $vnp_Inv_Phone,
-                // "vnp_Inv_Email" => $vnp_Inv_Email,
-                // "vnp_Inv_Customer" => $vnp_Inv_Customer,
-                // "vnp_Inv_Address" => $vnp_Inv_Address,
-                // "vnp_Inv_Company" => $vnp_Inv_Company,
-                // "vnp_Inv_Taxcode" => $vnp_Inv_Taxcode,
-                // "vnp_Inv_Type" => $vnp_Inv_Type
             );
 
             if (isset($vnp_BankCode) && $vnp_BankCode != "") {
                 $inputData['vnp_BankCode'] = $vnp_BankCode;
             }
+            if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+                $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+            }
+            var_dump($inputData);
             if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
                 $inputData['vnp_Bill_State'] = $vnp_Bill_State;
             }
@@ -229,14 +259,17 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             $vnp_Url = $vnp_Url . "?" . $query;
             if (isset($vnp_HashSecret)) {
                 $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+                $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);
                 $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
             }
             $returnData = array(
                 'code' => '00', 'message' => 'success', 'data' => $vnp_Url
             );
             if (isset($_GET["act"]) && $_GET["act"] === "vnpay") {
+            if (isset($_GET["act"]) && $_GET["act"] === "vnpay") {
                 echo "<script>window.location.href='" . $vnp_Url . "'</script>";
             } else {
+                echo json_encode($returnData);
                 echo json_encode($returnData);
             }
             break;

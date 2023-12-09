@@ -4,7 +4,9 @@
             <div class="main-content">
 
                 <form action="index.php?act=themdanhmuc" method="post" enctype="multipart/form-data">
+                <form action="index.php?act=themdanhmuc" method="post" enctype="multipart/form-data">
                     <h3 class="title-page">
+                        Thêm danh mục
                         Thêm danh mục
                     </h3>
                     <div class="form-group">
