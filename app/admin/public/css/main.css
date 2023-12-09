@@ -5,27 +5,32 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    
+
 }
-body{
+
+body {
     background-color: #e6e6e6;
 }
-.site-logo{
+
+.site-logo {
     padding-left: 30px;
 }
-.header-info ul{
+
+.header-info ul {
     padding-left: 150px;
     display: flex;
     list-style: none;
     line-height: 60px;
 }
-.header-info ul li a{
+
+.header-info ul li a {
     font-weight: 700;
     color: #616161;
     margin-right: 30px;
     text-decoration: none;
     font-size: 18px;
 }
+
 .main-page {
     display: flex;
     position: relative;
@@ -54,6 +59,7 @@ body{
     border-radius: 0px 5px 5px 0px;
     z-index: 20;
 }
+
 nav ul {
     padding: 0 !important;
     list-style: none;
@@ -91,9 +97,11 @@ nav ul li a:hover {
     box-sizing: border-box;
     display: flex;
 }
-.main-content .statistics a{
+
+.main-content .statistics a {
     text-decoration: none;
 }
+
 .widget-chart {
     text-align: center;
     padding: 1rem;
@@ -101,102 +109,116 @@ nav ul li a:hover {
     position: relative;
 }
 
-.widget-chart{
+.widget-chart {
     color: #000;
     font-size: 24px;
     font-weight: 700;
 }
-.chart{
+
+.chart {
     padding: 15px;
     border-radius: 10px;
 }
-table{
+
+table {
     border: solid 1px #000;
     border-collapse: collapse;
 }
-.revenue th, td{
+
+.revenue th,
+td {
     width: 200px;
     border-left: solid 1px #000;
 }
-.chart h4{
+
+.chart h4 {
     margin-bottom: 25px;
 }
-.chart span{
+
+.chart span {
     margin-left: 180px;
     font-weight: 700;
 }
-.form-login{
+
+.form-login {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
-.form-gr{
+
+.form-gr {
     padding: 15px;
     border-radius: 10px;
 }
-.addPro .form-group{
+
+.addPro .form-group {
     margin-bottom: 20px;
 }
 
 
-h1{
-color: #d1d1d1;
+h1 {
+    color: #d1d1d1;
     background-color: #000;
-}  
+}
 
 
 
 .app-main ul li a {
-    
-    
+
+
     padding: 16px;
     border: 2px solid transparent;
-    border-radius: 5px; /* Thêm bo góc tròn với bán kính 5px */
-  }
-  
-  .app-main ul li a:hover {
+    border-radius: 5px;
+    /* Thêm bo góc tròn với bán kính 5px */
+}
+
+.app-main ul li a:hover {
     color: #000;
     background-color: white;
-   transition: 0,5s;
-   padding-left: 7px;
-  }
-  
-
-  tbody tr td{
-border: #cacaca solid 2px;
+    transition: 0, 5s;
+    padding-left: 7px;
+}
 
 
-  }
+tbody tr td {
+    border: #cacaca solid 2px;
+
+
+}
 
 
 div .brand {
 
-    position: fixed;  /* giữ phần tử ở vị trí cố định trên màn hình */
-    top: 0;  /* giữ phần tử ở phía trên cùng của trình duyệt khi di chuyển */
-    left: 0; /* giữ phần tử ở phía trái của trình duyệt khi di chuyển */
-    z-index: 1000; 
+    position: fixed;
+    /* giữ phần tử ở vị trí cố định trên màn hình */
+    top: 0;
+    /* giữ phần tử ở phía trên cùng của trình duyệt khi di chuyển */
+    left: 0;
+    /* giữ phần tử ở phía trái của trình duyệt khi di chuyển */
+    z-index: 1000;
     height: 80px;
     width: 100%;
     grid-area: brand;
-    background: #a7c3ee!important;
+    background: #a7c3ee !important;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: sticky;
     top: 0px;
     z-index: 5;
-    
-  }
-   div .brand h1 {
+
+}
+
+div .brand h1 {
     padding-left: 40px;
     font-size: 50px;
-   background-color:   rgba(0, 0, 0, 0);
-  }
+    background-color: rgba(0, 0, 0, 0);
+}
 
-td .moden{
+td .moden {
     display: flex;
 }
-  
+
 
 
 .timkiem input[type=text] {
@@ -208,31 +230,32 @@ td .moden{
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     border: none;
-  }
-  
-  /* When the input field gets focus, change its width to 100% */
-  .timkiem input[type=text]:focus {
+}
+
+/* When the input field gets focus, change its width to 100% */
+.timkiem input[type=text]:focus {
     width: 400px;
 
 
-  }
+}
 
-  .timkiem {
+.timkiem {
     margin-left: 13px;
     display: flex;
     align-items: center;
-   
+
 }
 
 .timkiem input {
-    margin-left: 5px; /* Adjust the margin as needed */
+    margin-left: 5px;
+    /* Adjust the margin as needed */
 }
 
-.timkiem a{
-font-size: 30px;
+.timkiem a {
+    font-size: 30px;
     color: #fff;
 }
-  
+
 
 .notification {
     display: flex;
@@ -240,40 +263,42 @@ font-size: 30px;
 }
 
 .notification img {
-    margin-right: 10px; /* Dời lề theo cần thiết */
+    margin-right: 10px;
+    /* Dời lề theo cần thiết */
 }
 
-.notification i{
-padding: 5px;
+.notification i {
+    padding: 5px;
     color: #fff;
     font-size: 30px;
- 
-}
-.notification{
-margin-right: 40px;
-
 
 }
 
-.notification a{
+.notification {
+    margin-right: 40px;
+
+
+}
+
+.notification a {
     margin-top: 5px;
-color: black;
-text-decoration: none;
-margin-right: 10px;
+    color: black;
+    text-decoration: none;
+    margin-right: 10px;
 
 
 }
 
-.notification button{
-    border-radius: 50% ;
-  background-color: #a7c3ee;
-  border: 1px solid #a7c3ee;
-    
+.notification button {
+    border-radius: 50%;
+    background-color: #a7c3ee;
+    border: 1px solid #a7c3ee;
+
 }
 
 div.aa {
     width: 100%;
     display: flex;
-justify-content: space-between;
+    justify-content: space-between;
 
 }

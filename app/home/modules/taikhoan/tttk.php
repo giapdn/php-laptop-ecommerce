@@ -56,8 +56,8 @@ session_start();
 
     button {
         border-radius: 20px;
-        border: 1px solid #FF4B2B;
-        background-color: #FF4B2B;
+        border: 1px solid #7fad39;
+        background-color: #7fad39;
         color: #FFFFFF;
         font-size: 12px;
         font-weight: bold;
@@ -175,9 +175,9 @@ session_start();
     }
 
     .overlay {
-        background: #FF416C;
+        background: #7fad39;
         background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-        background: linear-gradient(to right, #FF4B2B, #FF416C);
+        background: linear-gradient(to right, #3a6002, #7fad39);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 0 0;
@@ -292,7 +292,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trung tâm tài khoarn</title>
+    <title>Trung tâm tài khoản</title>
 </head>
 
 <body>
@@ -300,29 +300,41 @@ session_start();
 
         <div class="container" id="container">
             <div class="form-container sign-in-container">
-                <form action="" method="post">
-                    <h1>Your account</h1>
-                    <span style="position: relative;left: -100px;">Tên đăng nhập</span>
-                    <input name="username" type="text" placeholder="User" />
-                    <span style="position: relative;left: -115px;">Mật khẩu</span>
-                    <input name="password" type="password" placeholder="Password" />
-                    <span style="position: relative;left: -125px;">Email</span>
-                    <input name="email" type="text" placeholder="Email" />
-                    <span style="position: relative;left: -120px;">Địa chỉ</span>
-                    <input name="diachi" type="text" placeholder="Nhập địa chỉ" />
-                    <span style="position: relative;left: -100px;">Số điện thoại</span>
-                    <input name="sdt" type="text" placeholder="Nhập số điện thoại" />
-                    <button type="submit">Cập nhật</button>
+                <form action="/duan1/index.php?act=capnhattk" method="post">
+                    <?php
+                    $user = $_SESSION["username"];
+                    $sql = "SELECT * FROM users WHERE userName = '$user'";
+                    include "../models/pdo.php";
+                    $result = pdo_query_one($sql);
+                    extract($result);
+                    echo '
+                        <span style="position: relative;left: -100px;">Tên đăng nhập</span>
+                        <input name="username" type="text" value="' . $userName . '" placeholder="User" >
+                        <span style="position: relative;left: -125px;">Email</span>
+                        <input name="email" type="text" value="' . $email . '" placeholder="Email">
+                        <span style="position: relative;left: -120px;">Địa chỉ</span>
+                        <input name="diachi" type="text" value="' . $diachi . '" placeholder="Nhập địa chỉ">
+                        <span style="position: relative;left: -100px;">Số điện thoại</span>
+                        <input name="sdt" type="text" value="' . $sdt . '" placeholder="Nhập số điện thoại">
+                    ';
+                    ?>
+                    <button type="submit" name="capnhat">Cập nhật</button>
                 </form>
             </div>
 
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-right">
-                        <div class="circle" style="position: relative;top: -20px;">
-                            <img src="/duan1/app/home/public/img/zaloicon.jpg" alt="Your avatar">
-                        </div>
                         <?php
+                        $user = $_SESSION["username"];
+                        $sql = "SELECT avatar FROM users WHERE userName = '$user'";
+                        $result = pdo_query_one($sql);
+                        extract($result);
+                        echo '
+                            <div class="circle" style="position: relative;top: -20px;">
+                                <img src="/duan1/app/home/public/img/' . $avatar . '" alt="Your avatar">
+                             </div>
+                        ';
                         if (isset($_SESSION["username"])) {
                             echo '<h1>' . $_SESSION["username"] . '</h1>';
                         } else {

@@ -271,7 +271,7 @@
 
 <body>
     <div class="lll">
-        <h2>Sign in/up Form</h2>
+        <!-- <h2>Sign in/up Form</h2> -->
         <div class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="xulydangky.php" method="post">
@@ -285,7 +285,7 @@
                     <input name="username" type="text" placeholder="Tên tài khoản" />
                     <input name="password" type="password" placeholder="Nhập mật khẩu" />
                     <input name="rePassword" type="password" placeholder="Nhập lại mật khẩu" />
-                    <button>ĐĂNG KÝ</button>
+                    <button >ĐĂNG KÝ</button>
                 </form>
             </div>
 
@@ -298,8 +298,8 @@
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <span>or use your account</span>
-                    <input name="username" type="text" placeholder="User" />
-                    <input name="password" type="password" placeholder="Password" />
+                    <input name="username" type="text" placeholder="User" autocomplete="off">
+                    <input name="password" type="password" placeholder="Password" autocomplete="off">
                     <a href="quenmk.php">Quên mật khẩu?</a>
                     <button type="submit">Đăng nhập</button>
                     <!-- <input type="submit" value="Đăng nhập"> -->

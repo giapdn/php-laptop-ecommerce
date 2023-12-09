@@ -12,7 +12,7 @@
                                 <th>Thêm vào giỏ hàng</th>
                             </tr>
                         </thead>
-                        <tbody id="cart">
+                        <tbody>
                             <?php
                             if (isset($_SESSION["username"])) {
                                 $username = $_SESSION["username"];
@@ -23,7 +23,13 @@
                                 ";
                                 $data = pdo_query($sql);
                                 if (empty($data)) {
-                                    // echo '<script>alert("Giỏ hàng của bạn đang trống !")</script>';
+                                    echo '
+                                        <tr>
+                                            <td>
+                                                <h5>Bạn chưa thêm sản phẩm nào vào mục yêu thích !</h5>
+                                            </td>
+                                        </tr>
+                                    ';
                                 } else {
                                     foreach ($data as $rows) {
                                         extract($rows);
@@ -33,10 +39,10 @@
                                                 <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
                                                 <h5>' . $tenSanPham . '</h5>
                                             </td>
-                                            <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</td>                                            
+                                            <td class="shoping__cart__price"" style="color: red;">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</td>                                            
                                            
                                             <td class="shoping__cart__item__quantity">
-                                            <a href="index.php?act=addToCart&id_sanPham=' . $id_sanPham . '"><i class="fas fa-check-circle"></i></a>
+                                            <a href="index.php?act=addToCart&id_sanPham=' . $id_sanPham . '" class="aa"><i class="fas fa-check-circle"></i></a>
                                             
                                             <td class="shoping__cart__item__close">
                                             <a href="index.php?act=delyeuthich&id_sanPham=' . $id_sanPham . '" class="jj"><i class="fas fa-times-circle"></i></a>
@@ -56,47 +62,28 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
 <!-- Shoping Cart Section End -->
 <style>
     a.jj:hover {
         color: red;
-        font-size: 20px;
-     
+        font-size: 30px;
+
     }
-    a.jj{
+
+    a.jj {
+        color: #7fad39;
+    }
+
+    a.aa:hover {
+        color: blue;
+        font-size: 30px;
+
+    }
+
+    a.aa {
         color: #7fad39;
     }
 </style>
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

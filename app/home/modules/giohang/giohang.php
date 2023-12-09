@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!-- Shoping Cart Section Begin -->
 <section class="shoping-cart spad">
     <div class="container">
@@ -32,8 +28,10 @@ session_start();
                                     echo '
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <img src="app/admin/uploads/' . $img_path . '" style="height: 200px;width: auto;">
+                                                <img src="app/admin/uploads/' . $img_path . '" style="height: 150px;width: auto;">
+                                                <br>
                                                 <h5>' . $tenSanPham . '</h5>
+                                                <h6 style="color: #85929e;">Chip:'.$chip.', Ram:'.$chip.', Store:'.$store.', Màu:'.$color.', Card:'.$card.'</h6>
                                             </td>
                                             <td class="shoping__cart__price"">' . number_format($giaSanPham, 0, ',', '.') . ' ₫</td>                                            
                                             <td class="shoping__cart__quantity">
@@ -41,7 +39,7 @@ session_start();
                                                 <input style="width: 40px;border: 0px;" type="number" min="1" max="5" step="1" value="' . $soluong . '" oninput="ajaxSL(' . $id_sanPham . ', this.value)">                                                 
                                             </div>
                                             </td>
-                                            <td class="shoping__cart__total"><div style="background-color: yellow;"><span id="' . $id_sanPham . '" style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . ' ₫</span></div></td>                                                                              
+                                            <td class="shoping__cart__total"><div ><span id="' . $id_sanPham . '" style="color: red;">' . number_format($giaSanPham * $soluong, 0, ',', '.') . ' ₫</span></div></td>                                                                              
                                             <td class="shoping__cart__item__close">
                                             <a href="index.php?act=delFromCart&id_sanpham=' . $id_sanPham . '" class="jj"><i class="fas fa-times-circle"></i></a>                           
                                         </td>
@@ -105,7 +103,11 @@ session_start();
                                 WHERE giohang.userName = '$id';
                             ";
                             $data = pdo_query_one($sql);
-                            echo '<li>Tổng <span id="totalCart" style="background-color: yellow;color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
+                            if ($data["sumCart"] != null) {
+                                echo '<li>Tổng <span id="totalCart" style="background-color: color: red;">' . number_format($data["sumCart"], 0, ',', '.') . ' ₫</span></li>';
+                            } else {
+                                echo '<li>Tổng <span id="totalCart" style="background-color: color: red;">' . number_format(0, 0, ',', '.') . ' ₫</span></li>';
+                            }
                         }
                         ?>
                     </ul>
@@ -116,3 +118,14 @@ session_start();
     </div>
 </section>
 <!-- Shoping Cart Section End -->
+
+<style>
+    a.jj:hover {
+        color: red;
+        font-size: 30px;
+    }
+
+    a.jj {
+        color: #7fad39;
+    }
+</style>

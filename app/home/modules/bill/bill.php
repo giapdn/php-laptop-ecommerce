@@ -1,8 +1,4 @@
 <!-- Checkout Section Begin -->
-<?php
-session_start();
-include "app/home/modules/models/methods.php";
-?>
 <section class="checkout spad">
     <div class="container">
         <div class="row"></div>
@@ -14,60 +10,103 @@ include "app/home/modules/models/methods.php";
                         <div class="checkout__order">
                             <h4>Đơn hàng của bạn</h4>
                             <?php
-                            // if (isset($_GET["act"])) {
-                            //     switch ($_GET["act"]) {
-                            //         case 'bill':
-                            //             $id_donhang = $_GET["vnp_TxnRef"];
-                            //             $sql = "SELECT * FROM donhang WHERE id_donHang = '$id_donhang'";
-                            //             $result = pdo_query_one($sql);
-                            //             extract($result);
-                            //             echo '
-                            //                 <div class="checkout__order__products">Mã đơn hàng: <span style="color: green;">' . $id_donHang . '</span></div>
-                            //                 <hr>
-                            //                 <div class="checkout__order__products">Tên người nhận: <span <span style="color: green;">' . $tenNguoiNhan . '</span></div>
-                            //                 <hr>
-                            //                 <div class="checkout__order__products">Ngày đặt hàng: <span <span style="color: green;">' . $ngayDatHang . '</span></div>
-                            //                 <hr>
-                            //                 <div class="checkout__order__products">Địa chỉ: <span <span style="color: green;">' . $diaChi . '</span></div>
-                            //                 <hr>
-                            //                 <div class="checkout__order__products">Số điện thoại: <span <span style="color: green;">' . $SDT . '</span></div>
-                            //                 <hr>
-                            //                 <div class="checkout__order__products">Phương thức thanh toán: <span <span style="color: green;">' . $pttt . '</span></div>
-                            //                 <hr>
-                            //             ';
-                            //             break;
-                            //     }
-                            // }
+                            if (isset($_GET["orderID"])) {
+                                $orderID = $_GET["orderID"];
+                                if (isset($_GET["checked"])) {
+                                    $flag = $_GET["checked"];
+                                    $checked_push = "UPDATE thongbao SET checked = '$flag' WHERE id_donHang = '$orderID'";
+                                    pdo_execute($checked_push);
+                                }
+                                $sql = "SELECT * FROM donhang WHERE id_donHang = '$orderID'";
+                                showBill($sql);
+                            } else if (isset($_GET["vnp_TxnRef"])) {
+                                $orderID = getOrderID();
+                                $sql = "SELECT * FROM donhang WHERE id_donHang = '$orderID'";
+                                showBill($sql);
+                            } elseif (isset($_GET["orderType"]) && $_GET["orderType"] == 'momo_wallet') {
+                                $orderID = getOrderID();
+                                $sql = "SELECT * FROM donhang WHERE id_donHang = '$orderID'";
+                                showBill($sql);
+                            }
                             ?>
                             <div class="checkout__order__products">
                                 <?php
-                                // $id = $_GET["vnp_TxnRef"];
-                                // $sql = "SELECT chitietdonhang.soLuong, sanpham.*
-                                //     FROM chitietdonhang
-                                //     JOIN sanpham ON chitietdonhang.id_sanPham = sanpham.id_sanPham
-                                //     WHERE chitietdonhang.id_donHang = '$id';
-                                // ";
-                                // $result = pdo_query($sql);
-                                // foreach ($result as $key) {
-                                //     extract($key);
-                                //     echo '
-                                //         <div class="anh" style="display: flex;">
-                                //             <img src="app/admin/uploads/' . $img_path . '" width="80px" height="80px" style=" margin-right: 20px;"><br>
-                                //             <div class="thongtin" style="font-size: small; color: gray; ">
-                                //                 <label>Sản phẩm: ' . $tenSanPham . '</label><br>
-                                //                 <label>Giá: ' . number_format($giaSanPham, 0, ',', '.') . '</label><br>
-                                //                 <label>Số lượng: ' . $soLuong . '</label><br>
-                                //                 <label>Mô tả: ' . $moTaSanPham . '</label>
-                                //             </div>
-                                //         </div>
-                                //         <hr>
-                                //     ';
-                                // }
+                                if (isset($_GET["orderID"])) {
+                                    $orderID = $_GET["orderID"];
+                                    $sql = "SELECT chitietdonhang.soLuong, sanpham.*
+                                        FROM chitietdonhang
+                                        JOIN sanpham ON chitietdonhang.id_sanPham = sanpham.id_sanPham
+                                        WHERE chitietdonhang.id_donHang = '$orderID';
+                                    ";
+                                    showBillProd($sql);
+                                } elseif (isset($_GET["vnp_TxnRef"])) {
+                                    $orderID = getOrderID();
+                                    $sql = "SELECT chitietdonhang.soLuong, sanpham.*
+                                        FROM chitietdonhang
+                                        JOIN sanpham ON chitietdonhang.id_sanPham = sanpham.id_sanPham
+                                        WHERE chitietdonhang.id_donHang = '$orderID';
+                                    ";
+                                    showBillProd($sql);
+                                } elseif (isset($_GET["orderType"]) && $_GET["orderType"] == 'momo_wallet') {
+                                    $orderID = getOrderID();
+                                    $sql = "SELECT chitietdonhang.soLuong, sanpham.*
+                                    FROM chitietdonhang
+                                    JOIN sanpham ON chitietdonhang.id_sanPham = sanpham.id_sanPham
+                                    WHERE chitietdonhang.id_donHang = '$orderID';
+                                ";
+                                    showBillProd($sql);
+                                }
                                 ?>
                             </div>
-                            <div class="checkout__order__total">Tổng giá trị đơn hàng: <span><?php #getCartSum($_GET["getCartSum"]) ?></span></div>
-
-
+                            <div class="checkout__order__total">
+                                Tổng giá trị đơn hàng:
+                                <span>
+                                    <?php
+                                    if (isset($_GET["orderID"])) {
+                                        echo getCartSum($_GET["orderID"]);
+                                    } else if (isset($_GET["vnp_TxnRef"])) {
+                                        echo getCartSum(getOrderID());
+                                    } else if (isset($_GET["orderType"]) && $_GET["orderType"] == 'momo_wallet') {
+                                        echo getCartSum(getOrderID());
+                                    }
+                                    ?>
+                                </span>
+                            </div>
+                            <?php
+                            if (isset($_GET["orderID"])) {
+                                $orderID = $_GET["orderID"];
+                                $sql = "SELECT pttt, trangThai FROM donhang WHERE id_donHang = '$orderID'";
+                                $result = pdo_query_one($sql);
+                                extract($result);
+                                if (isset($_GET["flag"]) && $_GET["flag"] == 'noNeedDelBtn') {
+                                    # code...
+                                } else if ($trangThai != "canceled" && $trangThai != "success" && $trangThai != "shipping" && $trangThai != "cancelConfirming" && $pttt != "Vnpay") {
+                                    echo '<button onclick="cancelOrder(' . $orderID . ')" type="submit" class="site-btn del-order-btn" style="background-color: red;">Huỷ đơn hàng</button>';
+                                }
+                            }
+                            ?>
+                            <script>
+                                function cancelOrder(orderID) {
+                                    event.preventDefault();
+                                    var xacNhan = confirm("Bạn có chắc sẽ huỷ đơn này ?");
+                                    if (xacNhan) {
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "app/home/modules/bill/ajaxBill.php",
+                                            data: {
+                                                orderID: Number(orderID)
+                                            },
+                                            success: function(response) {
+                                                alert(`Đơn hàng ${orderID} đã được tạm huỷ và sẽ phải chờ xác nhận nó thể huỷ hay không, hãy chờ thông báo từ shop.`)
+                                                window.location.href = `../duan1/index.php?act=cancelConfirming`;
+                                            },
+                                            error: function(error) {
+                                                console.log(error);
+                                            }
+                                        })
+                                    }
+                                }
+                            </script>
                             <button type="submit" onclick="backToPage()" class="site-btn">Quay lại trang chủ</button> <br>
                             <span style="font-size: x-small;">Cảm ơn bạn đã mua sắm ở LSG Laptop!</span>
                         </div>
@@ -75,7 +114,7 @@ include "app/home/modules/models/methods.php";
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
                             <h4>Đơn mua</h4>
-                            <button type="submit" onclick="goToMyOrder()" class="site-btn">Theo dõi đơn hàng</button>
+                            <button type="submit" onclick="goToMyOrder('lichsu')" class="site-btn">Theo dõi đơn hàng</button>
                         </div>
                     </div>
                 </div>
@@ -83,18 +122,6 @@ include "app/home/modules/models/methods.php";
         </div>
     </div>
 </section>
-
-<script>
-    function goToMyOrder() {
-        event.preventDefault();
-        window.location.href = "../duan1/index.php?act=lichsu";
-    }
-
-    function backToPage() {
-        event.preventDefault();
-        window.location.href = "../duan1/index.php";
-    }
-</script>
 <!-- Checkout Section End -->
 
 <style>
