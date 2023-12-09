@@ -104,7 +104,7 @@ function ajaxSelect(id) {
     }
 }
 
-//ajax thanh toán (khi nhận hàng)
+//Thanh toán (khi nhận hàng) (kế thừa hầu hết từ letPay và cùng gửi đến thanhtoan/process.php)
 function letPayNow(price, prodID, gb, soluong) {
     event.preventDefault();
     let name = document.getElementById("name");
@@ -255,7 +255,7 @@ function goToBill(id) {
     window.location.href = "index.php?act=bill&orderID=" + id;
 }
 
-function confirmOrder(orderID) {
+function confirmOrder(orderID, pttt) {
     console.log(orderID);
     var hehe = confirm("Bạn chắc chắn đã nhận được đơn hàng ?, sau khi xác nhận sẽ không thể hoàn tác.");
     if (hehe) {
@@ -263,7 +263,8 @@ function confirmOrder(orderID) {
             type: 'POST',
             url: 'app/home/modules/donhang/ajaxConfirm.php',
             data: {
-                orderID: Number(orderID)
+                orderID: Number(orderID),
+                pttt: pttt.toString()
             },
             success: function (response) {
                 alert("Xong");
@@ -295,14 +296,52 @@ document.addEventListener("DOMContentLoaded", function () {
 function ajaxFilter(min, max) {
     $.ajax({
         type: "POST",
-        url: "app/home/modules/trangsanpham/ajaxRangePrice.php",
+        url: "app/home/modules/trangsanpham/processAjax.php",
         data: {
             min: Number(min),
             max: Number(max)
         },
         success: function (response) {
             console.log(1);
+            $(".row.p.o.v").html(response);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
 
+function chitietsp(params, id_danhmuc) {
+    window.location.href = "index.php?act=chitietsanpham&idsp=" + params + "&id_danhmuc=" + id_danhmuc;
+}
+
+function ajaxColor(x) {
+    $.ajax({
+        type: "POST",
+        url: "app/home/modules/trangsanpham/processAjax.php",
+        data: {
+            color: x.toString()
+        },
+        success: function (response) {
+            console.log(1);
+            $(".row.p.o.v").html(response);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
+function ajaxOption(ram, gb) {
+    $.ajax({
+        type: "POST",
+        url: "app/home/modules/trangsanpham/processAjax.php",
+        data: {
+            ram: ram,
+            hardware: gb
+        },
+        success: function (response) {
+            console.log(1);
             $(".row.p.o.v").html(response);
         },
         error: function (error) {

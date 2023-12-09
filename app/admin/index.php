@@ -13,6 +13,26 @@ if (isset($_GET["act"])) {
         case 'danhmuc':
             include "./views/danhmuc.php";
             break;
+        case 'addthongBao':
+            include "./modules/thongbao/addThongbao.php";
+            break;
+        // case 'themthongbao':
+        //     $username = $_POST["__userName"];
+        //     $content = $_POST["content"];
+        //     if ($username == 'all') {
+        //         $all = "SELECT userName FROM users";
+        //         $user = pdo_query($all);
+        //         foreach ($user as $key) {
+        //             extract($user);
+        //             $sql = "INSERT INTO thongbao (userName, noidung, dateCreate) VALUES ('$userName', '$content', NOW())";
+        //             pdo_execute($sql);
+        //         }
+        //         # code...
+        //     } else {
+        //         $sql = "INSERT INTO thongbao (userName, noidung, dateCreate) VALUES ('$username', '$content', NOW())";
+        //         pdo_execute($sql);
+        //     }
+        //     break;
         case 'quanlybienthe':
             include "./modules/bienthe/listBienthe.php";
             break;

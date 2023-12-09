@@ -41,7 +41,7 @@
                                 </div>
                                 <span class="widget-numbers">
                                 <?php
-                               $sql ="SELECT SUM(soLuong) AS tong FROM sanpham ";
+                               $sql ="SELECT SUM(count) AS tong FROM sanpham ";
                                 $lis = pdo_query($sql);
                                 foreach ($lis as $a) {
                                     echo '

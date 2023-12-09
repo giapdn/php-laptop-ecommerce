@@ -84,13 +84,11 @@
                                 extract($result);
                                 if (isset($_GET["flag"]) && $_GET["flag"] == 'noNeedDelBtn') {
                                     # code...
-                                } else if ($trangThai != "canceled" && $trangThai != "success" && $trangThai != "shipping" && $trangThai != "cancelConfirming" && $pttt != "Vnpay") {
+                                } else if ($trangThai != "canceled" && $trangThai != "success" && $trangThai != "shipping" && $trangThai != "cancelConfirming" && $pttt != "Vnpay" && $pttt != "momo_wallet" && $pttt != "TTKNH-paid") {
                                     echo '<button onclick="cancelOrder(' . $orderID . ')" type="submit" class="site-btn del-order-btn" style="background-color: red;">Huỷ đơn hàng</button>';
                                 }
                             }
                             ?>
-
-
 
                             <script>
                                 function cancelOrder(orderID) {
@@ -104,8 +102,13 @@
                                                 orderID: Number(orderID)
                                             },
                                             success: function(response) {
-                                                alert(`Đơn hàng ${orderID} đã được tạm huỷ và sẽ phải chờ xác nhận nó thể huỷ hay không, hãy chờ thông báo từ shop.`)
-                                                window.location.href = `../duan1/index.php?act=cancelConfirming`;
+                                                if (response.accept == "no") {
+                                                    alert(`Đơn hàng ${orderID} đã được tạm huỷ và sẽ phải chờ xác nhận nó thể huỷ hay không, hãy chờ thông báo từ shop.`)
+                                                    window.location.href = `../duan1/index.php?act=cancelConfirming`;
+                                                } else {
+                                                    alert(`Đơn hàng ${orderID} đã được huỷ thành công.`)
+                                                    window.location.href = `../duan1/index.php?act=canceled`;
+                                                }
                                             },
                                             error: function(error) {
                                                 console.log(error);

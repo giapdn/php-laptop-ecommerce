@@ -11,7 +11,9 @@ session_start();
 					<div class="product__details__pic__item">
 						<?php
 						$x = $_GET["idsp"];
+						$addView = "UPDATE sanpham SET views = views + 1 WHERE id_sanPham = '$x'";
 						$sql = "SELECT sanpham.img_path FROM sanpham WHERE id_sanPham = '$x'";
+						pdo_execute($addView);
 						$y = pdo_query_one($sql);
 						echo '<img class="product__details__pic__item--large" src="app/admin/uploads/' . $y["img_path"] . '" alt="img">';
 						?>

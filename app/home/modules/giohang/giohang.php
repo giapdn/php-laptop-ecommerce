@@ -110,7 +110,7 @@
                         }
                         ?>
                     </ul>
-                    <a href="index.php?act=thanhtoan" class="primary-btn">Đặt hàng</a>
+                    <a href="index.php?act=thanhtoan&payCart=5" class="primary-btn">Đặt hàng</a>
                 </div>
             </div>
         </div>

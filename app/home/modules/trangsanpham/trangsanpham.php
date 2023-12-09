@@ -1,21 +1,3 @@
-<!-- Breadcrumb Section Begin -->
-<section style="display: none;" class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Organi Shop</h2>
-                    <div class="breadcrumb__option">
-                        <a href="./index.html">Home</a>
-                        <span>Shop</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Breadcrumb Section End -->
-
 <section class="product spad">
     <div class="container">
         <div class="row">
@@ -41,84 +23,59 @@
                         <button class="btn btn-primary" onclick="ajaxFilter(document.querySelector('.form-control.rounded.mb-1.min').value, document.querySelector('.form-control.rounded.mb-1.max').value)">Lọc</button>
                     </div>
                     <div class="sidebar__item sidebar__item__color--option">
-                        <h4>Colors</h4>
+                        <h4>Bạn thích màu nào ?</h4>
                         <div class="sidebar__item__color sidebar__item__color--white">
                             <label for="white">
-                                White
-                                <input type="radio" id="white">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--gray">
-                            <label for="gray">
-                                Gray
-                                <input type="radio" id="gray">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--red">
-                            <label for="red">
-                                Red
-                                <input type="radio" id="red">
+                                Trắng
+                                <input type="radio" id="white" value="Trắng" onclick="ajaxColor(this.value)">
                             </label>
                         </div>
                         <div class="sidebar__item__color sidebar__item__color--black">
                             <label for="black">
-                                Black
-                                <input type="radio" id="black">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--blue">
-                            <label for="blue">
-                                Blue
-                                <input type="radio" id="blue">
+                                Đen
+                                <input type="radio" id="black" value="Đen" onclick="ajaxColor(this.value)">
                             </label>
                         </div>
                         <div class="sidebar__item__color sidebar__item__color--green">
                             <label for="green">
-                                Green
-                                <input type="radio" id="green">
+                                All !
+                                <input type="radio" id="green" value="Tất cả !" onclick="ajaxColor(this.value)">
                             </label>
                         </div>
                     </div>
                     <div class="sidebar__item">
-                        <h4>Popular Size</h4>
+                        <h4>Nhu cầu Ram/Bộ nhớ của bạn ?</h4>
                         <div class="sidebar__item__size">
                             <label for="large">
-                                Large
-                                <input type="radio" id="large">
+                                256gb/8gb
+                                <input type="radio" id="large" onclick="ajaxOption(8, 256)">
                             </label>
                         </div>
                         <div class="sidebar__item__size">
                             <label for="medium">
-                                Medium
-                                <input type="radio" id="medium">
+                                512/16gb
+                                <input type="radio" id="medium" onclick="ajaxOption(16, 512)">
                             </label>
                         </div>
                         <div class="sidebar__item__size">
                             <label for="small">
-                                Small
-                                <input type="radio" id="small">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="tiny">
-                                Tiny
-                                <input type="radio" id="tiny">
+                                All !
+                                <input type="radio" id="small" onclick="ajaxOption(0, 0)">
                             </label>
                         </div>
                     </div>
-                    <!-- Chức năng đang ẩn (chưa cần tới) -->
                     <div class="sidebar__item">
                         <div class="latest-product__text">
                             <h4>Mới nhất</h4>
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
                                     <?php
-                                    $sql = "SELECT * FROM `sanpham` LIMIT 6";
+                                    $sql = "SELECT * FROM `sanpham` LIMIT 5";
                                     $data = pdo_query($sql);
                                     foreach ($data as $key) {
                                         extract($key);
                                         echo '
-                                            <a href="#" class="latest-product__item">
+                                            <a href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '&id_danhmuc=' . $id_danhmuc . '" class="latest-product__item">
                                                 <div class="latest-product__item__pic">
                                                     <img src="app/admin/uploads/' . $img_path . '" alt="">
                                                 </div>
@@ -131,17 +88,6 @@
                                     }
                                     ?>
                                 </div>
-                                <!-- <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-3.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -150,13 +96,13 @@
             <div class="col-lg-9 col-md-7">
                 <div class="product__discount">
                     <div class="section-title product__discount__title">
-                        <h2>Ưu đãi</h2>
+                        <h2>Top sản phẩm</h2>
                     </div>
                     <div class="row">
                         <div class="product__discount__slider owl-carousel">
                             <?php
-                            $sql = "SELECT * FROM `sanpham` LIMIT 8";
-                            showUuDai($sql);
+                            $sql = "SELECT * FROM `sanpham` ORDER BY views DESC LIMIT 5";
+                            showTopViewsProd($sql);
                             ?>
                         </div>
                     </div>
@@ -201,7 +147,7 @@
                     }
                     ?>
                 </div>
-                <div class="product__pagination">
+                <div class="product__pagination" style="display: none;">
                     <a href="#">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>

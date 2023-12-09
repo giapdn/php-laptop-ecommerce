@@ -8,9 +8,9 @@ session_start();
                 <nav class="header__menu" style="padding-left: 37px; ">
                     <ul style="display: flex; width:1000px;">
                         <!-- <li><a class="f g z" style="color: white;" href="index.php?act=lichsu">Tất cả</a></li> -->
-                        <li><a class="f g z" style="color: white;" href="index.php?act=pending">Đang xử lý</a></li>
-                        <li><a class="f g z" style="color: white;" href="index.php?act=shipping">Đang vận chuyển</a></li>
-                        <li><a class="f g z" style="color: white;" href="index.php?act=shipped">Đã giao hàng</a></li>
+                        <li><a class="f g z" style="color: white;" href="index.php?act=pending">Xử lý</a></li>
+                        <li><a class="f g z" style="color: white;" href="index.php?act=shipping">Vận chuyển</a></li>
+                        <li><a class="f g z" style="color: white;" href="index.php?act=shipped">Đã giao</a></li>
                         <li><a class="f g z" style="color: white;" href="index.php?act=success">Hoàn thành</a></li>
                         <li><a class="f g z" style="color: white;" href="index.php?act=cancelConfirming">Chờ xác nhận huỷ</a></li>
                         <li><a class="f g z" style="color: white;" href="index.php?act=canceled">Đã huỷ</a></li>
@@ -36,7 +36,7 @@ session_start();
                             switch ($_GET["act"]) {
                                 case 'pending':
                                     echo '<script>document.querySelectorAll(".f.g.z")[0].style.color="orangered"</script>';
-                                    $sql = "SELECT * FROM donhang WHERE `userName` = '$user' AND trangThai = 'pending'";
+                                    $sql = "SELECT * FROM donhang WHERE `userName` = '$user' AND trangThai = 'pending' OR trangThai = 'confirmed'";
                                     showDonHang($sql);
                                     break;
                                 case 'shipping':

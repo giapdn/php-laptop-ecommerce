@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $get_orderID = "SELECT MAX(id_donHang) AS orderID FROM donhang";
     $data = pdo_query_one($get_orderID);
     extract($data);
-    #Trường hợp mua ngay 1 sản phẩm ko thông qua giỏ hàng
+    #Trường hợp mua ngay 1 sản phẩm ko thông qua giỏ hàng và thanh toán khi nhận hàng
     if (isset($_POST["prodID"])) {
         $prodID = $_POST["prodID"];
         $soluong = $_POST["soluong"];
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             pdo_execute($push_ctdh);
         }
     } else {
-        #Trường hợp giỏ hàng
+        #Trường hợp giỏ hàng (Mua thường)
         $get_cart = "SELECT * FROM giohang WHERE userName = '$user'";
         $result = pdo_query($get_cart);
         foreach ($result as $rows) {

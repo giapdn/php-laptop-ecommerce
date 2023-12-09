@@ -83,10 +83,10 @@
 				<div class="featured__controls">
 					<ul>
 						<li class="active" data-filter="*">Tất cả</li>
-						<li data-filter=".oranges">Oranges</li>
+						<!-- <li data-filter=".oranges">Oranges</li>
 						<li data-filter=".fresh-meat">Fresh Meat</li>
 						<li data-filter=".vegetables">Vegetables</li>
-						<li data-filter=".fastfood">Fastfood</li>
+						<li data-filter=".fastfood">Fastfood</li> -->
 					</ul>
 				</div>
 			</div>
@@ -150,12 +150,12 @@
 					<div class="latest-product__slider owl-carousel">
 						<div class="latest-prdouct__slider__item">
 							<?php
-							$sql = "SELECT * FROM `sanpham`where 1 order by views desc limit 0,3";
+							$sql = "SELECT * FROM `sanpham` ORDER BY views LIMIT 3";
 							$data = pdo_query($sql);
 							foreach ($data as $rows) {
 								extract($rows);
 								echo ' 
-									<a href="#" class="latest-product__item">
+									<a href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '&id_danhmuc=' . $id_danhmuc . '" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="app/admin/uploads/' . $img_path . '" alt="">
 										</div>
@@ -175,7 +175,7 @@
 							foreach ($data as $rows) {
 								extract($rows);
 								echo ' 
-									<a href="#" class="latest-product__item">
+									<a href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '&id_danhmuc=' . $id_danhmuc . '" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="app/admin/uploads/' . $img_path . '" alt="">
 										</div>
@@ -202,7 +202,7 @@
 							foreach ($data as $rows) {
 								extract($rows);
 								echo ' 
-									<a href="#" class="latest-product__item">
+									<a href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '&id_danhmuc=' . $id_danhmuc . '" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="app/admin/uploads/' . $img_path . '" alt="">
 										</div>
@@ -222,7 +222,7 @@
 							foreach ($data as $rows) {
 								extract($rows);
 								echo ' 
-									<a href="#" class="latest-product__item">
+									<a href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '&id_danhmuc=' . $id_danhmuc . '" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="app/admin/uploads/' . $img_path . '" alt="">
 										</div>
@@ -249,7 +249,7 @@
 							foreach ($data as $rows) {
 								extract($rows);
 								echo ' 
-									<a href="#" class="latest-product__item">
+									<a href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '&id_danhmuc=' . $id_danhmuc . '" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="app/admin/uploads/' . $img_path . '" alt="">
 										</div>
@@ -269,7 +269,7 @@
 							foreach ($data as $rows) {
 								extract($rows);
 								echo ' 
-									<a href="#" class="latest-product__item">
+									<a href="index.php?act=chitietsanpham&idsp=' . $id_sanPham . '&id_danhmuc=' . $id_danhmuc . '" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="app/admin/uploads/' . $img_path . '" alt="">
 										</div>
@@ -358,9 +358,6 @@
 		window.location.href = "index.php?act=listSPbyDM&id_danhmuc=" + params;
 	}
 
-	function chitietsp(params, id_danhmuc) {
-		window.location.href = "index.php?act=chitietsanpham&idsp=" + params + "&id_danhmuc=" + id_danhmuc;
-	}
 	let index = 0;
 
 	function SlideShow() {

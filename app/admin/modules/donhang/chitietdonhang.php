@@ -8,8 +8,8 @@
                 <label for="categoryID">Mã đơn hàng</label><br>
                 <input name="__orderID" type="text" class="btn btn-primary" readonly value="<?php echo $_GET['id'] ?>"> <br> <br>
                 <?php
-                $prodID = $_GET["id"];
-                $sql = "SELECT * FROM donhang WHERE id_donHang = '$prodID'";
+                $orderID = $_GET["id"];
+                $sql = "SELECT * FROM donhang WHERE id_donHang = '$orderID'";
                 $result = pdo_query_one($sql);
                 extract($result);
                 echo '
@@ -27,14 +27,17 @@
                     <input type="text" value="' . $pttt . '" class="form-control" readonly> <br>
                     <label for="categoryName">Địa chị nhận:</label>
                     <input type="text" value="' . $diaChi . '" class="form-control" readonly> <br>
-                    <label for="categoryName">Trạng thái giao hàng</label>
+                    <label for="categoryName">Trạng thái giao hàng hiện tại</label>
+                    <input type="text" value="' . $trangThai . '" class="form-control" readonly> <br>
                 ';
                 if (isset($_GET["flagg"]) && $_GET["flagg"] == 'capnhat') {
+                    echo '<label for="categoryName">Cập nhật trạng thái</label>';
                     echo '
                         <select class="form-control" name="__orderState" id="" style="background-color: orangered; color: white;">
-                            <option value="pending" selected>pending</option>
-                            <option value="shipping">shipping</option>
-                            <option value="shipped">shipped</option>
+                            <option value="pending" selected>Chờ xác nhận (pending)</option>
+                            <option value="confirmed">Xác nhận giao (confirmed)</option>
+                            <option value="shipping">Đang giao (shipping)</option>
+                            <option value="shipped">Đã giao (shipped)</option>
                         </select> <br>
                     ';
                 }

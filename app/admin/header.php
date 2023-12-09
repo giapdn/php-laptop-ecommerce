@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./public/css/main.css">
     <script src="https://kit.fontawesome.com/8c204d0fdf.js" crossorigin="anonymous"></script>
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Quản trị</title>
     <style>
@@ -173,7 +172,9 @@
                     <li>
                         <a href="index.php?act=banner"><i class="fa-solid fa-comment-dots ico-side"></i>Quản lí banner</a>
                     </li>
-
+                    <!-- <li>
+                        <a href="index.php?act=addthongBao"><i class="fa-solid fa-comment-dots ico-side"></i>Gửi thông báo</a>
+                    </li> -->
                     <li>
                         <a href="/duan1/index.php"><i class="fas fa-sign-out-alt"></i> Về Website</a>
                     </li>

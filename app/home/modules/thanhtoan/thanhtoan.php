@@ -123,17 +123,16 @@
                                     echo '<div class="checkout__order__total">Tổng: <span id="cartPrice" style="background-color: yellow;">' . $giaSanPham * $soluong . '</span></div>';
                                 }
                             } else {
-                                if (isset($_SESSION["username"])) {
-                                    $id = $_SESSION["username"];
-                                    $sumSQL = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS cartPrice
+                                $id = $_SESSION["username"];
+                                $sumSQL = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS cartPrice
                                     FROM giohang
                                     JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
-                                    WHERE giohang.userName = '$id';";
-                                    $result = pdo_query_one($sumSQL);
-                                    echo '
-                                        <div class="checkout__order__total">Tổng: <span id="cartPrice" style="background-color: yellow;">' . $result["cartPrice"] . '</span></div>
-                                    ';
-                                }
+                                    WHERE giohang.userName = '$id';
+                                ";
+                                $result = pdo_query_one($sumSQL);
+                                echo '
+                                    <div class="checkout__order__total">Tổng: <span id="cartPrice" style="background-color: yellow;">' . $result["cartPrice"] . '</span></div>
+                                ';
                             }
                             ?>
                             <div class="checkout__input__checkbox">
@@ -160,25 +159,27 @@
                                             $result = pdo_query_one($sql);
                                             echo '<input type="hidden" name="prodID" value=' . $prodID . '>';
                                             echo '<input type="hidden" name="prodVariantPrice" value=' . $x["price"] * $soluong . '>';
+                                            echo '<input type="hidden" name="gb" value=' . $gb . '>';
+                                            echo '<input type="hidden" name="soluong" value=' . $soluong . '>';
                                         } else {
                                             $getPrice = "SELECT giaSanPham FROM sanpham WHERE id_sanPham = '$prodID'";
                                             $result = pdo_query_one($getPrice);
                                             echo '<input type="hidden" name="prodID" value=' . $prodID . '>';
                                             echo '<input type="hidden" name="prodDefaultPrice" value=' . $result["giaSanPham"] * $soluong . '>';
+                                            echo '<input type="hidden" name="soluong" value=' . $soluong . '>';
                                         }
-                                    } else {
-                                        if (isset($_SESSION["username"])) {
-                                            $id = $_SESSION["username"];
-                                            $sumSQL = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS cartTotal
-                                                FROM giohang
-                                                JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
-                                                WHERE giohang.userName = '$id';";
-                                            $result = pdo_query_one($sumSQL);
-                                            echo '<input type="hidden" name="cartTotal" value=' . $result["cartTotal"] . '>';
-                                        }
+                                    } else if (isset($_GET["payCart"])) {
+                                        $id = $_SESSION["username"];
+                                        $sumSQL = "SELECT SUM(sanpham.giaSanPham * giohang.soluong) AS cartTotal
+                                            FROM giohang
+                                            JOIN sanpham ON giohang.id_sanPham = sanpham.id_sanPham
+                                            WHERE giohang.userName = '$id';";
+                                        $result = pdo_query_one($sumSQL);
+                                        echo '<input type="hidden" name="cartTotal" value=' . $result["cartTotal"] . '>';
                                     }
                                     ?>
-                                    <input name="payUrl" type="submit" style="width: 70px;height: 29px;background-color: purple; color: white;border: 0px; border-radius: 5px;" value="Momo">
+                                    <button name="payUrl" style="width: 70px;height: 29px;background-color: purple; color: white;border: 0px; border-radius: 5px;">Momo</button>
+                                    <!-- <input type="submit" name="x" style="width: 70px;height: 29px;background-color: purple; color: white;border: 0px; border-radius: 5px;" value="Mono"> -->
                                 </label>
                             </div>
 
